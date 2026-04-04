@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-headline: "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-label: "Inter", sans-serif;
+
+  --color-background: #131313;
+  --color-on-background: #e5e2e1;
+  
+  --color-primary: #b1c5ff;
+  --color-on-primary: #002c70;
+  --color-primary-container: #0047ab;
+  --color-on-primary-container: #a5bdff;
+  --color-primary-fixed-dim: #b1c5ff;
+  
+  --color-secondary: #dcb8ff;
+  --color-on-secondary: #480081;
+  --color-secondary-container: #7701d0;
+  --color-on-secondary-container: #dcb7ff;
+  --color-secondary-fixed-dim: #dcb8ff;
+
+  --color-tertiary: #c8c6c5;
+  --color-on-tertiary: #313030;
+  --color-tertiary-container: #4e4d4d;
+  --color-on-tertiary-container: #c0bebd;
+
+  --color-surface: #131313;
+  --color-on-surface: #e5e2e1;
+  --color-surface-variant: #353534;
+  --color-on-surface-variant: #c3c6d5;
+  
+  --color-surface-container-lowest: #0e0e0e;
+  --color-surface-container-low: #1c1b1b;
+  --color-surface-container: #201f1f;
+  --color-surface-container-high: #2a2a2a;
+  --color-surface-container-highest: #353534;
+
+  --color-outline: #8d909e;
+  --color-outline-variant: #434653;
+
+  --radius-lg: 0.25rem;
+  --radius-xl: 0.5rem;
+  --radius-full: 9999px;
+}
+
+@layer utilities {
+  .glass-card {
+    background: rgba(53, 53, 52, 0.2);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(67, 70, 83, 0.15);
+  }
+  
+  .neon-glow-cobalt {
+    box-shadow: 0 0 40px rgba(0, 71, 171, 0.15);
+  }
+  
+  .neon-glow-violet {
+    box-shadow: 0 0 40px rgba(119, 1, 208, 0.15);
+  }
+
+  .hero-gradient {
+    background: radial-gradient(circle at 50% 50%, rgba(0, 71, 171, 0.15) 0%, rgba(19, 19, 19, 0) 70%);
+  }
+}
+
+body {
+  @apply bg-background text-on-background font-body selection:bg-primary-container selection:text-on-primary-container;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @apply font-headline;
+}

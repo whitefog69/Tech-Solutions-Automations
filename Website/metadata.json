@@ -1,0 +1,11 @@
+{
+  "name": "Tech Solutions & Automations",
+  "description": "Professional technology services firm specializing in cloud infrastructure, custom web/e-commerce engineering, AI automation, and pixel-perfect design.",
+  "technologies": [
+    "React 19",
+    "Vite 6",
+    "TypeScript",
+    "Tailwind CSS 4",
+    "Framer Motion"
+  ]
+}
