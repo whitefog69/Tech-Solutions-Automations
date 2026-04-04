@@ -7,7 +7,7 @@ const Services = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative min-h-[716px] flex flex-col items-center justify-center text-center px-6 overflow-hidden">
+      <section className="relative h-screen min-h-[800px] flex items-center justify-center overflow-hidden">
         {/* Background Video */}
         <video 
           autoPlay 
@@ -20,62 +20,68 @@ const Services = () => {
         </video>
         
         {/* Overlay for Depth and Readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-background/40 to-background z-[1]"></div>
-        <div className="absolute inset-0 bg-black/30 z-[1]"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background z-[1]"></div>
         
         {/* Decorative 3D Glass elements */}
         <motion.div 
           initial={{ opacity: 0, x: -100, rotate: 0 }}
-          animate={{ opacity: 0.2, x: 0, rotate: 12 }}
+          animate={{ opacity: 0.1, x: 0, rotate: 12 }}
           transition={{ duration: 1.2, ease: "easeOut" }}
-          className="absolute top-1/4 -left-20 w-64 h-64 glass-card rounded-xl hidden lg:block"
+          className="absolute top-1/4 -left-20 w-64 h-64 glass-card rounded-xl hidden lg:block z-[2]"
         ></motion.div>
         <motion.div 
           initial={{ opacity: 0, x: 100, rotate: 0 }}
-          animate={{ opacity: 0.2, x: 0, rotate: -12 }}
+          animate={{ opacity: 0.1, x: 0, rotate: -12 }}
           transition={{ duration: 1.2, ease: "easeOut", delay: 0.2 }}
-          className="absolute bottom-1/4 -right-20 w-80 h-80 glass-card rounded-xl hidden lg:block"
+          className="absolute bottom-1/4 -right-20 w-80 h-80 glass-card rounded-xl hidden lg:block z-[2]"
         ></motion.div>
 
-        <div className="relative z-10 max-w-4xl">
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="font-body text-primary-fixed-dim uppercase tracking-[0.3em] text-sm mb-6"
+        <div className="relative z-10 max-w-7xl mx-auto px-8 text-center pt-20">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
           >
-            Foundational Excellence
-          </motion.h2>
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="font-headline text-6xl md:text-8xl font-bold tracking-tighter text-on-surface mb-8"
-          >
-            Architects of <br/>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Digital Sovereignty</span>
-          </motion.h1>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="font-body text-on-surface-variant text-lg md:text-xl max-w-2xl mx-auto leading-relaxed opacity-80"
-          >
-            Our services forge the ultimate digital advantage. Spanning elite cloud virtualization, autonomous AI workflows, high-converting e-commerce builds, and striking visual design, we engineer ecosystems built to dominate.
-          </motion.p>
-          
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="mt-12 flex flex-col md:flex-row gap-6 justify-center"
-          >
-            <Link to="/contact" className="px-8 py-4 bg-primary-container text-white font-headline font-bold tracking-widest uppercase text-sm flex items-center gap-3 hover:bg-primary-container/80 transition-all active:scale-95">
-              Initialize Protocol <ArrowRight className="w-5 h-5" />
-            </Link>
-            <Link to="/about" className="px-8 py-4 border border-outline-variant/30 text-on-surface font-headline font-bold tracking-widest uppercase text-sm hover:bg-surface-container-highest/20 transition-all">
-              Technical Manifesto
-            </Link>
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="font-body text-primary-fixed-dim uppercase tracking-[0.3em] text-sm mb-6"
+            >
+              Foundational Excellence
+            </motion.h2>
+            <motion.h1 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="font-headline text-6xl md:text-8xl font-bold tracking-tighter text-on-surface mb-8"
+            >
+              Architects of <br/>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Digital Sovereignty</span>
+            </motion.h1>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="font-body text-on-surface-variant text-lg md:text-xl max-w-3xl mx-auto leading-relaxed tracking-wide mb-12 opacity-80"
+            >
+              Our services forge the ultimate digital advantage. Spanning elite cloud virtualization, autonomous AI workflows, high-converting e-commerce builds, and striking visual design, we engineer ecosystems built to dominate.
+            </motion.p>
+            
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="flex flex-col md:flex-row gap-6 justify-center"
+            >
+              <Link to="/contact" className="px-8 py-4 bg-primary-container text-white font-headline font-bold tracking-widest uppercase text-sm flex items-center gap-3 hover:bg-primary-container/80 transition-all active:scale-95">
+                Initialize Protocol <ArrowRight className="w-5 h-5" />
+              </Link>
+              <Link to="/about" className="px-8 py-4 border border-outline-variant/30 text-on-surface font-headline font-bold tracking-widest uppercase text-sm hover:bg-surface-container-highest/20 transition-all">
+                Technical Manifesto
+              </Link>
+            </motion.div>
           </motion.div>
         </div>
       </section>

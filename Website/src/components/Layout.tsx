@@ -1,13 +1,52 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Terminal, Search, ChevronDown, Globe, ShoppingBag, Server, Cloud, Sparkles, Brain, LayoutGrid, Github } from 'lucide-react';
+import { Terminal, Search, ChevronDown, Globe, ShoppingBag, Server, Cloud, Sparkles, Brain, LayoutGrid, Github, Palette, Mail } from 'lucide-react';
 import { cn } from '@/src/lib/utils';
 import { motion, AnimatePresence } from 'motion/react';
+import { siteData, PageData } from '@/src/lib/services-data';
+
+const iconMap = {
+  Server,
+  Globe,
+  Brain,
+  ShoppingBag,
+  Palette,
+  Terminal,
+  Mail
+};
 
 export const Navbar = () => {
   const location = useLocation();
   const [isServicesOpen, setIsServicesOpen] = useState(false);
-  
+  const [searchTerm, setSearchTerm] = useState('');
+  const [searchResults, setSearchResults] = useState<PageData[]>([]);
+  const searchRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (searchTerm.trim() === '') {
+      setSearchResults([]);
+      return;
+    }
+
+    const filtered = siteData.filter((page) =>
+      page.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      page.keywords.some((keyword) => keyword.toLowerCase().includes(searchTerm.toLowerCase())) ||
+      page.description.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setSearchResults(filtered);
+  }, [searchTerm]);
+
+  // Close search results when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
+        setSearchTerm('');
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
   const serviceLinks = [
     { name: 'Virtualization & Cloud', path: '/services/cloud' },
     { name: 'Precision Web & Ecom Development', path: '/services/web-dev' },
@@ -102,14 +141,53 @@ export const Navbar = () => {
       </div>
       
       <div className="flex items-center gap-6">
-        <div className="hidden lg:flex items-center bg-surface-container-lowest border border-outline-variant/20 px-4 py-2 rounded-full">
+        <div ref={searchRef} className="hidden lg:flex items-center bg-surface-container-lowest border border-outline-variant/20 px-4 py-2 rounded-full relative">
           <Search className="text-on-surface-variant w-4 h-4 mr-2" />
           <input 
             className="bg-transparent border-none text-xs tracking-widest focus:outline-none w-32 placeholder:text-on-surface-variant/40" 
             placeholder="SYSTEM SEARCH" 
             type="text"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
           />
+          
+          <AnimatePresence>
+            {searchTerm.length > 0 && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 10 }}
+                className="absolute top-full right-0 w-80 mt-3 bg-surface-container-low border border-outline-variant/20 shadow-2xl backdrop-blur-2xl rounded-xl overflow-hidden z-50"
+              >
+                {searchResults.length > 0 ? (
+                searchResults.map((result) => {
+                  const Icon = iconMap[result.icon];
+                  return (
+                    <Link
+                      key={result.id}
+                      to={result.path}
+                      onClick={() => setSearchTerm('')}
+                      className="flex items-center gap-4 px-6 py-4 hover:bg-primary-container/10 transition-colors border-b border-outline-variant/5 last:border-0"
+                    >
+                      <div className="p-2 rounded bg-background/50 border border-outline-variant/10">
+                        <Icon className="w-4 h-4 text-primary" />
+                      </div>
+                      <div>
+                        <h4 className="font-headline text-xs font-bold text-on-surface uppercase tracking-widest mb-0.5">{result.title}</h4>
+                        <p className="text-[9px] text-on-surface-variant truncate">{result.description}</p>
+                      </div>
+                    </Link>
+                  );
+                })
+                ) : (
+                <div className="px-6 py-4 text-xs font-headline uppercase text-on-surface-variant/50">
+                  No results found
+                </div>
+                )}              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
+        
         <Link to="/contact" className="bg-gradient-to-br from-primary-container to-primary text-on-primary px-6 py-2.5 font-headline text-sm font-bold uppercase tracking-widest active:scale-95 transition-transform shadow-[0_0_15px_rgba(0,71,171,0.4)]">
           Consult Now
         </Link>
@@ -118,6 +196,8 @@ export const Navbar = () => {
     </nav>
   );
 };
+
+
 
 export const Footer = () => {
   const techStack = [

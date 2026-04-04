@@ -8,20 +8,19 @@ const CloudPage = () => {
     <div className="min-h-screen bg-background text-on-surface">
       {/* Hero Section */}
       <section className="relative h-screen min-h-[800px] flex items-center justify-center overflow-hidden">
-        {/* Video Background */}
-        <div className="absolute inset-0 z-0">
-          <video 
-            autoPlay 
-            loop 
-            muted 
-            playsInline
-            className="w-full h-full object-cover opacity-50"
-            src="/assets/services/cloud/cloud-hero.mp4"
-          >
-          </video>
-          {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/80 to-background"></div>
-        </div>
+        {/* Background Video */}
+        <video 
+          autoPlay 
+          loop 
+          muted 
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover z-0"
+        >
+          <source src="/assets/services/cloud/cloud-hero.mp4" type="video/mp4" />
+        </video>
+        
+        {/* Overlay for Depth and Readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background z-[1]"></div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-8 text-center pt-20">
           <motion.div
@@ -36,7 +35,7 @@ const CloudPage = () => {
             <h1 className="font-headline text-6xl md:text-8xl font-black tracking-tighter mb-6 uppercase">
               Virtualization & <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary-container neon-glow-cobalt">Cloud</span>
             </h1>
-            <p className="font-body text-on-surface-variant text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed tracking-wide">
+            <p className="font-body text-on-surface-variant text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed tracking-wide mb-12">
               Expert orchestration of cloud infrastructure and virtualization environments for enterprise stability and security.
             </p>
           </motion.div>
