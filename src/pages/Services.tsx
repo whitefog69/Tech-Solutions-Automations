@@ -296,6 +296,16 @@ const Services = () => {
             whileHover={{ scale: 1.01 }}
             className="md:col-span-12 glass-card p-10 relative group border-outline-variant/5 neon-glow-violet overflow-hidden"
           >
+            {/* Background Image */}
+            <div className="absolute inset-0 z-0">
+              <img 
+                src={`${import.meta.env.BASE_URL}assets/services/design/design-bg.png`} 
+                alt="Graphic & Web Design Background" 
+                className="w-full h-full object-cover opacity-30 group-hover:opacity-50 transition-opacity duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-background via-background/60 to-transparent"></div>
+            </div>
+
             <div className="absolute top-0 right-0 p-12 opacity-5">
               <Palette className="w-64 h-64 text-secondary" />
             </div>
