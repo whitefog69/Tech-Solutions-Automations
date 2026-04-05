@@ -114,7 +114,7 @@ const Services = () => {
                 </div>
                 <span className="font-body text-primary tracking-[0.2em] text-xs font-bold uppercase">Strategic Domain</span>
               </div>
-              <h3 className="font-headline text-4xl font-bold mb-6 text-on-surface leading-tight">1. Virtualization & Cloud</h3>
+              <h3 className="font-headline text-4xl font-bold mb-6 text-on-surface leading-tight">Virtualization & Cloud</h3>
               <div className="grid md:grid-cols-2 gap-8 mb-12">
                 <ul className="space-y-4">
                   <li className="flex items-start gap-3">
@@ -178,7 +178,7 @@ const Services = () => {
               <div className="w-14 h-14 rounded-full bg-secondary-container flex items-center justify-center mb-8 shadow-[0_0_20px_rgba(119,1,208,0.5)]">
                 <Globe className="w-8 h-8 text-white" />
               </div>
-              <h3 className="font-headline text-3xl font-bold mb-4 text-on-surface leading-tight">2. Precision Web & Ecom Development</h3>
+              <h3 className="font-headline text-3xl font-bold mb-4 text-on-surface leading-tight">Precision Web & Ecom Development</h3>
               <p className="text-on-surface-variant text-sm mb-8 leading-relaxed">Bespoke builds focused on speed and clean architecture.</p>
               <ul className="space-y-4">
                 <li className="flex items-center gap-3">
@@ -222,7 +222,7 @@ const Services = () => {
                   <Brain className="text-primary w-8 h-8" />
                   <span className="font-mono text-primary-fixed-dim/40 text-xs">// INTELLIGENCE_MATRIX</span>
                 </div>
-                <h3 className="font-headline text-3xl font-bold text-on-surface uppercase tracking-tight">3. AI & Automation</h3>
+                <h3 className="font-headline text-3xl font-bold text-on-surface uppercase tracking-tight">AI & Automation</h3>
               </div>
               <div className="space-y-6 flex-grow">
                 {[
@@ -262,8 +262,7 @@ const Services = () => {
             <div className="relative z-10 flex flex-col h-full">
               <div className="flex justify-between items-start mb-8">
                 <div>
-                  <h3 className="font-headline text-3xl font-bold text-on-surface uppercase tracking-tight">4. Shopify, WordPress Integrations & App Development</h3>
-                  <p className="text-primary-fixed-dim/70 text-xs font-body uppercase tracking-widest mt-2 italic">Scale with Authority</p>
+                  <h3 className="font-headline text-3xl font-bold text-on-surface uppercase tracking-tight">Shopify, WordPress Integrations & App Development</h3>
                 </div>
                 <ShoppingBag className="text-on-surface-variant opacity-20 w-12 h-12" />
               </div>
@@ -306,7 +305,7 @@ const Services = () => {
                   <div className="w-12 h-12 rounded-full bg-secondary-container/20 flex items-center justify-center">
                     <Palette className="w-6 h-6 text-secondary" />
                   </div>
-                  <h3 className="font-headline text-4xl font-bold text-on-surface uppercase tracking-tight">5. Graphic & Web Design</h3>
+                  <h3 className="font-headline text-4xl font-bold text-on-surface uppercase tracking-tight">Graphic & Web Design</h3>
                 </div>
                 <p className="text-on-surface-variant text-lg leading-relaxed mb-8 max-w-2xl">Crafting cohesive visual identities and visually striking website layouts that align with modern aesthetics.</p>
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -356,3 +355,8 @@ const Services = () => {
 };
 
 export default Services;
+;
+Services;
+;
+;
+;

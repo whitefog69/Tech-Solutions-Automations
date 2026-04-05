@@ -89,10 +89,10 @@ const Home = () => {
                   initial={{ opacity: 0, x: 50, scale: 0.9 }}
                   animate={{ opacity: 1, x: 0, scale: 1 }}
                   transition={{ duration: 0.5, delay: 0.8 + idx * 0.1 }}
-                  className="bg-surface-container-lowest border border-primary/20 p-5 rounded-lg flex items-center gap-5 shadow-[0_0_10px_rgba(177,197,255,0.05)] min-w-[340px] hover:shadow-[0_0_20px_rgba(177,197,255,0.1)] hover:border-primary transition-all duration-300 group"
+                  className="bg-surface-container-lowest border border-primary/20 p-5 rounded-lg flex items-center gap-5 shadow-[0_0_10px_rgba(177,197,255,0.05)] min-w-[340px] hover:shadow-[0_0_20px_rgba(177,197,255,0.1)] hover:border-primary transition-all duration-500 group hover:scale-[1.02]"
                 >
-                  <div className="w-10 h-10 flex-shrink-0 bg-surface-container-highest/30 rounded-md flex items-center justify-center border border-outline-variant/10">
-                    <item.icon className="w-5 h-5 text-primary group-hover:scale-110 transition-all duration-300" />
+                  <div className="w-10 h-10 flex-shrink-0 bg-surface-container-highest/30 rounded-md flex items-center justify-center border border-outline-variant/10 group-hover:border-primary/40 transition-all duration-300">
+                    <item.icon className="w-5 h-5 text-primary opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300" />
                   </div>
                   <span className="font-headline font-bold text-xs text-on-surface uppercase tracking-[0.1em]">{item.title}</span>
                 </motion.div>
@@ -172,12 +172,12 @@ const Home = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.15, duration: 0.8, ease: "easeOut" }}
-              className="glass-card p-12 flex flex-col justify-between group hover:border-primary/20 hover:bg-surface-container-low/40 transition-all duration-500 relative"
+              className="glass-card p-12 flex flex-col justify-between group hover:border-primary/20 hover:bg-surface-container-low/40 transition-all duration-500 relative hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(0,71,171,0.1)]"
             >
               <div className="relative z-10">
                 <div className="flex gap-1 mb-8">
                   {[...Array(t.stars)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-primary text-primary group-hover:scale-110 transition-transform duration-300" />
+                    <Star key={i} className="w-4 h-4 fill-primary text-primary opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300" />
                   ))}
                 </div>
 

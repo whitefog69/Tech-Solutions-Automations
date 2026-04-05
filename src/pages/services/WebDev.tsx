@@ -60,10 +60,10 @@ const WebDevPage = () => {
               className={cn(
                 "p-10 rounded-2xl transition-all duration-500 hover:scale-[1.02] group",
                 "backdrop-blur-md bg-white/5 border border-white/5",
-                "hover:border-[#dcb8ff]/20 hover:shadow-[0_0_20px_rgba(220,184,255,0.05)]"
+                "hover:border-secondary/20 hover:shadow-[0_0_20px_rgba(220,184,255,0.05)]"
               )}
             >
-              <item.icon className="w-10 h-10 text-[#dcb8ff] mb-6 opacity-80 group-hover:opacity-100 transition-opacity" />
+              <item.icon className="w-10 h-10 text-secondary mb-6 opacity-80 group-hover:opacity-100 group-hover:text-secondary-container transition-all duration-300" />
               <h3 className="font-headline text-2xl font-bold mb-4 uppercase tracking-widest leading-tight">{item.title}</h3>
               <p className="font-body text-on-surface-variant leading-relaxed text-sm">
                 {item.desc}

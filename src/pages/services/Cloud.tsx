@@ -53,17 +53,18 @@ const CloudPage = () => {
             { icon: Lock, title: "Windows Virtualization", desc: "Seamless implementation of Windows virtual systems for enterprise operations." }
           ].map((item, i) => (
             <motion.div
-            key={i}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.15, duration: 0.6 }}
-            viewport={{ once: true, margin: "-50px" }}
-            className={cn(
-              "p-10 rounded-2xl transition-all duration-500 hover:scale-[1.02] group",
-              "backdrop-blur-md bg-white/5 border border-white/5",
-              "hover:border-primary/20 hover:shadow-[0_0_20px_rgba(0,71,171,0.05)]"
-            )}
-            >              <item.icon className="w-10 h-10 text-primary mb-6 opacity-80 group-hover:opacity-100 group-hover:text-primary-container transition-colors" />
+              key={i}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ delay: i * 0.15, duration: 0.6 }}
+              viewport={{ once: true, margin: "-50px" }}
+              className={cn(
+                "p-10 rounded-2xl transition-all duration-500 hover:scale-[1.02] group",
+                "backdrop-blur-md bg-white/5 border border-white/5",
+                "hover:border-primary/20 hover:shadow-[0_0_20px_rgba(0,71,171,0.05)]"
+              )}
+            >
+              <item.icon className="w-10 h-10 text-primary mb-6 opacity-80 group-hover:opacity-100 group-hover:text-primary-container transition-all duration-300" />
               <h3 className="font-headline text-2xl font-bold mb-4 uppercase tracking-widest leading-tight">{item.title}</h3>
               <p className="font-body text-on-surface-variant leading-relaxed text-sm">
                 {item.desc}
