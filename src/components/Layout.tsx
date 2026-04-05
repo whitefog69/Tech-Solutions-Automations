@@ -23,15 +23,15 @@ export const Navbar = () => {
   const searchRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (searchTerm.trim() === '') {
+    const term = searchTerm.toLowerCase().trim();
+    if (term.length < 1) {
       setSearchResults([]);
       return;
     }
 
     const filtered = siteData.filter((page) =>
-      page.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      page.keywords.some((keyword) => keyword.toLowerCase().includes(searchTerm.toLowerCase())) ||
-      page.description.toLowerCase().includes(searchTerm.toLowerCase())
+      page.title.toLowerCase().startsWith(term) ||
+      page.keywords.some((keyword) => keyword.toLowerCase().startsWith(term))
     );
     setSearchResults(filtered);
   }, [searchTerm]);
@@ -152,7 +152,7 @@ export const Navbar = () => {
           />
           
           <AnimatePresence>
-            {searchTerm.length > 0 && (
+            {searchTerm.length >= 1 && (
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
