@@ -65,6 +65,10 @@
   }
 }
 
+html, body {
+  scroll-behavior: auto !important;
+}
+
 body {
   @apply bg-background text-on-background font-body selection:bg-primary-container selection:text-on-primary-container;
 }
