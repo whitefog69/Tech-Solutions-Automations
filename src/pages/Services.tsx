@@ -16,7 +16,7 @@ const Services = () => {
           playsInline
           className="absolute inset-0 w-full h-full object-cover z-0"
         >
-          <source src="assets/services-banner.mp4" type="video/mp4" />
+          <source src={`${import.meta.env.BASE_URL}assets/services-banner.mp4`} type="video/mp4" />
         </video>
         
         {/* Overlay for Depth and Readability */}
@@ -97,7 +97,7 @@ const Services = () => {
             {/* Background Image */}
             <div className="absolute inset-0 z-0">
               <img 
-                src="assets/services/cloud/cloud-bg.png" 
+                src={`${import.meta.env.BASE_URL}assets/services/cloud/cloud-bg.png`} 
                 alt="Virtualization & Cloud Background" 
                 className="w-full h-full object-cover opacity-40 group-hover:opacity-60 transition-opacity duration-700"
               />
@@ -167,7 +167,7 @@ const Services = () => {
             {/* Background Image */}
             <div className="absolute inset-0 z-0">
               <img 
-                src="assets/services/web/web-bg.png" 
+                src={`${import.meta.env.BASE_URL}assets/services/web/web-bg.png`} 
                 alt="Precision Web & Ecom Development Background" 
                 className="w-full h-full object-cover opacity-40 group-hover:opacity-60 transition-opacity duration-700"
               />
@@ -209,7 +209,7 @@ const Services = () => {
             {/* Background Image */}
             <div className="absolute inset-0 z-0">
               <img 
-                src="assets/services/ai/ai-bg.png" 
+                src={`${import.meta.env.BASE_URL}assets/services/ai/ai-bg.png`} 
                 alt="AI & Automation Background" 
                 className="w-full h-full object-cover opacity-40 group-hover:opacity-60 transition-opacity duration-700"
               />
@@ -252,7 +252,7 @@ const Services = () => {
             {/* Background Image */}
             <div className="absolute inset-0 z-0">
               <img 
-                src="assets/services/shopify/shopify-bg.png" 
+                src={`${import.meta.env.BASE_URL}assets/services/shopify/shopify-bg.png`} 
                 alt="Shopify Integrations Background" 
                 className="w-full h-full object-cover opacity-30 group-hover:opacity-50 transition-opacity duration-700"
               />

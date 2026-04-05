@@ -1,0 +1,7 @@
+services\ai\ai-automation.mp4
+services\ai\ai-bg.png
+services\cloud\cloud-bg.png
+services\cloud\cloud-hero.mp4
+services\shopify\shopify-bg.png
+services\web\web-bg.png
+services\web\web-dev-hero.mp4
