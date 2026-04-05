@@ -16,7 +16,7 @@ const WebDevPage = () => {
           playsInline
           className="absolute inset-0 w-full h-full object-cover z-0"
         >
-          <source src="/assets/services/web/web-dev-hero.mp4" type="video/mp4" />
+          <source src="assets/services/web/web-dev-hero.mp4" type="video/mp4" />
         </video>
         
         {/* Overlay for Depth and Readability */}
@@ -87,7 +87,7 @@ const WebDevPage = () => {
             )}
           >
              {/* Using standard img tags as placeholders for the Nano Banana prompts */}
-             <div className="absolute inset-0 bg-[url('/assets/services/web/detail-shot.png')] bg-cover bg-center opacity-30 mix-blend-overlay"></div>
+             <div className="absolute inset-0 bg-[url('assets/services/web/detail-shot.png')] bg-cover bg-center opacity-30 mix-blend-overlay"></div>
              
              <ScanLine className="w-48 h-48 text-[#dcb8ff]/10 absolute" />
              

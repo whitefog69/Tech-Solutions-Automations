@@ -201,15 +201,15 @@ export const Navbar = () => {
 
 export const Footer = () => {
   const techStack = [
-    { name: 'WordPress', icon: <img src="/assets/icons/wordpress.png" alt="WordPress" className="w-6 h-6 object-contain brightness-0 invert opacity-70 group-hover/item:brightness-100 group-hover/item:invert-0 group-hover/item:opacity-100 transition-all duration-500" /> },
-    { name: 'Shopify', icon: <img src="/assets/icons/shopify.png" alt="Shopify" className="w-6 h-6 object-contain brightness-0 invert opacity-70 group-hover/item:brightness-100 group-hover/item:invert-0 group-hover/item:opacity-100 transition-all duration-500" /> },
-    { name: 'AWS', icon: <img src="/assets/icons/aws.png" alt="AWS" className="w-6 h-6 object-contain brightness-0 invert opacity-70 group-hover/item:brightness-100 group-hover/item:invert-0 group-hover/item:opacity-100 transition-all duration-500" /> },
-    { name: 'Microsoft Azure', icon: <img src="/assets/icons/azure.png" alt="Azure" className="w-6 h-6 object-contain brightness-0 invert opacity-70 group-hover/item:brightness-100 group-hover/item:invert-0 group-hover/item:opacity-100 transition-all duration-500" /> },
-    { name: 'Linux', icon: <img src="/assets/icons/linux.png" alt="Linux" className="w-6 h-6 object-contain brightness-0 invert opacity-70 group-hover/item:brightness-100 group-hover/item:invert-0 group-hover/item:opacity-100 transition-all duration-500" /> },
-    { name: 'Windows', icon: <img src="/assets/icons/windows.png" alt="Windows" className="w-6 h-6 object-contain brightness-0 invert opacity-70 group-hover/item:brightness-100 group-hover/item:invert-0 group-hover/item:opacity-100 transition-all duration-500" /> },
-    { name: 'Github', icon: <img src="/assets/icons/github.png" alt="Github" className="w-6 h-6 object-contain brightness-0 invert opacity-70 group-hover/item:brightness-100 group-hover/item:invert-0 group-hover/item:opacity-100 transition-all duration-500" /> },
-    { name: 'Google Gemini', icon: <img src="/assets/icons/gemini.png" alt="Gemini" className="w-6 h-6 object-contain brightness-0 invert opacity-70 group-hover/item:brightness-100 group-hover/item:invert-0 group-hover/item:opacity-100 transition-all duration-500" /> },
-    { name: 'Claude', icon: <img src="/assets/icons/claude.png" alt="Claude" className="w-6 h-6 object-contain brightness-0 invert opacity-70 group-hover/item:brightness-100 group-hover/item:invert-0 group-hover/item:opacity-100 transition-all duration-500" /> },
+    { name: 'WordPress', icon: <img src="assets/icons/wordpress.png" alt="WordPress" className="w-6 h-6 object-contain brightness-0 invert opacity-70 group-hover/item:brightness-100 group-hover/item:invert-0 group-hover/item:opacity-100 transition-all duration-500" /> },
+    { name: 'Shopify', icon: <img src="assets/icons/shopify.png" alt="Shopify" className="w-6 h-6 object-contain brightness-0 invert opacity-70 group-hover/item:brightness-100 group-hover/item:invert-0 group-hover/item:opacity-100 transition-all duration-500" /> },
+    { name: 'AWS', icon: <img src="assets/icons/aws.png" alt="AWS" className="w-6 h-6 object-contain brightness-0 invert opacity-70 group-hover/item:brightness-100 group-hover/item:invert-0 group-hover/item:opacity-100 transition-all duration-500" /> },
+    { name: 'Microsoft Azure', icon: <img src="assets/icons/azure.png" alt="Azure" className="w-6 h-6 object-contain brightness-0 invert opacity-70 group-hover/item:brightness-100 group-hover/item:invert-0 group-hover/item:opacity-100 transition-all duration-500" /> },
+    { name: 'Linux', icon: <img src="assets/icons/linux.png" alt="Linux" className="w-6 h-6 object-contain brightness-0 invert opacity-70 group-hover/item:brightness-100 group-hover/item:invert-0 group-hover/item:opacity-100 transition-all duration-500" /> },
+    { name: 'Windows', icon: <img src="assets/icons/windows.png" alt="Windows" className="w-6 h-6 object-contain brightness-0 invert opacity-70 group-hover/item:brightness-100 group-hover/item:invert-0 group-hover/item:opacity-100 transition-all duration-500" /> },
+    { name: 'Github', icon: <img src="assets/icons/github.png" alt="Github" className="w-6 h-6 object-contain brightness-0 invert opacity-70 group-hover/item:brightness-100 group-hover/item:invert-0 group-hover/item:opacity-100 transition-all duration-500" /> },
+    { name: 'Google Gemini', icon: <img src="assets/icons/gemini.png" alt="Gemini" className="w-6 h-6 object-contain brightness-0 invert opacity-70 group-hover/item:brightness-100 group-hover/item:invert-0 group-hover/item:opacity-100 transition-all duration-500" /> },
+    { name: 'Claude', icon: <img src="assets/icons/claude.png" alt="Claude" className="w-6 h-6 object-contain brightness-0 invert opacity-70 group-hover/item:brightness-100 group-hover/item:invert-0 group-hover/item:opacity-100 transition-all duration-500" /> },
   ];
 
   return (

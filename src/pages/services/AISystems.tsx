@@ -16,7 +16,7 @@ const AISystemsPage = () => {
           playsInline
           className="absolute inset-0 w-full h-full object-cover z-0"
         >
-          <source src="/assets/services/ai/ai-automation.mp4" type="video/mp4" />
+          <source src="assets/services/ai/ai-automation.mp4" type="video/mp4" />
         </video>
         
         {/* Overlay for Depth and Readability */}
@@ -115,7 +115,7 @@ const AISystemsPage = () => {
             )}
           >
              {/* Using standard img tags as placeholders for the Nano Banana prompts */}
-             <div className="absolute inset-0 bg-[url('/assets/services/ai/detail-shot.png')] bg-cover bg-center opacity-20 mix-blend-overlay"></div>
+             <div className="absolute inset-0 bg-[url('assets/services/ai/detail-shot.png')] bg-cover bg-center opacity-20 mix-blend-overlay"></div>
              
              <Network className="w-32 h-32 text-secondary/30 absolute animate-pulse duration-[3000ms]" />
              

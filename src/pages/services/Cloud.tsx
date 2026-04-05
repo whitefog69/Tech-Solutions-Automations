@@ -16,7 +16,7 @@ const CloudPage = () => {
           playsInline
           className="absolute inset-0 w-full h-full object-cover z-0"
         >
-          <source src="/assets/services/cloud/cloud-hero.mp4" type="video/mp4" />
+          <source src="assets/services/cloud/cloud-hero.mp4" type="video/mp4" />
         </video>
         
         {/* Overlay for Depth and Readability */}
@@ -111,7 +111,7 @@ const CloudPage = () => {
             )}
           >
              {/* Using standard img tags as placeholders for the Nano Banana prompts */}
-             <div className="absolute inset-0 bg-[url('/assets/services/cloud/detail-shot.png')] bg-cover bg-center opacity-30 mix-blend-overlay"></div>
+             <div className="absolute inset-0 bg-[url('assets/services/cloud/detail-shot.png')] bg-cover bg-center opacity-30 mix-blend-overlay"></div>
              
              <Lock className="w-24 h-24 text-primary/30 absolute" />
              <div className="font-mono text-[11px] text-primary/60 leading-relaxed p-8 relative z-10 bg-background/40 backdrop-blur-sm rounded-xl border border-primary/20 m-8">

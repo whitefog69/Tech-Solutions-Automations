@@ -16,7 +16,7 @@ const ShopifyPage = () => {
           playsInline
           className="absolute inset-0 w-full h-full object-cover z-0 opacity-50 hue-rotate-[210deg] saturate-150"
         >
-          <source src="/assets/services/shopify/hero-video.mp4" type="video/mp4" />
+          <source src="assets/services/shopify/hero-video.mp4" type="video/mp4" />
         </video>
         
         {/* Overlay for Depth and Readability */}
@@ -89,7 +89,7 @@ const ShopifyPage = () => {
             )}
           >
              {/* Using standard img tags as placeholders for the Nano Banana prompts */}
-             <div className="absolute inset-0 bg-[url('/assets/services/shopify/detail-shot.png')] bg-cover bg-center opacity-40 mix-blend-overlay"></div>
+             <div className="absolute inset-0 bg-[url('assets/services/shopify/detail-shot.png')] bg-cover bg-center opacity-40 mix-blend-overlay"></div>
              
              <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/40 to-transparent"></div>
              

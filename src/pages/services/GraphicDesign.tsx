@@ -15,7 +15,7 @@ const GraphicDesignPage = () => {
           muted 
           playsInline
           className="absolute inset-0 w-full h-full object-cover z-0 opacity-50 saturate-150 brightness-110"
-          src="/assets/services/web/hero-video.mp4"
+          src="assets/services/web/hero-video.mp4"
         >
         </video>
         
@@ -113,7 +113,7 @@ const GraphicDesignPage = () => {
               "neon-glow-violet"
             )}
           >
-             <div className="absolute inset-0 bg-[url('/assets/services/web/detail-shot.png')] bg-cover bg-center opacity-20 mix-blend-overlay"></div>
+             <div className="absolute inset-0 bg-[url('assets/services/web/detail-shot.png')] bg-cover bg-center opacity-20 mix-blend-overlay"></div>
              <Palette className="w-48 h-48 text-secondary/10 absolute animate-pulse duration-[4000ms]" />
              
              <div className="relative z-10 grid grid-cols-2 gap-4 w-full h-full">
