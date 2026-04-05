@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { Shield, Cpu, Zap, Code2, Palette, Database, Layers, Rocket } from 'lucide-react';
 import { cn } from '../lib/utils';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 interface PanelProps {
   title: string;

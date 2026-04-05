@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { ArrowRight, Shield, Brain, Terminal, ShoppingBag, CheckCircle, Settings2, Code2, Activity, Headset, Bolt, Globe, Palette, Server, Key, Workflow, RefreshCw, BarChart } from 'lucide-react';
 
@@ -16,7 +16,7 @@ const Services = () => {
           playsInline
           className="absolute inset-0 w-full h-full object-cover z-0"
         >
-          <source src="/assets/services-banner.mp4" type="video/mp4" />
+          <source src="assets/services-banner.mp4" type="video/mp4" />
         </video>
         
         {/* Overlay for Depth and Readability */}
