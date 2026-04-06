@@ -322,12 +322,12 @@ export const Footer = () => {
       </div>
 
       {/* Main Footer Content */}
-      <div className="py-12 flex flex-col md:flex-row justify-between items-center px-12 gap-6">
-        <div className="flex flex-col items-center md:items-start gap-2">
+      <div className="py-12 flex flex-col justify-center items-center px-12 gap-6 text-center">
+        <div className="flex flex-col items-center gap-2">
           <span className="font-headline font-black text-on-surface text-xl uppercase tracking-tighter">Tech Solutions & Automations</span>
           <p className="font-body text-[10px] tracking-[0.1em] uppercase text-on-surface/30">© 2024 Tech Solutions & Automations. Technical Authority Secured.</p>
         </div>
-        <div className="flex gap-8">
+        <div className="flex flex-wrap justify-center gap-4 md:gap-8">
           <a className="font-body text-[10px] tracking-[0.1em] uppercase text-on-surface/30 hover:text-on-surface transition-colors" href="#">Privacy Protocol</a>
           <a className="font-body text-[10px] tracking-[0.1em] uppercase text-on-surface/30 hover:text-on-surface transition-colors" href="#">Security Whitepaper</a>
           <a className="font-body text-[10px] tracking-[0.1em] uppercase text-on-surface/30 hover:text-on-surface transition-colors" href="#">Network Status</a>
