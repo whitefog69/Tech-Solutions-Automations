@@ -91,8 +91,8 @@ const Services = () => {
 
             <div className="relative z-10">
               <div className="flex items-center gap-4 mb-6">
-                <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-primary-container/20 flex items-center justify-center">
-                  <Server className="w-6 h-6 text-primary" />
+                <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-secondary-container/20 flex items-center justify-center neon-glow-violet border border-secondary/20">
+                  <Palette className="w-6 h-6 text-secondary" />
                 </div>
                 <span className="font-body text-primary tracking-[0.2em] text-xs font-bold uppercase">Strategic Domain</span>
               </div>
@@ -156,10 +156,12 @@ const Services = () => {
             </div>
 
             <div className="relative z-10">
-              <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-secondary-container flex items-center justify-center mb-8 shadow-[0_0_20px_rgba(119,1,208,0.5)]">
-                <Globe className="w-6 h-6 md:w-8 md:h-8 text-white" />
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-secondary-container/20 flex items-center justify-center neon-glow-violet border border-secondary/20">
+                  <Globe className="w-6 h-6 text-secondary" />
+                </div>
+                <h3 className="font-headline text-2xl md:text-3xl font-bold text-on-surface leading-tight">Precision Web & Ecom Development</h3>
               </div>
-              <h3 className="font-headline text-2xl md:text-3xl font-bold mb-4 text-on-surface leading-tight">Precision Web & Ecom Development</h3>
               <p className="text-on-surface-variant text-sm mb-8 leading-relaxed">Bespoke builds focused on speed and clean architecture.</p>
               <ul className="space-y-4">
                 {[
@@ -192,10 +194,9 @@ const Services = () => {
             </div>
 
             <div className="flex flex-col h-full relative z-10">
-              <div className="mb-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <Brain className="text-primary w-6 h-6 md:w-8 md:h-8" />
-                  <span className="font-mono text-primary-fixed-dim/40 text-[10px]">// INTEL_MATRIX</span>
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-primary-container/20 flex items-center justify-center neon-glow-cobalt border border-primary/20">
+                  <Brain className="w-6 h-6 text-primary" />
                 </div>
                 <h3 className="font-headline text-2xl md:text-3xl font-bold text-on-surface uppercase tracking-tight">AI & Automation</h3>
               </div>
@@ -234,13 +235,11 @@ const Services = () => {
             </div>
 
             <div className="relative z-10 flex flex-col h-full">
-              <div className="flex justify-between items-start mb-6">
-                <div>
-                  <h3 className="font-headline text-2xl md:text-3xl font-bold text-on-surface uppercase tracking-tight">Shopify, WordPress Integrations & App Development</h3>
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-primary-container/20 flex items-center justify-center neon-glow-cobalt border border-primary/20">
+                  <ShoppingBag className="w-6 h-6 text-primary" />
                 </div>
-                <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-primary-container/20 flex items-center justify-center shrink-0">
-                  <ShoppingBag className="w-6 h-6 md:w-8 md:h-8 text-primary" />
-                </div>
+                <h3 className="font-headline text-2xl md:text-3xl font-bold text-on-surface uppercase tracking-tight">Shopify, WordPress Integrations & App Development</h3>
               </div>
               <div className="grid grid-cols-2 gap-3 md:gap-4 mb-6">
                 {[
@@ -282,9 +281,9 @@ const Services = () => {
             <div className="relative z-10 flex flex-col gap-8 md:gap-12 md:flex-row items-center">
               <div className="flex-1">
                 <div className="flex items-center gap-4 mb-6">
-                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-secondary-container/20 flex items-center justify-center">
-                    <Palette className="w-6 h-6 text-secondary" />
-                  </div>
+                <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-secondary-container/20 flex items-center justify-center neon-glow-violet border border-secondary/20">
+                  <Palette className="w-6 h-6 text-secondary" />
+                </div>
                   <h3 className="font-headline text-2xl md:text-4xl font-bold text-on-surface uppercase tracking-tight">Graphic & Web Design</h3>
                 </div>
                 <p className="text-on-surface-variant text-sm md:text-lg leading-relaxed mb-8 max-w-2xl">Crafting cohesive visual identities and visually striking website layouts that align with modern aesthetics.</p>
