@@ -46,9 +46,9 @@ const ArchitecturePanel = ({ title, focus, icon: Icon, services }: PanelProps) =
 
 const AboutUs = () => {
   return (
-    <div className="min-h-screen bg-background text-on-surface py-20 md:py-32 px-6 md:px-8">
+    <div className="min-h-screen bg-background text-on-surface py-12 md:py-32 px-6 md:px-8">
       <div className="max-w-6xl mx-auto">
-        <div className="relative mb-20 md:mb-32 py-12 md:py-20 px-6 md:px-16 overflow-hidden rounded-3xl border border-[#4DA6FF]/20 bg-surface/40 backdrop-blur-xl shadow-[0_0_50px_rgba(77,166,255,0.05)]">
+        <div className="relative mb-16 md:mb-32 py-12 md:py-20 px-6 md:px-16 overflow-hidden rounded-3xl border border-[#4DA6FF]/20 bg-surface/40 backdrop-blur-xl shadow-[0_0_50px_rgba(77,166,255,0.05)]">
           {/* Lighting / Overlays - Digital Grid */}
           <div 
             className="absolute inset-0 pointer-events-none opacity-20"
@@ -74,16 +74,16 @@ const AboutUs = () => {
             </motion.h1>
           </header>
 
-          <section className="relative z-10 text-center max-w-4xl mx-auto space-y-10 md:space-y-16">
+          <section className="relative z-10 text-center max-w-4xl mx-auto space-y-8 md:space-y-16">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.7 }}
             >
-              <h2 className="font-headline text-lg md:text-2xl font-medium uppercase tracking-[0.2em] mb-4 md:mb-6 text-[#4DA6FF]">OUR STORY</h2>
-              <p className="font-body text-base md:text-xl font-light text-[#E0E0E0] leading-relaxed max-w-3xl mx-auto">
-                Founded on the principles of robust systems architecture and advanced cybersecurity, we understand that true luxury in the digital space means flawless performance and total control. We bridge the gap between complex engineering and elegant design, transforming intricate technical challenges into streamlined, intuitive ecosystems. Whether we are deploying state-of-the-art React applications or architecting intelligent AI workflows, our approach is defined by precision and purpose.
+              <h2 className="font-headline text-sm md:text-2xl font-medium uppercase tracking-[0.2em] mb-4 md:mb-6 text-[#4DA6FF]">OUR STORY</h2>
+              <p className="font-body text-sm md:text-xl font-light text-[#E0E0E0] leading-relaxed max-w-3xl mx-auto">
+                Founded on the principles of robust systems architecture and advanced cybersecurity, we understand that true luxury in the digital space means flawless performance and total control. We bridge the gap between complex engineering and elegant design, transforming intricate technical challenges into streamlined, intuitive ecosystems.
               </p>
             </motion.div>
 
@@ -105,8 +105,8 @@ const AboutUs = () => {
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.7, delay: 0.3 }}
             >
-              <h2 className="font-headline text-lg md:text-2xl font-medium uppercase tracking-[0.2em] mb-4 md:mb-6 text-[#4DA6FF]">THE MISSION</h2>
-              <p className="font-body text-base md:text-xl font-light text-[#E0E0E0] leading-relaxed max-w-3xl mx-auto">
+              <h2 className="font-headline text-sm md:text-2xl font-medium uppercase tracking-[0.2em] mb-4 md:mb-6 text-[#4DA6FF]">THE MISSION</h2>
+              <p className="font-body text-sm md:text-xl font-light text-[#E0E0E0] leading-relaxed max-w-3xl mx-auto">
                 At Tech Solutions & Automations, we don't just build applications; we architect digital authority. We empower your business to scale, innovate, and lead through our core specializations.
               </p>
             </motion.div>
@@ -114,7 +114,7 @@ const AboutUs = () => {
         </div>
 
         <section>
-          <h2 className="font-headline text-xl md:text-2xl font-bold uppercase tracking-widest mb-8 md:mb-12 text-primary text-center md:text-left">The Architecture Process: Service Integration</h2>
+          <h2 className="font-headline text-lg md:text-2xl font-bold uppercase tracking-widest mb-8 md:mb-12 text-primary text-center">The Architecture Process</h2>
           <div className="grid md:grid-cols-3 gap-6 md:gap-8">
             <ArchitecturePanel 
               title="Architecture" 
