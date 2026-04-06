@@ -76,234 +76,244 @@ const Services = () => {
       <section className="px-6 md:px-12 py-16 md:py-24 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
           {/* 1. Virtualization & Cloud */}
-          <motion.div 
-            whileHover={{ scale: 1.01 }}
-            className="md:col-span-8 glass-card p-6 md:p-10 flex flex-col justify-between group hover:border-primary/30 transition-all neon-glow-cobalt overflow-hidden relative"
-          >
-            <div className="absolute inset-0 z-0">
-              <img 
-                src={`${import.meta.env.BASE_URL}assets/services/cloud/cloud-bg.png`} 
-                alt="Virtualization & Cloud Background" 
-                className="w-full h-full object-cover opacity-40 group-hover:opacity-60 transition-opacity duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-r from-surface-container-low/80 via-surface-container-low/20 to-transparent"></div>
-            </div>
+          <Link to="/services/cloud" className="md:col-span-8">
+            <motion.div 
+              whileHover={{ scale: 1.01 }}
+              className="glass-card p-6 md:p-10 flex flex-col justify-between group hover:border-primary/30 transition-all neon-glow-cobalt overflow-hidden relative h-full"
+            >
+              <div className="absolute inset-0 z-0">
+                <img 
+                  src={`${import.meta.env.BASE_URL}assets/services/cloud/cloud-bg.png`} 
+                  alt="Virtualization & Cloud Background" 
+                  className="w-full h-full object-cover opacity-40 group-hover:opacity-60 transition-opacity duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-surface-container-low/80 via-surface-container-low/20 to-transparent"></div>
+              </div>
 
-            <div className="relative z-10">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-secondary-container/20 flex items-center justify-center neon-glow-violet border border-secondary/20">
-                  <Palette className="w-6 h-6 text-secondary" />
+              <div className="relative z-10">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-secondary-container/20 flex items-center justify-center neon-glow-violet border border-secondary/20">
+                    <Palette className="w-6 h-6 text-secondary" />
+                  </div>
+                  <span className="font-body text-primary tracking-[0.2em] text-xs font-bold uppercase">Strategic Domain</span>
                 </div>
-                <span className="font-body text-primary tracking-[0.2em] text-xs font-bold uppercase">Strategic Domain</span>
+                <h3 className="font-headline text-3xl md:text-4xl font-bold mb-6 text-on-surface leading-tight">Virtualization & Cloud</h3>
+                <div className="grid md:grid-cols-2 gap-8 mb-8">
+                  <ul className="space-y-4">
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="text-primary w-5 h-5 mt-1 shrink-0" />
+                      <div>
+                        <p className="font-headline text-on-surface font-medium text-xs md:text-sm">Server Creation & Management</p>
+                        <p className="text-[10px] text-on-surface-variant opacity-60">End-to-end setup and oversight.</p>
+                      </div>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="text-primary w-5 h-5 mt-1 shrink-0" />
+                      <div>
+                        <p className="font-headline text-on-surface font-medium text-xs md:text-sm">AWS & Cloud Infrastructure</p>
+                        <p className="text-[10px] text-on-surface-variant opacity-60">Expert orchestration of AWS ecosystems.</p>
+                      </div>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="text-primary w-5 h-5 mt-1 shrink-0" />
+                      <div>
+                        <p className="font-headline text-on-surface font-medium text-xs md:text-sm">Oracle Cloud Solutions</p>
+                        <p className="text-[10px] text-on-surface-variant opacity-60">Specialized OCI deployment and management.</p>
+                      </div>
+                    </li>
+                  </ul>
+                  <ul className="space-y-4">
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="text-primary w-5 h-5 mt-1 shrink-0" />
+                      <div>
+                        <p className="font-headline text-on-surface font-medium text-xs md:text-sm">Linux Virtualization</p>
+                        <p className="text-[10px] text-on-surface-variant opacity-60">Precise Linux environment configuration.</p>
+                      </div>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="text-primary w-5 h-5 mt-1 shrink-0" />
+                      <div>
+                        <p className="font-headline text-on-surface font-medium text-xs md:text-sm">Windows Virtualization</p>
+                        <p className="text-[10px] text-on-surface-variant opacity-60">Seamless enterprise Windows systems.</p>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
               </div>
-              <h3 className="font-headline text-3xl md:text-4xl font-bold mb-6 text-on-surface leading-tight">Virtualization & Cloud</h3>
-              <div className="grid md:grid-cols-2 gap-8 mb-8">
-                <ul className="space-y-4">
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="text-primary w-5 h-5 mt-1 shrink-0" />
-                    <div>
-                      <p className="font-headline text-on-surface font-medium text-xs md:text-sm">Server Creation & Management</p>
-                      <p className="text-[10px] text-on-surface-variant opacity-60">End-to-end setup and oversight.</p>
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="text-primary w-5 h-5 mt-1 shrink-0" />
-                    <div>
-                      <p className="font-headline text-on-surface font-medium text-xs md:text-sm">AWS & Cloud Infrastructure</p>
-                      <p className="text-[10px] text-on-surface-variant opacity-60">Expert orchestration of AWS ecosystems.</p>
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="text-primary w-5 h-5 mt-1 shrink-0" />
-                    <div>
-                      <p className="font-headline text-on-surface font-medium text-xs md:text-sm">Oracle Cloud Solutions</p>
-                      <p className="text-[10px] text-on-surface-variant opacity-60">Specialized OCI deployment and management.</p>
-                    </div>
-                  </li>
-                </ul>
-                <ul className="space-y-4">
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="text-primary w-5 h-5 mt-1 shrink-0" />
-                    <div>
-                      <p className="font-headline text-on-surface font-medium text-xs md:text-sm">Linux Virtualization</p>
-                      <p className="text-[10px] text-on-surface-variant opacity-60">Precise Linux environment configuration.</p>
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="text-primary w-5 h-5 mt-1 shrink-0" />
-                    <div>
-                      <p className="font-headline text-on-surface font-medium text-xs md:text-sm">Windows Virtualization</p>
-                      <p className="text-[10px] text-on-surface-variant opacity-60">Seamless enterprise Windows systems.</p>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </Link>
 
           {/* 2. Precision Web & Ecom Development */}
-          <motion.div 
-            whileHover={{ scale: 1.01 }}
-            className="md:col-span-4 bg-surface-container-low p-6 md:p-10 flex flex-col justify-between border border-outline-variant/10 neon-glow-violet group hover:border-secondary-container/40 transition-all overflow-hidden relative"
-          >
-            <div className="absolute inset-0 z-0">
-              <img 
-                src={`${import.meta.env.BASE_URL}assets/services/web/web-bg.png`} 
-                alt="Precision Web & Ecom Development Background" 
-                className="w-full h-full object-cover opacity-40 group-hover:opacity-60 transition-opacity duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-r from-surface-container-low/80 via-surface-container-low/20 to-transparent"></div>
-            </div>
-
-            <div className="relative z-10">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-secondary-container/20 flex items-center justify-center neon-glow-violet border border-secondary/20">
-                  <Globe className="w-6 h-6 text-secondary" />
-                </div>
-                <h3 className="font-headline text-2xl md:text-3xl font-bold text-on-surface leading-tight">Precision Web & Ecom Development</h3>
+          <Link to="/services/web-dev" className="md:col-span-4">
+            <motion.div 
+              whileHover={{ scale: 1.01 }}
+              className="bg-surface-container-low p-6 md:p-10 flex flex-col justify-between border border-outline-variant/10 neon-glow-violet group hover:border-secondary-container/40 transition-all overflow-hidden relative h-full"
+            >
+              <div className="absolute inset-0 z-0">
+                <img 
+                  src={`${import.meta.env.BASE_URL}assets/services/web/web-bg.png`} 
+                  alt="Precision Web & Ecom Development Background" 
+                  className="w-full h-full object-cover opacity-40 group-hover:opacity-60 transition-opacity duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-surface-container-low/80 via-surface-container-low/20 to-transparent"></div>
               </div>
-              <p className="text-on-surface-variant text-sm mb-8 leading-relaxed">Bespoke builds focused on speed and clean architecture.</p>
-              <ul className="space-y-4">
-                {[
-                  "Custom WordPress Engineering",
-                  "Shopify Platform Development",
-                  "Custom Web Development",
-                  "High-End UI/UX Optimization"
-                ].map((item, idx) => (
-                  <li key={idx} className="flex items-center gap-3">
-                    <span className="w-1.5 h-1.5 rounded-full bg-secondary"></span>
-                    <span className="font-body text-[10px] uppercase tracking-widest text-on-surface-variant">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </motion.div>
+
+              <div className="relative z-10">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-secondary-container/20 flex items-center justify-center neon-glow-violet border border-secondary/20">
+                    <Globe className="w-6 h-6 text-secondary" />
+                  </div>
+                  <h3 className="font-headline text-2xl md:text-3xl font-bold text-on-surface leading-tight">Precision Web & Ecom Development</h3>
+                </div>
+                <p className="text-on-surface-variant text-sm mb-8 leading-relaxed">Bespoke builds focused on speed and clean architecture.</p>
+                <ul className="space-y-4">
+                  {[
+                    "Custom WordPress Engineering",
+                    "Shopify Platform Development",
+                    "Custom Web Development",
+                    "High-End UI/UX Optimization"
+                  ].map((item, idx) => (
+                    <li key={idx} className="flex items-center gap-3">
+                      <span className="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                      <span className="font-body text-[10px] uppercase tracking-widest text-on-surface-variant">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </motion.div>
+          </Link>
 
           {/* 3. AI & Automation */}
-          <motion.div 
-            whileHover={{ scale: 1.01 }}
-            className="md:col-span-5 glass-card p-6 md:p-10 relative group border-outline-variant/5 neon-glow-cobalt overflow-hidden"
-          >
-            <div className="absolute inset-0 z-0">
-              <img 
-                src={`${import.meta.env.BASE_URL}assets/services/ai/ai-bg.png`} 
-                alt="AI & Automation Background" 
-                className="w-full h-full object-cover opacity-40 group-hover:opacity-60 transition-opacity duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent"></div>
-            </div>
-
-            <div className="flex flex-col h-full relative z-10">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-primary-container/20 flex items-center justify-center neon-glow-cobalt border border-primary/20">
-                  <Brain className="w-6 h-6 text-primary" />
-                </div>
-                <h3 className="font-headline text-2xl md:text-3xl font-bold text-on-surface uppercase tracking-tight">AI & Automation</h3>
+          <Link to="/services/ai-systems" className="md:col-span-5">
+            <motion.div 
+              whileHover={{ scale: 1.01 }}
+              className="glass-card p-6 md:p-10 relative group border-outline-variant/5 neon-glow-cobalt overflow-hidden h-full"
+            >
+              <div className="absolute inset-0 z-0">
+                <img 
+                  src={`${import.meta.env.BASE_URL}assets/services/ai/ai-bg.png`} 
+                  alt="AI & Automation Background" 
+                  className="w-full h-full object-cover opacity-40 group-hover:opacity-60 transition-opacity duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent"></div>
               </div>
-              <div className="space-y-4 md:space-y-6 flex-grow">
-                {[
-                  { title: "Intelligent AI Bot Development", desc: "Creating custom bots for specialized logic." },
-                  { title: "AI Integration Services", desc: "Embedding AI directly into existing software." },
-                  { title: "Custom integration App Dev", desc: "Engineering proprietary business apps." },
-                  { title: "Advanced API Integrations", desc: "Secure, high-speed API bridges." },
-                  { title: "Autonomous Workflow Automation", desc: "Eliminating manual operational tasks." }
-                ].map((item, idx) => (
-                  <div key={idx} className="flex gap-4">
-                    <div className="font-mono text-outline-variant text-[9px] pt-1">0{idx + 1}</div>
-                    <div>
-                      <h4 className="font-headline text-on-surface text-[11px] md:text-sm font-bold uppercase tracking-wider">{item.title}</h4>
-                      <p className="text-[9px] text-on-surface-variant opacity-60 mt-0.5">{item.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </motion.div>
 
-          {/* 4. Shopify Integrations & App Development */}
-          <motion.div 
-            whileHover={{ scale: 1.01 }}
-            className="md:col-span-7 bg-surface-container-low p-6 md:p-10 relative overflow-hidden group border border-outline-variant/10 neon-glow-cobalt transition-all"
-          >
-            <div className="absolute inset-0 z-0">
-              <img 
-                src={`${import.meta.env.BASE_URL}assets/services/shopify/shopify-bg.png`} 
-                alt="Shopify Integrations Background" 
-                className="w-full h-full object-cover opacity-30 group-hover:opacity-50 transition-opacity duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-br from-surface-container-low/90 via-surface-container-low/40 to-transparent"></div>
-            </div>
-
-            <div className="relative z-10 flex flex-col h-full">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-primary-container/20 flex items-center justify-center neon-glow-cobalt border border-primary/20">
-                  <ShoppingBag className="w-6 h-6 text-primary" />
-                </div>
-                <h3 className="font-headline text-2xl md:text-3xl font-bold text-on-surface uppercase tracking-tight">Shopify, WordPress Integrations & App Development</h3>
-              </div>
-              <div className="grid grid-cols-2 gap-3 md:gap-4 mb-6">
-                {[
-                  { icon: ShoppingBag, title: "Shopify App Development" },
-                  { icon: Code2, title: "WordPress Plugin Engineering" },
-                  { icon: Workflow, title: "Workflow Automation" },
-                  { icon: RefreshCw, title: "Logic Syncing" }
-                ].map((item, idx) => (
-                  <div key={idx} className="p-3 md:p-4 bg-surface-container-highest/20 rounded-lg border border-outline-variant/10">
-                    <item.icon className="text-primary w-5 h-5 md:w-6 md:h-6 mb-2" />
-                    <p className="font-headline text-[10px] md:text-xs text-on-surface font-bold uppercase">{item.title}</p>
-                  </div>
-                ))}
-              </div>
-              <div className="flex items-center gap-3 p-3 md:p-4 bg-primary/5 rounded-lg border border-primary/20">
-                <BarChart className="text-primary w-5 h-5 md:w-6 md:h-6" />
-                <p className="font-headline text-[10px] md:text-xs text-on-surface font-bold uppercase">Store Performance Scaling</p>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* 5. Graphic & Web Design */}
-          <motion.div 
-            whileHover={{ scale: 1.01 }}
-            className="md:col-span-12 glass-card p-6 md:p-10 relative group border-outline-variant/5 neon-glow-violet overflow-hidden"
-          >
-            <div className="absolute inset-0 z-0">
-              <img 
-                src={`${import.meta.env.BASE_URL}assets/services/design/design-bg.png`} 
-                alt="Graphic & Web Design Background" 
-                className="w-full h-full object-cover opacity-30 group-hover:opacity-50 transition-opacity duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-r from-background via-background/60 to-transparent"></div>
-            </div>
-
-            <div className="absolute top-0 right-0 p-8 md:p-12 opacity-5">
-              <Palette className="w-48 h-48 md:w-64 md:h-64 text-secondary" />
-            </div>
-            <div className="relative z-10 flex flex-col gap-8 md:gap-12 md:flex-row items-center">
-              <div className="flex-1">
+              <div className="flex flex-col h-full relative z-10">
                 <div className="flex items-center gap-4 mb-6">
-                <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-secondary-container/20 flex items-center justify-center neon-glow-violet border border-secondary/20">
-                  <Palette className="w-6 h-6 text-secondary" />
+                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-primary-container/20 flex items-center justify-center neon-glow-cobalt border border-primary/20">
+                    <Brain className="w-6 h-6 text-primary" />
+                  </div>
+                  <h3 className="font-headline text-2xl md:text-3xl font-bold text-on-surface uppercase tracking-tight">AI & Automation</h3>
                 </div>
-                  <h3 className="font-headline text-2xl md:text-4xl font-bold text-on-surface uppercase tracking-tight">Graphic & Web Design</h3>
-                </div>
-                <p className="text-on-surface-variant text-sm md:text-lg leading-relaxed mb-8 max-w-2xl">Crafting cohesive visual identities and visually striking website layouts that align with modern aesthetics.</p>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
+                <div className="space-y-4 md:space-y-6 flex-grow">
                   {[
-                    "Brand Identity & Logo Creation",
-                    "Custom Web Interface Design",
-                    "Digital Asset & Marketing Graphics",
-                    "UI/UX Prototyping & Wireframing",
-                    "Responsive Visual Design"
+                    { title: "Intelligent AI Bot Development", desc: "Creating custom bots for specialized logic." },
+                    { title: "AI Integration Services", desc: "Embedding AI directly into existing software." },
+                    { title: "Custom integration App Dev", desc: "Engineering proprietary business apps." },
+                    { title: "Advanced API Integrations", desc: "Secure, high-speed API bridges." },
+                    { title: "Autonomous Workflow Automation", desc: "Eliminating manual operational tasks." }
                   ].map((item, idx) => (
-                    <div key={idx} className="flex items-center gap-3">
-                      <div className="w-1.5 h-1.5 rounded-full bg-secondary"></div>
-                      <span className="font-headline text-[10px] md:text-xs uppercase tracking-widest text-on-surface font-bold">{item}</span>
+                    <div key={idx} className="flex gap-4">
+                      <div className="font-mono text-outline-variant text-[9px] pt-1">0{idx + 1}</div>
+                      <div>
+                        <h4 className="font-headline text-on-surface text-[11px] md:text-sm font-bold uppercase tracking-wider">{item.title}</h4>
+                        <p className="text-[9px] text-on-surface-variant opacity-60 mt-0.5">{item.desc}</p>
+                      </div>
                     </div>
                   ))}
                 </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </Link>
+
+          {/* 4. Shopify Integrations & App Development */}
+          <Link to="/services/shopify" className="md:col-span-7">
+            <motion.div 
+              whileHover={{ scale: 1.01 }}
+              className="bg-surface-container-low p-6 md:p-10 relative overflow-hidden group border border-outline-variant/10 neon-glow-cobalt transition-all h-full"
+            >
+              <div className="absolute inset-0 z-0">
+                <img 
+                  src={`${import.meta.env.BASE_URL}assets/services/shopify/shopify-bg.png`} 
+                  alt="Shopify Integrations Background" 
+                  className="w-full h-full object-cover opacity-30 group-hover:opacity-50 transition-opacity duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-br from-surface-container-low/90 via-surface-container-low/40 to-transparent"></div>
+              </div>
+
+              <div className="relative z-10 flex flex-col h-full">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-primary-container/20 flex items-center justify-center neon-glow-cobalt border border-primary/20">
+                    <ShoppingBag className="w-6 h-6 text-primary" />
+                  </div>
+                  <h3 className="font-headline text-2xl md:text-3xl font-bold text-on-surface uppercase tracking-tight">Shopify, WordPress Integrations & App Development</h3>
+                </div>
+                <div className="grid grid-cols-2 gap-3 md:gap-4 mb-6">
+                  {[
+                    { icon: ShoppingBag, title: "Shopify App Development" },
+                    { icon: Code2, title: "WordPress Plugin Engineering" },
+                    { icon: Workflow, title: "Workflow Automation" },
+                    { icon: RefreshCw, title: "Logic Syncing" }
+                  ].map((item, idx) => (
+                    <div key={idx} className="p-3 md:p-4 bg-surface-container-highest/20 rounded-lg border border-outline-variant/10">
+                      <item.icon className="text-primary w-5 h-5 md:w-6 md:h-6 mb-2" />
+                      <p className="font-headline text-[10px] md:text-xs text-on-surface font-bold uppercase">{item.title}</p>
+                    </div>
+                  ))}
+                </div>
+                <div className="flex items-center gap-3 p-3 md:p-4 bg-primary/5 rounded-lg border border-primary/20">
+                  <BarChart className="text-primary w-5 h-5 md:w-6 md:h-6" />
+                  <p className="font-headline text-[10px] md:text-xs text-on-surface font-bold uppercase">Store Performance Scaling</p>
+                </div>
+              </div>
+            </motion.div>
+          </Link>
+
+          {/* 5. Graphic & Web Design */}
+          <Link to="/services/design" className="md:col-span-12">
+            <motion.div 
+              whileHover={{ scale: 1.01 }}
+              className="glass-card p-6 md:p-10 relative group border-outline-variant/5 neon-glow-violet overflow-hidden"
+            >
+              <div className="absolute inset-0 z-0">
+                <img 
+                  src={`${import.meta.env.BASE_URL}assets/services/design/design-bg.png`} 
+                  alt="Graphic & Web Design Background" 
+                  className="w-full h-full object-cover opacity-30 group-hover:opacity-50 transition-opacity duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-background via-background/60 to-transparent"></div>
+              </div>
+
+              <div className="absolute top-0 right-0 p-8 md:p-12 opacity-5">
+                <Palette className="w-48 h-48 md:w-64 md:h-64 text-secondary" />
+              </div>
+              <div className="relative z-10 flex flex-col gap-8 md:gap-12 md:flex-row items-center">
+                <div className="flex-1">
+                  <div className="flex items-center gap-4 mb-6">
+                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-secondary-container/20 flex items-center justify-center neon-glow-violet border border-secondary/20">
+                    <Palette className="w-6 h-6 text-secondary" />
+                  </div>
+                    <h3 className="font-headline text-2xl md:text-4xl font-bold text-on-surface uppercase tracking-tight">Graphic & Web Design</h3>
+                  </div>
+                  <p className="text-on-surface-variant text-sm md:text-lg leading-relaxed mb-8 max-w-2xl">Crafting cohesive visual identities and visually striking website layouts that align with modern aesthetics.</p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
+                    {[
+                      "Brand Identity & Logo Creation",
+                      "Custom Web Interface Design",
+                      "Digital Asset & Marketing Graphics",
+                      "UI/UX Prototyping & Wireframing",
+                      "Responsive Visual Design"
+                    ].map((item, idx) => (
+                      <div key={idx} className="flex items-center gap-3">
+                        <div className="w-1.5 h-1.5 rounded-full bg-secondary"></div>
+                        <span className="font-headline text-[10px] md:text-xs uppercase tracking-widest text-on-surface font-bold">{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </Link>
         </div>
       </section>
 
