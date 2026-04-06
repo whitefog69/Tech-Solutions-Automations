@@ -131,8 +131,8 @@ const AISystemsPage = () => {
             <div className="inline-block p-3 md:p-4 rounded-full bg-secondary-container/20 mb-6 md:mb-8 border border-secondary/20 neon-glow-violet">
               <Brain className="w-8 h-8 md:w-12 md:h-12 text-secondary animate-pulse" />
             </div>
-            <h1 className="font-headline text-4xl sm:text-6xl md:text-8xl font-black tracking-tighter mb-4 md:mb-6 uppercase">
-              AI & <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-secondary-container neon-glow-violet">Automation</span>
+            <h1 className="font-headline text-5xl md:text-8xl font-black tracking-tighter mb-6 uppercase">
+              AI & <br className="md:hidden" /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-secondary-container neon-glow-violet">Automation</span>
             </h1>
             <p className="font-body text-on-surface-variant text-base sm:text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed tracking-wide mb-8 md:mb-12">
               Creating custom bots and autonomous systems to handle specialized logic and eliminate manual operational tasks.
