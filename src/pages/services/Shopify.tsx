@@ -110,8 +110,8 @@ const ShopifyPage = () => {
             <div className="inline-block p-4 rounded-full bg-primary/10 mb-8 border border-primary/30 neon-glow-cobalt">
               <ShoppingBag className="w-12 h-12 text-primary animate-pulse" />
             </div>
-            <h1 className="font-headline text-6xl md:text-8xl font-black tracking-tighter mb-6 uppercase">
-              Shopify, WordPress Integrations & <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary-container neon-glow-cobalt">App Development</span>
+            <h1 className="font-headline text-5xl md:text-8xl font-black tracking-tighter mb-6 uppercase">
+              Shopify, WordPress & <br className="md:hidden" /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary-container neon-glow-cobalt">App Development</span>
             </h1>
             <p className="font-body text-on-surface-variant text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed tracking-wide mb-12">
               Engineering proprietary apps and technical automation to ensure your store scales effortlessly with demand.
@@ -121,8 +121,8 @@ const ShopifyPage = () => {
       </section>
 
       {/* Feature Grid */}
-      <section className="relative py-24 px-8 z-10">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <section className="relative py-16 md:py-24 px-6 md:px-8 z-10">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {[
             { icon: ShoppingBag, title: "Shopify App Development", desc: "Engineering custom private or public apps to extend Shopify’s native functionality and streamline your store's operations." },
             { icon: Code2, title: "WordPress Plugin Engineering", desc: "Developing bespoke plugins to enhance WordPress core features, ensuring your site performs exactly how your business requires." },
@@ -137,14 +137,14 @@ const ShopifyPage = () => {
               transition={{ delay: i * 0.1, duration: 0.5 }}
               viewport={{ once: true, margin: "-50px" }}
               className={cn(
-                "p-10 rounded-2xl transition-all duration-500 hover:scale-[1.02] group",
+                "p-8 md:p-10 rounded-2xl transition-all duration-500 hover:scale-[1.02] group",
                 "backdrop-blur-md bg-white/5 border border-white/5",
                 "hover:border-primary/20 hover:shadow-[0_0_20px_rgba(71,1,171,0.05)]"
               )}
             >
-              <item.icon className="w-10 h-10 text-primary mb-6 opacity-80 group-hover:opacity-100 group-hover:text-primary-container transition-all duration-300" />
-              <h3 className="font-headline text-xl font-bold mb-3 uppercase tracking-widest leading-tight">{item.title}</h3>
-              <p className="font-body text-on-surface-variant leading-relaxed text-sm">
+              <item.icon className="w-8 h-8 md:w-10 md:h-10 text-primary mb-4 md:mb-6 opacity-80 group-hover:opacity-100 group-hover:text-primary-container transition-all duration-300" />
+              <h3 className="font-headline text-lg md:text-xl font-bold mb-3 uppercase tracking-widest leading-tight">{item.title}</h3>
+              <p className="font-body text-on-surface-variant leading-relaxed text-xs md:text-sm">
                 {item.desc}
               </p>
             </motion.div>
