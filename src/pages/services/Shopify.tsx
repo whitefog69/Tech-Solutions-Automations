@@ -1,7 +1,85 @@
-import React from 'react';
+import React, { useRef, useMemo, Suspense } from 'react';
 import { motion } from 'motion/react';
+import { Canvas, useFrame } from '@react-three/fiber';
+import { Float, Sphere, Torus, Environment, OrbitControls, Box, Text } from '@react-three/drei';
+import * as THREE from 'three';
 import { cn } from '../../lib/utils';
 import { ShoppingBag, Zap, Gem, CreditCard, ShoppingCart, Key, Code2, Workflow, RefreshCw, BarChart } from 'lucide-react';
+
+const MeshNode = ({ radius, speed, offset, color }: { radius: number, speed: number, offset: number, color: string }) => {
+  const ref = useRef<THREE.Mesh>(null!);
+  useFrame((state) => {
+    const t = state.clock.getElapsedTime() * speed + offset;
+    ref.current.position.x = Math.cos(t) * radius;
+    ref.current.position.z = Math.sin(t) * radius;
+    ref.current.position.y = Math.sin(t * 2) * 0.5;
+  });
+
+  return (
+    <Sphere ref={ref} args={[0.15, 16, 16]}>
+      <meshStandardMaterial color={color} emissive={color} emissiveIntensity={2} />
+    </Sphere>
+  );
+};
+
+const SupplyMesh = () => {
+  return (
+    <group>
+      <Sphere args={[0.8, 32, 32]}>
+        <meshStandardMaterial color="#0047ab" metalness={0.9} roughness={0.1} />
+      </Sphere>
+      <Torus args={[2, 0.02, 16, 100]} rotation={[Math.PI / 2, 0, 0]}>
+        <meshBasicMaterial color="#b1c5ff" transparent opacity={0.2} />
+      </Torus>
+      <MeshNode radius={2} speed={0.5} offset={0} color="#b1c5ff" />
+      <MeshNode radius={2} speed={0.5} offset={Math.PI * 0.6} color="#0047ab" />
+      <MeshNode radius={2} speed={0.5} offset={Math.PI * 1.2} color="#7701d0" />
+    </group>
+  );
+};
+
+const ModularHub = () => {
+  const appRef = useRef<THREE.Group>(null!);
+  
+  useFrame((state) => {
+    const t = state.clock.getElapsedTime();
+    appRef.current.position.y = Math.sin(t) * 0.2 + 1;
+  });
+
+  return (
+    <group position={[0, -0.5, 0]}>
+      {/* Shopify Module */}
+      <Box args={[1.5, 1.5, 1.5]} position={[-1, 0, 0]}>
+        <meshStandardMaterial color="#0047ab" metalness={0.8} roughness={0.2} transparent opacity={0.9} />
+        <Text position={[0, 0, 0.8]} fontSize={0.4} color="white">S</Text>
+      </Box>
+
+      {/* WordPress Module */}
+      <Box args={[1.5, 1.5, 1.5]} position={[1, 0, 0]}>
+        <meshStandardMaterial color="#7701d0" metalness={0.8} roughness={0.2} transparent opacity={0.9} />
+        <Text position={[0, 0, 0.8]} fontSize={0.4} color="white">W</Text>
+      </Box>
+
+      {/* Custom App Module (Being guided in) */}
+      <group ref={appRef}>
+        <Box args={[1.5, 1.5, 1.5]}>
+          <meshStandardMaterial color="#333" metalness={1} roughness={0.1} />
+          <Text position={[0, 0, 0.8]} fontSize={0.2} color="#b1c5ff">CUSTOM_APP</Text>
+        </Box>
+        {/* Data lines */}
+        {[...Array(5)].map((_, i) => (
+          <Cylinder key={i} args={[0.01, 0.01, 2]} position={[0, -1, 0]} rotation={[0, 0, Math.random()]}>
+            <meshBasicMaterial color="#b1c5ff" transparent opacity={0.3} />
+          </Cylinder>
+        ))}
+      </group>
+
+      <Environment preset="city" />
+    </group>
+  );
+};
+
+const Cylinder = ({ args, ...props }: any) => <mesh {...props}><cylinderGeometry args={args} /><meshBasicMaterial color="white" /></mesh>;
 
 const ShopifyPage = () => {
   return (
@@ -61,7 +139,7 @@ const ShopifyPage = () => {
               className={cn(
                 "p-10 rounded-2xl transition-all duration-500 hover:scale-[1.02] group",
                 "backdrop-blur-md bg-white/5 border border-white/5",
-                "hover:border-primary/20 hover:shadow-[0_0_20px_rgba(0,71,171,0.05)]"
+                "hover:border-primary/20 hover:shadow-[0_0_20px_rgba(71,1,171,0.05)]"
               )}
             >
               <item.icon className="w-10 h-10 text-primary mb-6 opacity-80 group-hover:opacity-100 group-hover:text-primary-container transition-all duration-300" />
@@ -74,6 +152,66 @@ const ShopifyPage = () => {
         </div>
       </section>
 
+      {/* Protocol Section */}
+      <section className="py-24 px-8 border-y border-outline-variant/10 bg-surface-container-lowest/5">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="w-full aspect-square lg:aspect-video rounded-xl bg-[#0d0d0d] border border-primary/20 shadow-2xl relative overflow-hidden group"
+          >
+            <Canvas camera={{ position: [0, 2, 6], fov: 45 }}>
+              <Suspense fallback={null}>
+                <color attach="background" args={['#0d0d0d']} />
+                <ambientLight intensity={0.5} />
+                <pointLight position={[10, 10, 10]} intensity={1} />
+                <Float speed={1.5} rotationIntensity={0.5} floatIntensity={0.5}>
+                  <SupplyMesh />
+                </Float>
+                <Environment preset="city" />
+                <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={0.5} />
+              </Suspense>
+            </Canvas>
+            <div className="absolute top-0 right-0 p-4 opacity-20 group-hover:opacity-40 transition-opacity pointer-events-none">
+              <ShoppingCart className="w-8 h-8 text-primary" />
+            </div>
+            <div className="absolute bottom-4 left-4 text-primary/50 font-mono font-bold uppercase tracking-tighter text-[10px] flex items-center gap-2 pointer-events-none">
+              <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+              COMMERCE_SYNC_PROTOCOL
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="space-y-8"
+          >
+            <h2 className="font-headline text-4xl font-black tracking-tighter text-on-surface uppercase">
+              ECOMMERCE <span className="text-primary italic">COMMAND</span>
+            </h2>
+            <div className="space-y-6">
+              {[
+                { label: "Proprietary App Logic", desc: "Custom Shopify/WordPress extensions designed for unlimited horizontal scaling." },
+                { label: "Elastic Performance", desc: "Auto-scaling infrastructure that maintains <40ms latency during peak traffic." },
+                { label: "Real-Time Data Mesh", desc: "Seamless GraphQL-driven synchronization between storefronts and inventory systems." }
+              ].map((point, i) => (
+                <div key={i} className="flex gap-6 group">
+                  <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary group-hover:scale-150 transition-transform duration-300 shadow-[0_0_10px_rgba(0,71,171,0.8)]" />
+                  <div className="space-y-1">
+                    <div className="font-headline font-bold text-xs uppercase tracking-[0.2em] text-on-surface">{point.label}</div>
+                    <p className="font-body text-sm text-on-surface-variant leading-relaxed opacity-70 group-hover:opacity-100 transition-opacity">
+                      {point.desc}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Commerce Specs */}
       <section className="py-24 px-8 relative overflow-hidden">
 
@@ -83,30 +221,21 @@ const ShopifyPage = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             className={cn(
-              "flex-1 w-full aspect-square md:aspect-video rounded-2xl overflow-hidden relative flex flex-col justify-end p-8",
+              "flex-1 w-full aspect-square md:aspect-video rounded-2xl overflow-hidden relative flex flex-col justify-end",
               "backdrop-blur-md bg-white/5 border border-white/10",
-              "neon-glow-cobalt"
+              "neon-glow-cobalt shadow-[0_0_50px_rgba(0,71,171,0.1)]"
             )}
           >
-             {/* Using standard img tags as placeholders for the Nano Banana prompts */}
-             <div className="absolute inset-0 bg-[url('assets/services/shopify/detail-shot.png')] bg-cover bg-center opacity-40 mix-blend-overlay"></div>
-             
-             <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/40 to-transparent"></div>
-             
-             <div className="relative z-10 w-full flex justify-between items-center border-t border-primary/20 pt-6 mt-auto">
-                <div>
-                  <div className="font-headline uppercase text-xs tracking-widest text-primary mb-1">Architecture</div>
-                  <div className="font-mono text-sm">Oxygen Edge Nodes</div>
-                </div>
-                <div>
-                  <div className="font-headline uppercase text-xs tracking-widest text-primary mb-1">Latency</div>
-                  <div className="font-mono text-sm">&lt; 40ms TTFB</div>
-                </div>
-                <div>
-                  <div className="font-headline uppercase text-xs tracking-widest text-primary mb-1">Uptime SLA</div>
-                  <div className="font-mono text-sm">99.999%</div>
-                </div>
-             </div>
+            <Canvas camera={{ position: [4, 3, 4], fov: 45 }}>
+              <Suspense fallback={null}>
+                <color attach="background" args={['#0d0d0d']} />
+                <ambientLight intensity={0.5} />
+                <pointLight position={[10, 10, 10]} intensity={2} />
+                <ModularHub />
+                <Environment preset="city" />
+                <OrbitControls enableZoom={false} />
+              </Suspense>
+            </Canvas>
           </motion.div>
 
           <motion.div

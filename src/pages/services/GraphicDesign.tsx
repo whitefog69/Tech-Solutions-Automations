@@ -1,22 +1,111 @@
-import React from 'react';
+import React, { useRef, useMemo, Suspense } from 'react';
 import { motion } from 'motion/react';
+import { Canvas, useFrame } from '@react-three/fiber';
+import { Float, Torus, MeshTransmissionMaterial, Environment, OrbitControls, ContactShadows, Box, Cylinder, Sphere } from '@react-three/drei';
+import * as THREE from 'three';
 import { cn } from '../../lib/utils';
-import { Palette, PenTool, Layout, Image, Figma, MonitorSmartphone } from 'lucide-react';
+import { Palette, PenTool, Layout, Image, Figma, MonitorSmartphone, BarChart3 } from 'lucide-react';
+
+const DesignSculpture = () => {
+  const meshRef = useRef<THREE.Mesh>(null!);
+  
+  useFrame((state) => {
+    meshRef.current.rotation.x = state.clock.getElapsedTime() * 0.5;
+    meshRef.current.rotation.y = state.clock.getElapsedTime() * 0.2;
+  });
+
+  return (
+    <group>
+      <Torus ref={meshRef} args={[1.5, 0.4, 32, 100]}>
+        <MeshTransmissionMaterial
+          backside
+          backsideThickness={5}
+          thickness={2}
+          samples={16}
+          transmission={0.95}
+          clearcoat={1}
+          clearcoatRoughness={0}
+          chromaticAberration={0.5}
+          anisotropy={0.3}
+          roughness={0.1}
+          distortion={0.5}
+          distortionScale={0.5}
+          temporalDistortion={0.1}
+          color="#dcb8ff"
+        />
+      </Torus>
+      <mesh rotation={[Math.PI / 4, Math.PI / 4, 0]}>
+        <icosahedronGeometry args={[0.8, 0]} />
+        <meshStandardMaterial color="#7701d0" emissive="#7701d0" emissiveIntensity={2} />
+      </mesh>
+    </group>
+  );
+};
+
+const CreativeBlueprint = () => {
+  const stylusRef = useRef<THREE.Group>(null!);
+  const waveRef = useRef<THREE.Mesh>(null!);
+
+  useFrame((state) => {
+    const t = state.clock.getElapsedTime();
+    stylusRef.current.position.x = Math.sin(t) * 1;
+    stylusRef.current.position.z = Math.cos(t) * 1;
+    stylusRef.current.rotation.z = Math.sin(t * 0.5) * 0.5;
+    waveRef.current.rotation.y = t * 0.2;
+  });
+
+  return (
+    <group position={[0, -1, 0]}>
+      {/* Drawing Tablet */}
+      <Box args={[4, 0.1, 3]} position={[0, 0, 0]}>
+        <meshStandardMaterial color="#1a1a1a" metalness={0.8} roughness={0.2} />
+      </Box>
+      <Box args={[3.8, 0.05, 2.8]} position={[0, 0.05, 0]}>
+        <meshStandardMaterial color="#7701d0" emissive="#7701d0" emissiveIntensity={0.5} />
+      </Box>
+
+      {/* Stylus Pen */}
+      <group ref={stylusRef} position={[0, 1.5, 0]}>
+        <Cylinder args={[0.05, 0.02, 1.5]} rotation={[Math.PI / 4, 0, 0]}>
+          <meshStandardMaterial color="#333" metalness={0.9} roughness={0.1} />
+        </Cylinder>
+        <Sphere args={[0.05, 16, 16]} position={[0, -0.7, 0]}>
+          <meshBasicMaterial color="#dcb8ff" />
+          <pointLight intensity={2} color="#dcb8ff" />
+        </Sphere>
+      </group>
+
+      {/* Materializing Wave Design */}
+      <mesh ref={waveRef} position={[0, 1, 0]}>
+        <torusKnotGeometry args={[0.8, 0.3, 100, 16]} />
+        <MeshTransmissionMaterial
+          thickness={1}
+          transmission={0.9}
+          roughness={0}
+          chromaticAberration={1}
+          color="#dcb8ff"
+        />
+      </mesh>
+
+      <Environment preset="studio" />
+    </group>
+  );
+};
 
 const GraphicDesignPage = () => {
   return (
     <div className="min-h-screen bg-background text-on-surface">
       {/* Hero Section */}
       <section className="relative h-screen min-h-[800px] flex items-center justify-center overflow-hidden">
-        {/* Video Background */}
+        {/* Background Video */}
         <video 
           autoPlay 
           loop 
           muted 
           playsInline
-          className="absolute inset-0 w-full h-full object-cover z-0 opacity-50 saturate-150 brightness-110"
-          src="assets/services/web/hero-video.mp4"
+          className="absolute inset-0 w-full h-full object-cover z-0"
         >
+          <source src="assets/services/design/design-hero.mp4" type="video/mp4" />
         </video>
         
         {/* Overlay for Depth and Readability */}
@@ -74,6 +163,67 @@ const GraphicDesignPage = () => {
         </div>
       </section>
 
+      {/* Protocol Section */}
+      <section className="py-24 px-8 border-y border-outline-variant/10 bg-surface-container-lowest/5">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="w-full aspect-square lg:aspect-video rounded-xl bg-[#0d0d0d] border border-secondary/20 shadow-2xl relative overflow-hidden group flex items-center justify-center"
+          >
+            <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
+              <Suspense fallback={null}>
+                <color attach="background" args={['#0d0d0d']} />
+                <ambientLight intensity={0.5} />
+                <pointLight position={[10, 10, 10]} intensity={2} />
+                <Float speed={2} rotationIntensity={1} floatIntensity={1}>
+                  <DesignSculpture />
+                </Float>
+                <ContactShadows position={[0, -2, 0]} opacity={0.4} scale={10} blur={2} far={4.5} />
+                <Environment preset="studio" />
+                <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={0.5} />
+              </Suspense>
+            </Canvas>
+            <div className="absolute top-0 right-0 p-4 opacity-20 group-hover:opacity-40 transition-opacity pointer-events-none">
+              <BarChart3 className="w-8 h-8 text-secondary" />
+            </div>
+            <div className="absolute bottom-4 left-4 text-secondary/50 font-mono font-bold uppercase tracking-tighter text-[10px] flex items-center gap-2 pointer-events-none">
+              <div className="w-2 h-2 rounded-full bg-secondary animate-pulse" />
+              VISUAL_SOVEREIGNTY_v1.0
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="space-y-8"
+          >
+            <h2 className="font-headline text-4xl font-black tracking-tighter text-on-surface uppercase">
+              AESTHETIC <span className="text-secondary italic">AUTHORITY</span>
+            </h2>
+            <div className="space-y-6">
+              {[
+                { label: "Quiet Luxury Visuals", desc: "High-end minimalist design focused on technical authority and premium user trust." },
+                { label: "WCAG AAA Accessibility", desc: "Pixel-perfect fidelity that meets the highest international standards for inclusive design." },
+                { label: "Cohesive Brand Systems", desc: "Comprehensive digital style guides ensuring total visual sovereignty across all platforms." }
+              ].map((point, i) => (
+                <div key={i} className="flex gap-6 group">
+                  <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-secondary group-hover:scale-150 transition-transform duration-300 shadow-[0_0_10px_rgba(119,1,208,0.8)]" />
+                  <div className="space-y-1">
+                    <div className="font-headline font-bold text-xs uppercase tracking-[0.2em] text-on-surface">{point.label}</div>
+                    <p className="font-body text-sm text-on-surface-variant leading-relaxed opacity-70 group-hover:opacity-100 transition-opacity">
+                      {point.desc}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Design Philosophy */}
       <section className="py-24 px-8 relative overflow-hidden">
 
@@ -108,26 +258,20 @@ const GraphicDesignPage = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             className={cn(
-              "flex-1 w-full aspect-square rounded-2xl overflow-hidden relative flex items-center justify-center p-12",
-              "backdrop-blur-md bg-white/5 border border-white/10",
-              "neon-glow-violet"
+              "flex-1 w-full aspect-square md:aspect-video rounded-2xl overflow-hidden relative flex items-center justify-center",
+              "backdrop-blur-md bg-white/5 border border-white/10 shadow-[0_0_50px_rgba(119,1,208,0.1)]"
             )}
           >
-             <div className="absolute inset-0 bg-[url('assets/services/web/detail-shot.png')] bg-cover bg-center opacity-20 mix-blend-overlay"></div>
-             <Palette className="w-48 h-48 text-secondary/10 absolute animate-pulse duration-[4000ms]" />
-             
-             <div className="relative z-10 grid grid-cols-2 gap-4 w-full h-full">
-                <div className="border border-secondary/20 rounded-lg p-4 bg-background/40 backdrop-blur-sm flex items-center justify-center">
-                   <div className="w-full h-1 bg-secondary shadow-[0_0_10px_rgba(119,1,208,0.2)]"></div>
-                </div>
-                <div className="border border-secondary/20 rounded-lg p-4 bg-background/40 backdrop-blur-sm flex flex-col gap-2">
-                   <div className="w-3/4 h-2 bg-secondary/30 rounded"></div>
-                   <div className="w-1/2 h-2 bg-secondary/30 rounded"></div>
-                </div>
-                <div className="border border-secondary/20 rounded-lg p-4 bg-background/40 backdrop-blur-sm col-span-2 flex items-center justify-center italic font-headline text-secondary tracking-widest text-xs">
-                   VISUAL_SOVEREIGNTY_v1.0
-                </div>
-             </div>
+            <Canvas camera={{ position: [4, 3, 4], fov: 45 }}>
+              <Suspense fallback={null}>
+                <color attach="background" args={['#0d0d0d']} />
+                <ambientLight intensity={0.5} />
+                <pointLight position={[10, 10, 10]} intensity={2} />
+                <CreativeBlueprint />
+                <Environment preset="studio" />
+                <OrbitControls enableZoom={false} />
+              </Suspense>
+            </Canvas>
           </motion.div>
         </div>
       </section>

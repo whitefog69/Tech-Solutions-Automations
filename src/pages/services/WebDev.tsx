@@ -1,7 +1,100 @@
-import React from 'react';
+import React, { useRef, useMemo, Suspense } from 'react';
 import { motion } from 'motion/react';
+import { Canvas, useFrame } from '@react-three/fiber';
+import { Float, Icosahedron, MeshDistortMaterial, Environment, OrbitControls, ContactShadows, Box, Text, Grid as DreiGrid } from '@react-three/drei';
+import * as THREE from 'three';
 import { cn } from '../../lib/utils';
 import { Smartphone, Layout, Blocks, ScanLine, Layers, Code2, Globe, ShoppingBag } from 'lucide-react';
+
+const ArchitectureModel = () => {
+  const meshRef = useRef<THREE.Mesh>(null!);
+  
+  useFrame((state) => {
+    const t = state.clock.getElapsedTime();
+    meshRef.current.rotation.y = t * 0.2;
+    meshRef.current.rotation.x = Math.sin(t * 0.1) * 0.2;
+  });
+
+  return (
+    <group>
+      <mesh ref={meshRef}>
+        <icosahedronGeometry args={[2, 1]} />
+        <meshStandardMaterial 
+          color="#dcb8ff" 
+          wireframe 
+          transparent 
+          opacity={0.4} 
+          emissive="#dcb8ff" 
+          emissiveIntensity={0.5} 
+        />
+      </mesh>
+      <Icosahedron args={[1.2, 4]}>
+        <MeshDistortMaterial
+          color="#7701d0"
+          speed={3}
+          distort={0.4}
+          radius={1}
+          metalness={0.9}
+          roughness={0.1}
+        />
+      </Icosahedron>
+      <pointLight position={[5, 5, 5]} intensity={5} color="#dcb8ff" />
+      <pointLight position={[-5, -5, -5]} intensity={2} color="#7701d0" />
+    </group>
+  );
+};
+
+const SkeletalFramework = () => {
+  return (
+    <group rotation={[-Math.PI / 6, Math.PI / 4, 0]}>
+      {/* Grid Lattice */}
+      <DreiGrid 
+        infiniteGrid 
+        fadeDistance={10} 
+        cellColor="#0047ab" 
+        sectionColor="#FFD700" 
+        sectionSize={1} 
+        cellSize={0.5} 
+      />
+      
+      {/* Translucent Functional Areas */}
+      <Box args={[2, 0.1, 1.5]} position={[-1.5, 0.5, 0]}>
+        <meshStandardMaterial color="#0047ab" transparent opacity={0.3} />
+        <Text position={[0, 0.2, 0]} fontSize={0.2} color="white">PRODUCT_GRID</Text>
+      </Box>
+      <Box args={[1, 0.1, 1]} position={[1.5, 0.8, 1]}>
+        <meshStandardMaterial color="#FFD700" transparent opacity={0.3} />
+        <Text position={[0, 0.2, 0]} fontSize={0.2} color="white">CART</Text>
+      </Box>
+      <Box args={[2.5, 0.1, 1]} position={[0, 0.2, -1.5]}>
+        <meshStandardMaterial color="#7701d0" transparent opacity={0.2} />
+        <Text position={[0, 0.2, 0]} fontSize={0.2} color="white">CHECKOUT_FLOW</Text>
+      </Box>
+
+      {/* Micrometer (Stylized representation) */}
+      <group position={[2, 1, 0]}>
+        <Box args={[0.1, 0.8, 0.1]}>
+          <meshStandardMaterial color="#FFD700" emissive="#FFD700" emissiveIntensity={2} />
+        </Box>
+        <pointLight intensity={5} color="#FFD700" />
+      </group>
+
+      {/* Code Streams */}
+      {[...Array(5)].map((_, i) => (
+        <Float key={i} speed={5} rotationIntensity={0} floatIntensity={1}>
+          <Text
+            position={[(Math.random()-0.5)*4, Math.random()*2, (Math.random()-0.5)*2]}
+            fontSize={0.1}
+            color="#dcb8ff"
+            fillOpacity={0.5}
+          >
+            {`const store = createStore();\nawait app.hydrate();`}
+          </Text>
+        </Float>
+      ))}
+    </group>
+  );
+};
 
 const WebDevPage = () => {
   return (
@@ -73,6 +166,66 @@ const WebDevPage = () => {
         </div>
       </section>
 
+      {/* Protocol Section */}
+      <section className="py-24 px-8 border-y border-outline-variant/10 bg-surface-container-lowest/5">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="w-full aspect-square lg:aspect-video rounded-xl bg-[#0d0d0d] border border-secondary/20 shadow-2xl relative overflow-hidden group"
+          >
+            <Canvas camera={{ position: [0, 0, 6], fov: 45 }}>
+              <Suspense fallback={null}>
+                <color attach="background" args={['#0d0d0d']} />
+                <ambientLight intensity={0.5} />
+                <Float speed={2} rotationIntensity={1} floatIntensity={1}>
+                  <ArchitectureModel />
+                </Float>
+                <ContactShadows position={[0, -2.5, 0]} opacity={0.4} scale={10} blur={2} far={4.5} />
+                <Environment preset="city" />
+                <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={0.5} />
+              </Suspense>
+            </Canvas>
+            <div className="absolute top-0 right-0 p-4 opacity-20 group-hover:opacity-40 transition-opacity pointer-events-none">
+              <ScanLine className="w-8 h-8 text-secondary" />
+            </div>
+            <div className="absolute bottom-4 left-4 text-secondary/50 font-mono font-bold uppercase tracking-tighter text-[10px] flex items-center gap-2 pointer-events-none">
+              <div className="w-2 h-2 rounded-full bg-secondary animate-pulse" />
+              PERFORMANCE_FIRST_ARCHITECTURE
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="space-y-8"
+          >
+            <h2 className="font-headline text-4xl font-black tracking-tighter text-on-surface uppercase">
+              ENGINEERING <span className="text-secondary italic">PRECISION</span>
+            </h2>
+            <div className="space-y-6">
+              {[
+                { label: "100/100 PageSpeed Rating", desc: "Precision-engineered frontend architecture for maximum SEO and conversion." },
+                { label: "Edge-First Delivery", desc: "Content served globally with sub-50ms TTFB via distributed serverless nodes." },
+                { label: "Bespoke API Bridges", desc: "Custom-built secure integrations connecting web platforms to core business logic." }
+              ].map((point, i) => (
+                <div key={i} className="flex gap-6 group">
+                  <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-secondary group-hover:scale-150 transition-transform duration-300 shadow-[0_0_10px_rgba(119,1,208,0.8)]" />
+                  <div className="space-y-1">
+                    <div className="font-headline font-bold text-xs uppercase tracking-[0.2em] text-on-surface">{point.label}</div>
+                    <p className="font-body text-sm text-on-surface-variant leading-relaxed opacity-70 group-hover:opacity-100 transition-opacity">
+                      {point.desc}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Engineering Specs */}
       <section className="py-24 px-8 relative overflow-hidden">
 
@@ -82,25 +235,20 @@ const WebDevPage = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             className={cn(
-              "flex-1 w-full aspect-auto min-h-[400px] rounded-2xl overflow-hidden relative flex items-center justify-center p-12",
-              "backdrop-blur-md bg-white/5 border border-white/10 shadow-[0_0_20px_rgba(220,184,255,0.05)]"
+              "flex-1 w-full aspect-square md:aspect-video rounded-2xl overflow-hidden relative flex items-center justify-center",
+              "backdrop-blur-md bg-white/5 border border-white/10 shadow-[0_0_50px_rgba(220,184,255,0.05)]"
             )}
           >
-             {/* Using standard img tags as placeholders for the Nano Banana prompts */}
-             <div className="absolute inset-0 bg-[url('assets/services/web/detail-shot.png')] bg-cover bg-center opacity-30 mix-blend-overlay"></div>
-             
-             <ScanLine className="w-48 h-48 text-[#dcb8ff]/10 absolute" />
-             
-             <div className="relative z-10 w-full space-y-4 font-mono text-sm">
-               <div className="bg-[#1a1a1a]/80 p-4 border border-[#dcb8ff]/20 rounded backdrop-blur">
-                  <span className="text-[#dcb8ff]">import</span> {'{ SovereignArchitecture }'} <span className="text-[#dcb8ff]">from</span> '@core/headless';
-                  <br/><br/>
-                  <span className="text-secondary-container">const</span> app = <span className="text-[#dcb8ff]">await</span> SovereignArchitecture.build({'{'} <br/>
-                  &nbsp;&nbsp;performance: <span className="text-primary-container">'MAXIMUM'</span>, <br/>
-                  &nbsp;&nbsp;ux: <span className="text-primary-container">'SEAMLESS'</span> <br/>
-                  {'}'});
-               </div>
-             </div>
+            <Canvas camera={{ position: [5, 5, 5], fov: 45 }}>
+              <Suspense fallback={null}>
+                <color attach="background" args={['#0d0d0d']} />
+                <ambientLight intensity={0.5} />
+                <pointLight position={[10, 10, 10]} intensity={2} />
+                <SkeletalFramework />
+                <Environment preset="city" />
+                <OrbitControls enableZoom={false} />
+              </Suspense>
+            </Canvas>
           </motion.div>
 
           <motion.div

@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 interface PanelProps {
   title: string;
   focus: string;
-  icon: React.ElementType;
+  icon: any;
   services: { name: string; desc: string }[];
 }
 

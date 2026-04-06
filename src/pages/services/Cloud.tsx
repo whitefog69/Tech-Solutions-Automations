@@ -1,7 +1,103 @@
-import React from 'react';
+import React, { useRef, useMemo, Suspense } from 'react';
 import { motion } from 'motion/react';
+import { Canvas, useFrame } from '@react-three/fiber';
+import { Float, Box, Environment, OrbitControls, Grid, Sphere, ContactShadows } from '@react-three/drei';
+import * as THREE from 'three';
 import { cn } from '../../lib/utils';
 import { Server, Shield, Cloud, Cpu, Lock, Network } from 'lucide-react';
+
+const CloudNode = ({ position, color }: { position: [number, number, number], color: string }) => {
+  const ref = useRef<THREE.Mesh>(null!);
+  useFrame((state) => {
+    const t = state.clock.getElapsedTime();
+    ref.current.position.y = position[1] + Math.sin(t + position[0]) * 0.2;
+  });
+
+  return (
+    <Box ref={ref} args={[0.5, 0.5, 0.5]} position={position}>
+      <meshStandardMaterial color={color} metalness={0.8} roughness={0.2} />
+    </Box>
+  );
+};
+
+const NodeCluster = () => {
+  const nodes = useMemo(() => {
+    const arr = [];
+    for (let i = 0; i < 8; i++) {
+      const angle = (i / 8) * Math.PI * 2;
+      const radius = 2;
+      arr.push({
+        pos: [Math.cos(angle) * radius, 0, Math.sin(angle) * radius] as [number, number, number],
+        color: i % 2 === 0 ? "#0047ab" : "#b1c5ff"
+      });
+    }
+    return arr;
+  }, []);
+
+  return (
+    <group>
+      {nodes.map((node, i) => (
+        <CloudNode key={i} position={node.pos} color={node.color} />
+      ))}
+      <Box args={[1, 1, 1]} position={[0, 0, 0]}>
+        <meshStandardMaterial color="#0047ab" emissive="#0047ab" emissiveIntensity={2} />
+      </Box>
+      <Grid infiniteGrid fadeDistance={10} cellColor="#0047ab" sectionColor="#b1c5ff" />
+    </group>
+  );
+};
+
+const ServerStack = () => {
+  const cloudRef = useRef<THREE.Group>(null!);
+  
+  useFrame((state) => {
+    const t = state.clock.getElapsedTime();
+    cloudRef.current.rotation.y = t * 0.1;
+    cloudRef.current.position.y = Math.sin(t * 0.5) * 0.1;
+  });
+
+  return (
+    <group>
+      {/* Server Racks */}
+      {[0, 1, 2, 3].map((i) => (
+        <Box key={i} args={[2, 0.4, 2]} position={[0, i * 0.5 - 1, 0]}>
+          <meshStandardMaterial 
+            color="#1a1a1a" 
+            metalness={0.9} 
+            roughness={0.1} 
+            transparent 
+            opacity={0.8} 
+          />
+        </Box>
+      ))}
+      
+      {/* Top Open Unit Glow */}
+      <Box args={[2, 0.1, 2]} position={[0, 1, 0]}>
+        <meshStandardMaterial color="#0047ab" emissive="#0047ab" emissiveIntensity={5} />
+        <pointLight intensity={10} color="#0047ab" />
+      </Box>
+
+      {/* Ethereal Cloud */}
+      <group ref={cloudRef} position={[0, 1.5, 0]}>
+        {[...Array(50)].map((_, i) => (
+          <Float key={i} speed={2} rotationIntensity={2} floatIntensity={2}>
+            <Sphere args={[Math.random() * 0.3, 16, 16]} position={[(Math.random()-0.5)*1.5, Math.random()*1.5, (Math.random()-0.5)*1.5]}>
+              <meshStandardMaterial 
+                color={i % 2 === 0 ? "#b1c5ff" : "#dcb8ff"} 
+                transparent 
+                opacity={0.3} 
+                emissive={i % 2 === 0 ? "#0047ab" : "#7701d0"}
+                emissiveIntensity={0.5}
+              />
+            </Sphere>
+          </Float>
+        ))}
+      </group>
+
+      <ContactShadows position={[0, -1.5, 0]} opacity={0.4} scale={10} blur={2} far={4.5} />
+    </group>
+  );
+};
 
 const CloudPage = () => {
   return (
@@ -74,6 +170,66 @@ const CloudPage = () => {
         </div>
       </section>
 
+      {/* Protocol Section */}
+      <section className="py-24 px-8 border-y border-outline-variant/10 bg-surface-container-lowest/5">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="w-full aspect-square lg:aspect-video rounded-xl bg-[#0d0d0d] border border-primary/20 shadow-2xl relative overflow-hidden group"
+          >
+            <Canvas camera={{ position: [0, 2, 5], fov: 45 }}>
+              <Suspense fallback={null}>
+                <color attach="background" args={['#0d0d0d']} />
+                <ambientLight intensity={0.5} />
+                <pointLight position={[10, 10, 10]} intensity={1} />
+                <Float speed={1.5} rotationIntensity={0.5} floatIntensity={0.5}>
+                  <NodeCluster />
+                </Float>
+                <Environment preset="city" />
+                <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={0.5} />
+              </Suspense>
+            </Canvas>
+            <div className="absolute top-0 right-0 p-4 opacity-20 group-hover:opacity-40 transition-opacity pointer-events-none">
+              <Network className="w-8 h-8 text-primary" />
+            </div>
+            <div className="absolute bottom-4 left-4 text-primary/50 font-mono font-bold uppercase tracking-tighter text-[10px] flex items-center gap-2 pointer-events-none">
+              <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+              PROVISIONING_SOVEREIGN_CLUSTER
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="space-y-8"
+          >
+            <h2 className="font-headline text-4xl font-black tracking-tighter text-on-surface uppercase">
+              INFRASTRUCTURE <span className="text-primary italic">SOVEREIGNTY</span>
+            </h2>
+            <div className="space-y-6">
+              {[
+                { label: "Multi-Cloud Orchestration", desc: "Seamless integration across AWS, OCI, and private clusters for 100% uptime." },
+                { label: "Hardened Virtualization", desc: "Kernel-level security hardening with hardware-rooted trust chains." },
+                { label: "Automated Failover", desc: "Instant node replication and load balancing for enterprise-grade resilience." }
+              ].map((point, i) => (
+                <div key={i} className="flex gap-6 group">
+                  <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary group-hover:scale-150 transition-transform duration-300 shadow-[0_0_10px_rgba(0,71,171,0.8)]" />
+                  <div className="space-y-1">
+                    <div className="font-headline font-bold text-xs uppercase tracking-[0.2em] text-on-surface">{point.label}</div>
+                    <p className="font-body text-sm text-on-surface-variant leading-relaxed opacity-70 group-hover:opacity-100 transition-opacity">
+                      {point.desc}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Architectural Specs */}
       <section className="py-24 px-8 relative overflow-hidden">
 
@@ -108,26 +264,19 @@ const CloudPage = () => {
             className={cn(
               "flex-1 w-full aspect-square md:aspect-video rounded-2xl overflow-hidden relative flex items-center justify-center",
               "backdrop-blur-md bg-white/5 border border-white/10",
-              "neon-glow-cobalt"
+              "neon-glow-cobalt shadow-[0_0_50px_rgba(0,71,171,0.1)]"
             )}
           >
-             {/* Using standard img tags as placeholders for the Nano Banana prompts */}
-             <div className="absolute inset-0 bg-[url('assets/services/cloud/detail-shot.png')] bg-cover bg-center opacity-30 mix-blend-overlay"></div>
-             
-             <Lock className="w-24 h-24 text-primary/30 absolute" />
-             <div className="font-mono text-[11px] text-primary/60 leading-relaxed p-8 relative z-10 bg-background/40 backdrop-blur-sm rounded-xl border border-primary/20 m-8">
-               {`// KERNEL_HARDENING_INIT
-async function initializeSovereignPerimeter() {
-  const nodes = await Hypervisor.fetchActiveNodes();
-  for (const node of nodes) {
-    node.applyZeroTrustPolicies();
-    node.encryptDataAtRest({ protocol: 'AES-256-GCM' });
-  }
-  return { status: 'SECURE', compliance: 'MAXIMUM' };
-}
-
-initializeSovereignPerimeter();`}
-             </div>
+            <Canvas camera={{ position: [4, 2, 4], fov: 45 }}>
+              <Suspense fallback={null}>
+                <color attach="background" args={['#0d0d0d']} />
+                <ambientLight intensity={0.5} />
+                <pointLight position={[10, 10, 10]} intensity={2} />
+                <ServerStack />
+                <Environment preset="city" />
+                <OrbitControls enableZoom={false} />
+              </Suspense>
+            </Canvas>
           </motion.div>
         </div>
       </section>

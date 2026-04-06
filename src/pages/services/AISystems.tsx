@@ -1,7 +1,106 @@
-import React from 'react';
+import React, { useRef, useMemo, Suspense } from 'react';
 import { motion } from 'motion/react';
+import { Canvas, useFrame } from '@react-three/fiber';
+import { Float, Sphere, Points, PointMaterial, Environment, OrbitControls, Box, Cylinder, Torus } from '@react-three/drei';
+import * as THREE from 'three';
 import { cn } from '../../lib/utils';
 import { Brain, Network, Bot, Workflow, Cpu, Database, Zap, Code2 } from 'lucide-react';
+
+const NeuralCore = () => {
+  const points = useMemo(() => {
+    const p = new Float32Array(200 * 3);
+    for (let i = 0; i < 200; i++) {
+      p[i * 3] = (Math.random() - 0.5) * 4;
+      p[i * 3 + 1] = (Math.random() - 0.5) * 4;
+      p[i * 3 + 2] = (Math.random() - 0.5) * 4;
+    }
+    return p;
+  }, []);
+
+  const ref = useRef<THREE.Points>(null!);
+  useFrame((state) => {
+    ref.current.rotation.y = state.clock.getElapsedTime() * 0.1;
+    ref.current.rotation.x = state.clock.getElapsedTime() * 0.05;
+  });
+
+  return (
+    <group>
+      <Points ref={ref} positions={points} stride={3}>
+        <PointMaterial
+          transparent
+          color="#dcb8ff"
+          size={0.05}
+          sizeAttenuation={true}
+          depthWrite={false}
+          opacity={0.4}
+          blending={THREE.AdditiveBlending}
+        />
+      </Points>
+      <Sphere args={[1, 32, 32]}>
+        <meshStandardMaterial
+          color="#7701d0"
+          emissive="#7701d0"
+          emissiveIntensity={2}
+          wireframe
+          transparent
+          opacity={0.3}
+        />
+      </Sphere>
+      <Sphere args={[0.2, 32, 32]}>
+        <meshBasicMaterial color="#dcb8ff" />
+        <pointLight intensity={10} distance={5} color="#dcb8ff" />
+      </Sphere>
+    </group>
+  );
+};
+
+const RoboticAssembler = () => {
+  const armRef = useRef<THREE.Group>(null!);
+  const moduleRef = useRef<THREE.Group>(null!);
+  const gearRef = useRef<THREE.Group>(null!);
+
+  useFrame((state) => {
+    const t = state.clock.getElapsedTime();
+    armRef.current.rotation.y = Math.sin(t * 0.5) * 0.2;
+    moduleRef.current.position.y = 1 + Math.sin(t) * 0.5;
+    gearRef.current.rotation.z = t * 0.5;
+  });
+
+  return (
+    <group position={[0, -1, 0]}>
+      {/* Base Gears */}
+      <group ref={gearRef} position={[0, 0, 0]}>
+        <Torus args={[1, 0.2, 16, 32]}>
+          <meshStandardMaterial color="#1a1a1a" metalness={0.9} roughness={0.1} />
+        </Torus>
+        {[...Array(8)].map((_, i) => (
+          <Box key={i} args={[0.3, 0.3, 0.1]} position={[Math.cos(i/8 * Math.PI * 2), Math.sin(i/8 * Math.PI * 2), 0]}>
+            <meshStandardMaterial color="#1a1a1a" metalness={0.9} roughness={0.1} />
+          </Box>
+        ))}
+      </group>
+
+      {/* Robotic Arm */}
+      <group ref={armRef}>
+        <Cylinder args={[0.1, 0.1, 2]} position={[0, 1, 0]}>
+          <meshStandardMaterial color="#333" metalness={0.8} roughness={0.2} />
+        </Cylinder>
+        <group ref={moduleRef} position={[0, 1, 0]}>
+          <Sphere args={[0.4, 32, 32]}>
+            <meshStandardMaterial color="#7701d0" emissive="#7701d0" emissiveIntensity={2} transparent opacity={0.6} />
+            <pointLight intensity={5} color="#7701d0" />
+          </Sphere>
+          {/* Binary Stream Effect */}
+          {[...Array(10)].map((_, i) => (
+            <Box key={i} args={[0.02, 0.1, 0.02]} position={[(Math.random()-0.5)*0.5, (Math.random()-0.5)*0.5, (Math.random()-0.5)*0.5]}>
+              <meshBasicMaterial color="#dcb8ff" />
+            </Box>
+          ))}
+        </group>
+      </group>
+    </group>
+  );
+};
 
 const AISystemsPage = () => {
   return (
@@ -74,6 +173,66 @@ const AISystemsPage = () => {
         </div>
       </section>
 
+      {/* Protocol Section */}
+      <section className="py-24 px-8 border-y border-outline-variant/10 bg-surface-container-lowest/5">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="w-full aspect-square lg:aspect-video rounded-xl bg-[#0d0d0d] border border-secondary/20 shadow-2xl relative overflow-hidden group"
+          >
+            <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
+              <Suspense fallback={null}>
+                <color attach="background" args={['#0d0d0d']} />
+                <ambientLight intensity={0.5} />
+                <pointLight position={[10, 10, 10]} intensity={1} />
+                <Float speed={2} rotationIntensity={1} floatIntensity={1}>
+                  <NeuralCore />
+                </Float>
+                <Environment preset="city" />
+                <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={0.5} />
+              </Suspense>
+            </Canvas>
+            <div className="absolute top-0 right-0 p-4 opacity-20 group-hover:opacity-40 transition-opacity pointer-events-none">
+              <Cpu className="w-8 h-8 text-secondary" />
+            </div>
+            <div className="absolute bottom-4 left-4 text-secondary/50 font-mono font-bold uppercase tracking-tighter text-[10px] flex items-center gap-2 pointer-events-none">
+              <div className="w-2 h-2 rounded-full bg-secondary animate-pulse" />
+              AI_AUTONOMY_ENGINE_STABLE
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="space-y-8"
+          >
+            <h2 className="font-headline text-4xl font-black tracking-tighter text-on-surface uppercase">
+              OPERATIONAL <span className="text-secondary italic">INTELLIGENCE</span>
+            </h2>
+            <div className="space-y-6">
+              {[
+                { label: "99.8% Logic Accuracy", desc: "Custom-trained models ensuring near-perfect execution of complex business rules." },
+                { label: "Autonomous Decision-Making", desc: "Real-time processing via secure agent swarms with 40ms latency thresholds." },
+                { label: "Zero-Manual Overhead", desc: "Elimination of repetitive operational tasks through 1.5M token context windows." }
+              ].map((point, i) => (
+                <div key={i} className="flex gap-6 group">
+                  <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-secondary group-hover:scale-150 transition-transform duration-300 shadow-[0_0_10px_rgba(119,1,208,0.8)]" />
+                  <div className="space-y-1">
+                    <div className="font-headline font-bold text-xs uppercase tracking-[0.2em] text-on-surface">{point.label}</div>
+                    <p className="font-body text-sm text-on-surface-variant leading-relaxed opacity-70 group-hover:opacity-100 transition-opacity">
+                      {point.desc}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Neural Stack Insights */}
       <section className="py-24 px-8 relative overflow-hidden">
 
@@ -114,18 +273,16 @@ const AISystemsPage = () => {
               "neon-glow-violet"
             )}
           >
-             {/* Using standard img tags as placeholders for the Nano Banana prompts */}
-             <div className="absolute inset-0 bg-[url('assets/services/ai/detail-shot.png')] bg-cover bg-center opacity-20 mix-blend-overlay"></div>
-             
-             <Network className="w-32 h-32 text-secondary/30 absolute animate-pulse duration-[3000ms]" />
-             
-             <div className="absolute inset-0 bg-gradient-to-t from-background/90 to-transparent flex flex-col justify-end p-8">
-               <div className="font-mono text-xs text-secondary/80 bg-background/60 p-4 rounded backdrop-blur border border-secondary/20">
-                 [SYSTEM_LOG] &gt; Intelligent node routing established.<br/>
-                 [SYSTEM_LOG] &gt; Context window loaded with 1.5M tokens.<br/>
-                 [SYSTEM_LOG] &gt; Agent Swarm deployed to production.
-               </div>
-             </div>
+            <Canvas camera={{ position: [3, 2, 5], fov: 45 }}>
+              <Suspense fallback={null}>
+                <color attach="background" args={['#0d0d0d']} />
+                <ambientLight intensity={0.5} />
+                <pointLight position={[10, 10, 10]} intensity={2} />
+                <RoboticAssembler />
+                <Environment preset="city" />
+                <OrbitControls enableZoom={false} />
+              </Suspense>
+            </Canvas>
           </motion.div>
         </div>
       </section>
