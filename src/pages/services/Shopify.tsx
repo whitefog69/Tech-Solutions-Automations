@@ -94,7 +94,7 @@ const ShopifyPage = () => {
           playsInline
           className="absolute inset-0 w-full h-full object-cover z-0 opacity-50 hue-rotate-[210deg] saturate-150"
         >
-          <source src="assets/services/shopify/hero-video.mp4" type="video/mp4" />
+          <source src="/assets/services/shopify/shopify-hero.mp4" type="video/mp4" />
         </video>
         
         {/* Overlay for Depth and Readability */}
