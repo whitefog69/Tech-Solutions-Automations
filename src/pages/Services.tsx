@@ -238,7 +238,9 @@ const Services = () => {
                 <div>
                   <h3 className="font-headline text-2xl md:text-3xl font-bold text-on-surface uppercase tracking-tight">Shopify, WordPress Integrations & App Development</h3>
                 </div>
-                <ShoppingBag className="text-on-surface-variant opacity-20 w-8 h-8 md:w-12 md:h-12" />
+                <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-primary-container/20 flex items-center justify-center shrink-0">
+                  <ShoppingBag className="w-6 h-6 md:w-8 md:h-8 text-primary" />
+                </div>
               </div>
               <div className="grid grid-cols-2 gap-3 md:gap-4 mb-6">
                 {[
