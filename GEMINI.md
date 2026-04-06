@@ -1,6 +1,6 @@
-# Tech Solutions & Automations - Project Context
+# Vanguard Tech Ops - Project Context
 
-This workspace contains the source code and assets for the "Tech Solutions & Automations" professional corporate website. The project is a modern, high-end React 19 application focusing on technical authority, digital sovereignty, and "Quiet Luxury" aesthetics.
+This workspace contains the source code and assets for the "Vanguard Tech Ops" professional corporate website. The project is a modern, high-end React 19 application focusing on technical authority, digital sovereignty, and "Quiet Luxury" aesthetics.
 
 ## Project Structure
 

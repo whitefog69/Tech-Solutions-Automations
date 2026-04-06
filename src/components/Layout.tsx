@@ -72,9 +72,8 @@ export const Navbar = () => {
     <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-outline-variant/15 shadow-[0_0_40px_rgba(177,197,255,0.08)] flex justify-between items-center h-20 px-8 max-w-full">
       <div className="flex items-center gap-8">
         <Link to="/" className="text-xl font-bold tracking-tighter text-on-surface font-headline uppercase">
-          Tech Solutions & Automations
-        </Link>
-        <div className="hidden md:flex gap-6 items-center">
+        Vanguard Tech Ops
+        </Link>        <div className="hidden md:flex gap-6 items-center">
           <Link 
             to="/" 
             className={cn(
@@ -324,8 +323,8 @@ export const Footer = () => {
       {/* Main Footer Content */}
       <div className="py-12 flex flex-col justify-center items-center px-12 gap-6 text-center">
         <div className="flex flex-col items-center gap-2">
-          <span className="font-headline font-black text-on-surface text-xl uppercase tracking-tighter">Tech Solutions & Automations</span>
-          <p className="font-body text-[10px] tracking-[0.1em] uppercase text-on-surface/30">© 2024 Tech Solutions & Automations. Technical Authority Secured.</p>
+          <span className="font-headline font-black text-on-surface text-xl uppercase tracking-tighter">Vanguard Tech Ops</span>
+          <p className="font-body text-[10px] tracking-[0.1em] uppercase text-on-surface/30">© 2024 Vanguard Tech Ops. Technical Authority Secured.</p>
         </div>
         <div className="flex flex-wrap justify-center gap-4 md:gap-8">
           <a className="font-body text-[10px] tracking-[0.1em] uppercase text-on-surface/30 hover:text-on-surface transition-colors" href="#">Privacy Protocol</a>

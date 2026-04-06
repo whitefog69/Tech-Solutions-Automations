@@ -107,7 +107,7 @@ const AboutUs = () => {
             >
               <h2 className="font-headline text-sm md:text-2xl font-medium uppercase tracking-[0.2em] mb-4 md:mb-6 text-[#4DA6FF]">THE MISSION</h2>
               <p className="font-body text-sm md:text-xl font-light text-[#E0E0E0] leading-relaxed max-w-3xl mx-auto">
-                At Tech Solutions & Automations, we don't just build applications; we architect digital authority. We empower your business to scale, innovate, and lead through our core specializations.
+                At Vanguard Tech Ops, we don't just build applications; we architect digital authority. We empower your business to scale, innovate, and lead through our core specializations.
               </p>
             </motion.div>
           </section>
