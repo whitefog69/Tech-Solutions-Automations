@@ -248,7 +248,7 @@ const AISystemsPage = () => {
               {[
                 { name: "Vector Search Core", tool: "Pinecone / Qdrant" },
                 { name: "LLM Orchestration", tool: "LangChain / LLamaIndex" },
-                { name: "Foundation Models", tool: "Gemini Pro / Claude 3 / DeepSeek" },
+                { name: "Foundation Models", tool: "Gemini Pro / Claude 3" },
               ].map((layer, i) => (
                 <div key={i} className="flex justify-between items-center bg-surface-container-low p-5 rounded-lg border border-outline-variant/10">
                   <div className="flex items-center gap-4">
