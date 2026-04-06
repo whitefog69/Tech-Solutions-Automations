@@ -106,7 +106,7 @@ const AISystemsPage = () => {
   return (
     <div className="min-h-screen bg-background text-on-surface">
       {/* Hero Section */}
-      <section className="relative h-screen min-h-[800px] flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-[600px] md:h-screen flex items-center justify-center overflow-hidden">
         {/* Background Video */}
         <video 
           autoPlay 
@@ -121,20 +121,20 @@ const AISystemsPage = () => {
         {/* Overlay for Depth and Readability */}
         <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background z-[1]"></div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-8 text-center pt-20">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-8 text-center pt-20">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <div className="inline-block p-4 rounded-full bg-secondary-container/20 mb-8 border border-secondary/20 neon-glow-violet">
-              <Brain className="w-12 h-12 text-secondary animate-pulse" />
+            <div className="inline-block p-3 md:p-4 rounded-full bg-secondary-container/20 mb-6 md:mb-8 border border-secondary/20 neon-glow-violet">
+              <Brain className="w-8 h-8 md:w-12 md:h-12 text-secondary animate-pulse" />
             </div>
-            <h1 className="font-headline text-6xl md:text-8xl font-black tracking-tighter mb-6 uppercase">
+            <h1 className="font-headline text-4xl sm:text-6xl md:text-8xl font-black tracking-tighter mb-4 md:mb-6 uppercase">
               AI & <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-secondary-container neon-glow-violet">Automation</span>
             </h1>
-            <p className="font-body text-on-surface-variant text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed tracking-wide mb-12">
+            <p className="font-body text-on-surface-variant text-base sm:text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed tracking-wide mb-8 md:mb-12">
               Creating custom bots and autonomous systems to handle specialized logic and eliminate manual operational tasks.
             </p>
           </motion.div>
@@ -142,8 +142,8 @@ const AISystemsPage = () => {
       </section>
 
       {/* Feature Grid */}
-      <section className="relative py-24 px-8 z-10">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <section className="relative py-16 md:py-24 px-6 md:px-8 z-10">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {[
             { icon: Bot, title: "Intelligent AI Bots", desc: "Creating custom bots to handle specialized logic and user interaction." },
             { icon: Brain, title: "AI Integration", desc: "Embedding advanced AI capabilities directly into your existing software." },
@@ -155,17 +155,17 @@ const AISystemsPage = () => {
               key={i}
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ delay: i * 0.15, duration: 0.6 }}
+              transition={{ delay: i * 0.1, duration: 0.6 }}
               viewport={{ once: true, margin: "-50px" }}
               className={cn(
-                "p-10 rounded-2xl transition-all duration-500 hover:scale-[1.02] group",
+                "p-6 md:p-10 rounded-2xl transition-all duration-500 hover:scale-[1.02] group",
                 "backdrop-blur-md bg-white/5 border border-white/5",
                 "hover:border-secondary/20 hover:shadow-[0_0_20px_rgba(119,1,208,0.05)]"
               )}
             >
-              <item.icon className="w-10 h-10 text-secondary mb-6 opacity-80 group-hover:opacity-100 group-hover:text-secondary-container transition-colors" />
-              <h3 className="font-headline text-2xl font-bold mb-4 uppercase tracking-widest">{item.title}</h3>
-              <p className="font-body text-on-surface-variant leading-relaxed text-sm">
+              <item.icon className="w-8 h-8 md:w-10 md:h-10 text-secondary mb-4 md:mb-6 opacity-80 group-hover:opacity-100 group-hover:text-secondary-container transition-colors" />
+              <h3 className="font-headline text-xl md:text-2xl font-bold mb-3 md:mb-4 uppercase tracking-widest">{item.title}</h3>
+              <p className="font-body text-on-surface-variant leading-relaxed text-xs md:text-sm">
                 {item.desc}
               </p>
             </motion.div>
@@ -174,8 +174,8 @@ const AISystemsPage = () => {
       </section>
 
       {/* Protocol Section */}
-      <section className="py-24 px-8 border-y border-outline-variant/10 bg-surface-container-lowest/5">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <section className="py-16 md:py-24 px-6 md:px-8 border-y border-outline-variant/10 bg-surface-container-lowest/5">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 items-center">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -194,35 +194,28 @@ const AISystemsPage = () => {
                 <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={0.5} />
               </Suspense>
             </Canvas>
-            <div className="absolute top-0 right-0 p-4 opacity-20 group-hover:opacity-40 transition-opacity pointer-events-none">
-              <Cpu className="w-8 h-8 text-secondary" />
-            </div>
-            <div className="absolute bottom-4 left-4 text-secondary/50 font-mono font-bold uppercase tracking-tighter text-[10px] flex items-center gap-2 pointer-events-none">
-              <div className="w-2 h-2 rounded-full bg-secondary animate-pulse" />
-              AI_AUTONOMY_ENGINE_STABLE
-            </div>
           </motion.div>
 
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="space-y-8"
+            className="space-y-6 md:space-y-8"
           >
-            <h2 className="font-headline text-4xl font-black tracking-tighter text-on-surface uppercase">
+            <h2 className="font-headline text-3xl md:text-4xl font-black tracking-tighter text-on-surface uppercase">
               OPERATIONAL <span className="text-secondary italic">INTELLIGENCE</span>
             </h2>
-            <div className="space-y-6">
+            <div className="space-y-4 md:space-y-6">
               {[
                 { label: "99.8% Logic Accuracy", desc: "Custom-trained models ensuring near-perfect execution of complex business rules." },
                 { label: "Autonomous Decision-Making", desc: "Real-time processing via secure agent swarms with 40ms latency thresholds." },
                 { label: "Zero-Manual Overhead", desc: "Elimination of repetitive operational tasks through 1.5M token context windows." }
               ].map((point, i) => (
-                <div key={i} className="flex gap-6 group">
+                <div key={i} className="flex gap-4 md:gap-6 group">
                   <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-secondary group-hover:scale-150 transition-transform duration-300 shadow-[0_0_10px_rgba(119,1,208,0.8)]" />
                   <div className="space-y-1">
-                    <div className="font-headline font-bold text-xs uppercase tracking-[0.2em] text-on-surface">{point.label}</div>
-                    <p className="font-body text-sm text-on-surface-variant leading-relaxed opacity-70 group-hover:opacity-100 transition-opacity">
+                    <div className="font-headline font-bold text-[10px] md:text-xs uppercase tracking-[0.2em] text-on-surface">{point.label}</div>
+                    <p className="font-body text-xs md:text-sm text-on-surface-variant leading-relaxed opacity-70 group-hover:opacity-100 transition-opacity">
                       {point.desc}
                     </p>
                   </div>
@@ -234,28 +227,27 @@ const AISystemsPage = () => {
       </section>
 
       {/* Neural Stack Insights */}
-      <section className="py-24 px-8 relative overflow-hidden">
-
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row-reverse gap-16 items-center">
+      <section className="py-16 md:py-24 px-6 md:px-8 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row-reverse gap-12 md:gap-16 items-center">
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="flex-1"
+            className="flex-1 w-full"
           >
-            <h2 className="font-headline text-4xl font-bold mb-8 uppercase tracking-widest text-on-surface">Intelligence Architecture</h2>
-            <div className="space-y-6">
+            <h2 className="font-headline text-3xl md:text-4xl font-bold mb-8 uppercase tracking-widest text-on-surface text-center md:text-left">Intelligence Architecture</h2>
+            <div className="space-y-4 md:space-y-6">
               {[
                 { name: "Vector Search Core", tool: "Pinecone / Qdrant" },
                 { name: "LLM Orchestration", tool: "LangChain / LLamaIndex" },
                 { name: "Foundation Models", tool: "Gemini Pro / Claude 3" },
               ].map((layer, i) => (
-                <div key={i} className="flex justify-between items-center bg-surface-container-low p-5 rounded-lg border border-outline-variant/10">
+                <div key={i} className="flex flex-col sm:flex-row justify-between items-center bg-surface-container-low p-4 md:p-5 rounded-lg border border-outline-variant/10 gap-3">
                   <div className="flex items-center gap-4">
                      <Database className="w-5 h-5 text-secondary neon-glow-violet" />
-                     <span className="font-headline uppercase font-bold text-sm tracking-widest">{layer.name}</span>
+                     <span className="font-headline uppercase font-bold text-xs md:text-sm tracking-widest">{layer.name}</span>
                   </div>
-                  <span className="font-mono text-xs text-secondary-fixed-dim bg-secondary/10 px-3 py-1 rounded">
+                  <span className="font-mono text-[10px] md:text-xs text-secondary-fixed-dim bg-secondary/10 px-3 py-1 rounded">
                     {layer.tool}
                   </span>
                 </div>

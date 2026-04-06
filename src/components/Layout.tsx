@@ -18,9 +18,15 @@ const iconMap = {
 export const Navbar = () => {
   const location = useLocation();
   const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState<PageData[]>([]);
   const searchRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Close mobile menu on route change
+    setIsMobileMenuOpen(false);
+  }, [location.pathname]);
 
   useEffect(() => {
     const term = searchTerm.toLowerCase().trim();
@@ -53,6 +59,13 @@ export const Navbar = () => {
     { name: 'AI & Automation', path: '/services/ai-systems' },
     { name: 'Shopify, WordPress Integrations & App Development', path: '/services/shopify' },
     { name: 'Graphic & Web Design', path: '/services/design' },
+  ];
+
+  const navLinks = [
+    { name: 'Home', path: '/' },
+    { name: 'About Us', path: '/about' },
+    { name: 'Services', path: '/services' },
+    { name: 'Contact', path: '/contact' },
   ];
 
   return (
@@ -188,11 +201,63 @@ export const Navbar = () => {
           </AnimatePresence>
         </div>
         
-        <Link to="/contact" className="bg-gradient-to-br from-primary-container to-primary text-on-primary px-6 py-2.5 font-headline text-sm font-bold uppercase tracking-widest active:scale-95 transition-transform shadow-[0_0_15px_rgba(0,71,171,0.4)]">
+        <Link to="/contact" className="hidden md:block bg-gradient-to-br from-primary-container to-primary text-on-primary px-6 py-2.5 font-headline text-sm font-bold uppercase tracking-widest active:scale-95 transition-transform shadow-[0_0_15px_rgba(0,71,171,0.4)]">
           Consult Now
         </Link>
-        <Terminal className="text-primary cursor-pointer w-6 h-6" />
+        <button 
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          className="md:hidden p-2 text-primary hover:bg-primary/10 transition-colors rounded-lg"
+        >
+          <Terminal className="w-6 h-6" />
+        </button>
       </div>
+
+      {/* Mobile Menu Dropdown */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="absolute top-full left-0 w-full bg-surface-container-low border-b border-outline-variant/20 shadow-2xl backdrop-blur-3xl overflow-hidden md:hidden"
+          >
+            <div className="flex flex-col p-6 gap-4">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  className={cn(
+                    "font-headline text-lg font-bold uppercase tracking-widest p-4 rounded-lg transition-colors",
+                    location.pathname === link.path ? "bg-primary/10 text-primary" : "text-on-surface/60 hover:bg-surface-container hover:text-on-surface"
+                  )}
+                >
+                  {link.name}
+                </Link>
+              ))}
+              <div className="pt-4 border-t border-outline-variant/10">
+                <p className="text-[10px] font-headline uppercase tracking-[0.2em] text-on-surface-variant/40 mb-4 px-4">Our Services</p>
+                <div className="grid grid-cols-1 gap-2">
+                  {serviceLinks.map((service) => (
+                    <Link
+                      key={service.path}
+                      to={service.path}
+                      className="px-4 py-3 text-xs font-headline uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors"
+                    >
+                      {service.name}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+              <Link 
+                to="/contact" 
+                className="mt-4 bg-primary text-on-primary text-center py-4 font-headline font-bold uppercase tracking-[0.2em] rounded-sm shadow-[0_0_20px_rgba(0,71,171,0.3)]"
+              >
+                Launch Consultation
+              </Link>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 };
