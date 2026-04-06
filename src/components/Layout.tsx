@@ -218,7 +218,7 @@ export const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="absolute top-full left-0 w-full bg-surface-container-low border-b border-outline-variant/20 shadow-2xl backdrop-blur-3xl overflow-hidden md:hidden"
+            className="absolute top-full left-0 w-full bg-surface-container-low border-b border-outline-variant/20 shadow-2xl backdrop-blur-3xl overflow-y-auto max-h-[80vh] md:hidden"
           >
             <div className="flex flex-col p-6 gap-4">
               {navLinks.map((link) => (
