@@ -125,8 +125,8 @@ const WebDevPage = () => {
             <div className="inline-block p-4 rounded-full bg-secondary-fixed-dim/10 mb-8 border border-secondary-fixed-dim/20 neon-glow-violet">
               <Globe className="w-12 h-12 text-[#dcb8ff] animate-pulse" />
             </div>
-            <h1 className="font-headline text-6xl md:text-8xl font-black tracking-tighter mb-6 uppercase">
-              Precision Web & <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#dcb8ff] to-[#7701d0]" style={{textShadow: "0 0 20px rgba(220,184,255,0.1)"}}>Ecom Development</span>
+            <h1 className="font-headline text-5xl md:text-8xl font-black tracking-tighter mb-6 uppercase">
+              Precision Web & <br className="md:hidden" /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#dcb8ff] to-[#7701d0]" style={{textShadow: "0 0 20px rgba(220,184,255,0.1)"}}>Ecom Development</span>
             </h1>
             <p className="font-body text-on-surface-variant text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed tracking-wide mb-12">
               Bespoke web and e-commerce engineering focused on speed, clean architecture, and high-conversion experiences.
