@@ -33,7 +33,7 @@ const Contact = () => {
   const labelClasses = "block text-[9px] md:text-[10px] font-headline uppercase tracking-[0.2em] text-primary mb-2 font-bold";
 
   return (
-    <div className="min-h-screen bg-background text-on-surface pt-24 md:pt-32 pb-16 md:pb-24 px-6 md:px-8 relative overflow-hidden">
+    <div className="min-h-screen bg-background text-on-surface pt-20 md:pt-32 pb-16 md:pb-24 px-6 md:px-8 relative overflow-hidden">
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-20 relative z-10">
         {/* Left Side: Content */}
         <motion.div 
@@ -43,7 +43,7 @@ const Contact = () => {
           className="self-start text-center lg:text-left"
         >
           <span className="text-primary font-headline text-[10px] uppercase tracking-[0.4em] mb-4 md:mb-6 block">Communication Protocol</span>
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-headline font-black uppercase tracking-tighter leading-[0.9] mb-6 md:mb-8">
+          <h1 className="text-4xl sm:text-6xl font-headline font-black uppercase tracking-tighter leading-[0.9] mb-6 md:mb-8">
             Initialize <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary-container">Inquiry</span>
           </h1>
