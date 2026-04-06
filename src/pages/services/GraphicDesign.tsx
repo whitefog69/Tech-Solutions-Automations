@@ -96,7 +96,7 @@ const GraphicDesignPage = () => {
   return (
     <div className="min-h-screen bg-background text-on-surface">
       {/* Hero Section */}
-      <section className="relative h-screen min-h-[800px] flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-[600px] md:h-screen flex items-center justify-center overflow-hidden">
         {/* Background Video */}
         <video 
           autoPlay 
@@ -111,20 +111,20 @@ const GraphicDesignPage = () => {
         {/* Overlay for Depth and Readability */}
         <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background z-[1]"></div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-8 text-center pt-20">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-8 text-center pt-20">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <div className="inline-block p-4 rounded-full bg-secondary-container/20 mb-8 border border-secondary/20 neon-glow-violet">
-              <Palette className="w-12 h-12 text-secondary animate-pulse" />
+            <div className="inline-block p-3 md:p-4 rounded-full bg-secondary-container/20 mb-6 md:mb-8 border border-secondary/20 neon-glow-violet">
+              <Palette className="w-8 h-8 md:w-12 md:h-12 text-secondary animate-pulse" />
             </div>
-            <h1 className="font-headline text-6xl md:text-8xl font-black tracking-tighter mb-6 uppercase">
-              Graphic & <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-secondary-container neon-glow-violet">Web Design</span>
+            <h1 className="font-headline text-5xl md:text-8xl font-black tracking-tighter mb-6 uppercase">
+              Graphic & <br className="md:hidden" /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-secondary-container neon-glow-violet">Web Design</span>
             </h1>
-            <p className="font-body text-on-surface-variant text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed tracking-wide mb-12">
+            <p className="font-body text-on-surface-variant text-base sm:text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed tracking-wide mb-8 md:mb-12">
               Crafting cohesive visual identities and visually striking, user-centric website layouts that align with modern aesthetics.
             </p>
           </motion.div>
@@ -132,8 +132,8 @@ const GraphicDesignPage = () => {
       </section>
 
       {/* Feature Grid */}
-      <section className="relative py-24 px-8 z-10">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <section className="relative py-16 md:py-24 px-6 md:px-8 z-10">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {[
             { icon: PenTool, title: "Brand Identity & Logo Creation", desc: "Crafting cohesive visual identities that establish a strong, premium market presence." },
             { icon: Layout, title: "Custom Web Interface Design", desc: "Designing visually striking, user-centric website layouts that align with modern aesthetics." },
@@ -145,17 +145,17 @@ const GraphicDesignPage = () => {
               key={i}
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ delay: i * 0.15, duration: 0.6 }}
+              transition={{ delay: i * 0.1, duration: 0.6 }}
               viewport={{ once: true, margin: "-50px" }}
               className={cn(
-                "p-10 rounded-2xl transition-all duration-500 hover:scale-[1.02] group",
+                "p-8 md:p-10 rounded-2xl transition-all duration-500 hover:scale-[1.02] group",
                 "backdrop-blur-md bg-white/5 border border-white/5",
                 "hover:border-secondary/20 hover:shadow-[0_0_20px_rgba(119,1,208,0.05)]"
               )}
             >
-              <item.icon className="w-10 h-10 text-secondary mb-6 opacity-80 group-hover:opacity-100 group-hover:text-secondary-container transition-colors" />
-              <h3 className="font-headline text-2xl font-bold mb-4 uppercase tracking-widest leading-tight">{item.title}</h3>
-              <p className="font-body text-on-surface-variant leading-relaxed text-sm">
+              <item.icon className="w-8 h-8 md:w-10 md:h-10 text-secondary mb-4 md:mb-6 opacity-80 group-hover:opacity-100 group-hover:text-secondary-container transition-colors" />
+              <h3 className="font-headline text-lg md:text-xl font-bold mb-3 uppercase tracking-widest leading-tight">{item.title}</h3>
+              <p className="font-body text-on-surface-variant leading-relaxed text-xs md:text-sm">
                 {item.desc}
               </p>
             </motion.div>
@@ -164,8 +164,8 @@ const GraphicDesignPage = () => {
       </section>
 
       {/* Protocol Section */}
-      <section className="py-24 px-8 border-y border-outline-variant/10 bg-surface-container-lowest/5">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <section className="py-16 md:py-24 px-6 md:px-8 border-y border-outline-variant/10 bg-surface-container-lowest/5">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 items-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -198,22 +198,22 @@ const GraphicDesignPage = () => {
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="space-y-8"
+            className="space-y-6 md:space-y-8"
           >
-            <h2 className="font-headline text-4xl font-black tracking-tighter text-on-surface uppercase">
+            <h2 className="font-headline text-3xl md:text-4xl font-black tracking-tighter text-on-surface uppercase">
               AESTHETIC <span className="text-secondary italic">AUTHORITY</span>
             </h2>
-            <div className="space-y-6">
+            <div className="space-y-4 md:space-y-6">
               {[
                 { label: "Quiet Luxury Visuals", desc: "High-end minimalist design focused on technical authority and premium user trust." },
                 { label: "WCAG AAA Accessibility", desc: "Pixel-perfect fidelity that meets the highest international standards for inclusive design." },
                 { label: "Cohesive Brand Systems", desc: "Comprehensive digital style guides ensuring total visual sovereignty across all platforms." }
               ].map((point, i) => (
-                <div key={i} className="flex gap-6 group">
+                <div key={i} className="flex gap-4 md:gap-6 group">
                   <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-secondary group-hover:scale-150 transition-transform duration-300 shadow-[0_0_10px_rgba(119,1,208,0.8)]" />
                   <div className="space-y-1">
-                    <div className="font-headline font-bold text-xs uppercase tracking-[0.2em] text-on-surface">{point.label}</div>
-                    <p className="font-body text-sm text-on-surface-variant leading-relaxed opacity-70 group-hover:opacity-100 transition-opacity">
+                    <div className="font-headline font-bold text-[10px] md:text-xs uppercase tracking-[0.2em] text-on-surface">{point.label}</div>
+                    <p className="font-body text-xs md:text-sm text-on-surface-variant leading-relaxed opacity-70 group-hover:opacity-100 transition-opacity">
                       {point.desc}
                     </p>
                   </div>
@@ -225,17 +225,16 @@ const GraphicDesignPage = () => {
       </section>
 
       {/* Design Philosophy */}
-      <section className="py-24 px-8 relative overflow-hidden">
-
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-16 items-center">
+      <section className="py-16 md:py-24 px-6 md:px-8 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-12 md:gap-16 items-center">
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="flex-1"
+            className="flex-1 w-full"
           >
-            <h2 className="font-headline text-4xl font-bold mb-8 uppercase tracking-widest text-on-surface">Design Philosophy</h2>
-            <p className="font-body text-on-surface-variant leading-relaxed mb-8">
+            <h2 className="font-headline text-3xl md:text-4xl font-bold mb-8 uppercase tracking-widest text-on-surface text-center md:text-left">Design Philosophy</h2>
+            <p className="font-body text-on-surface-variant leading-relaxed mb-8 text-sm md:text-base text-center md:text-left">
               Our design ethos is rooted in "Quiet Luxury"—a minimalist yet high-impact approach that prioritizes negative space, premium typography, and seamless interaction.
             </p>
             <ul className="space-y-4">
@@ -245,9 +244,9 @@ const GraphicDesignPage = () => {
                 "Micro-Interaction Design",
                 "Cross-Platform Visual Consistency"
               ].map((text, i) => (
-                <li key={i} className="flex items-center gap-4 text-on-surface">
+                <li key={i} className="flex items-center gap-4 text-on-surface justify-center md:justify-start">
                   <div className="w-1.5 h-1.5 rounded-full bg-secondary neon-glow-violet"></div>
-                  <span className="font-headline uppercase tracking-[0.1em] text-sm font-bold">{text}</span>
+                  <span className="font-headline uppercase tracking-[0.1em] text-xs md:text-sm font-bold">{text}</span>
                 </li>
               ))}
             </ul>
