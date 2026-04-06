@@ -189,7 +189,7 @@ const Home = () => {
 
                   <div className="pt-8 border-t border-outline-variant/10 flex items-center gap-5">
                     <div className="relative">
-                      <img src={t.image} alt={t.name} className="w-14 h-14 rounded-full object-cover border border-outline-variant/20 relative z-10" />
+                      <img src={t.image} alt={t.name} loading="lazy" className="w-14 h-14 rounded-full object-cover border border-outline-variant/20 relative z-10" />
                     </div>
                     <div>
                       <h4 className="font-headline font-bold text-on-surface text-lg tracking-tight group-hover:text-primary transition-colors">{t.name}</h4>
