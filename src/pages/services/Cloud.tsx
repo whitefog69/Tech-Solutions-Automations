@@ -128,8 +128,8 @@ const CloudPage = () => {
             <div className="inline-block p-4 rounded-full bg-primary-container/20 mb-8 border border-primary/20 neon-glow-cobalt">
               <Server className="w-12 h-12 text-primary animate-pulse" />
             </div>
-            <h1 className="font-headline text-6xl md:text-8xl font-black tracking-tighter mb-6 uppercase">
-              Virtualization & <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary-container neon-glow-cobalt">Cloud</span>
+            <h1 className="font-headline text-5xl md:text-8xl font-black tracking-tighter mb-6 uppercase">
+              Virtualization & <br className="md:hidden" /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary-container neon-glow-cobalt">Cloud</span>
             </h1>
             <p className="font-body text-on-surface-variant text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed tracking-wide mb-12">
               Expert orchestration of cloud infrastructure and virtualization environments for enterprise stability and security.
