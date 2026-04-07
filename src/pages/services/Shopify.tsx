@@ -86,12 +86,12 @@ const ShopifyPage = () => {
     <div className="min-h-screen bg-background text-on-surface">
       {/* Hero Section */}
       <section className="relative h-screen min-h-[800px] flex items-center justify-center overflow-hidden">
-        {/* Background Image (Replaced broken video) */}
+        {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <img 
             src={`${import.meta.env.BASE_URL}assets/services/shopify/shopify-bg.png`} 
             alt="Shopify & WordPress Background" 
-            className="w-full h-full object-cover opacity-40 hue-rotate-[210deg] saturate-150"
+            className="w-full h-full object-cover"
           />
         </div>
         
