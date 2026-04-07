@@ -86,16 +86,14 @@ const ShopifyPage = () => {
     <div className="min-h-screen bg-background text-on-surface">
       {/* Hero Section */}
       <section className="relative h-screen min-h-[800px] flex items-center justify-center overflow-hidden">
-        {/* Video Background */}
-        <video 
-          autoPlay 
-          loop 
-          muted 
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover z-0 opacity-50 hue-rotate-[210deg] saturate-150"
-        >
-          <source src="/assets/services/shopify/shopify-hero.mp4" type="video/mp4" />
-        </video>
+        {/* Background Image (Replaced broken video) */}
+        <div className="absolute inset-0 z-0">
+          <img 
+            src={`${import.meta.env.BASE_URL}assets/services/shopify/shopify-bg.png`} 
+            alt="Shopify & WordPress Background" 
+            className="w-full h-full object-cover opacity-40 hue-rotate-[210deg] saturate-150"
+          />
+        </div>
         
         {/* Overlay for Depth and Readability */}
         <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background z-[1]"></div>

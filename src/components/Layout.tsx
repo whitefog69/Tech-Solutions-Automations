@@ -69,10 +69,14 @@ export const Navbar = () => {
   ];
 
   return (
-    <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-outline-variant/15 shadow-[0_0_40px_rgba(177,197,255,0.08)] flex justify-between items-center h-20 px-8 max-w-full">
+    <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-outline-variant/15 shadow-[0_0_40px_rgba(177,197,255,0.08)] flex justify-between items-center h-24 px-8 max-w-full">
       <div className="flex items-center gap-8">
-        <Link to="/" className="text-xl font-bold tracking-tighter text-on-surface font-headline uppercase">
-        Vanguard Tech Ops
+        <Link to="/" className="flex items-center">
+          <img 
+            src={`${import.meta.env.BASE_URL}assets/icons/website logo.png`} 
+            alt="Vanguard Tech Ops" 
+            className="h-[72px] w-auto object-contain brightness-0 invert opacity-90 hover:opacity-100 transition-opacity" 
+          />
         </Link>        <div className="hidden md:flex gap-6 items-center">
           <Link 
             to="/" 
@@ -265,15 +269,15 @@ export const Navbar = () => {
 
 export const Footer = () => {
   const techStack = [
-    { name: 'WordPress', icon: <img src="assets/icons/wordpress.png" alt="WordPress" className="w-6 h-6 object-contain brightness-0 invert opacity-70 group-hover/item:brightness-100 group-hover/item:invert-0 group-hover/item:opacity-100 transition-all duration-500" /> },
-    { name: 'Shopify', icon: <img src="assets/icons/shopify.png" alt="Shopify" className="w-6 h-6 object-contain brightness-0 invert opacity-70 group-hover/item:brightness-100 group-hover/item:invert-0 group-hover/item:opacity-100 transition-all duration-500" /> },
-    { name: 'AWS', icon: <img src="assets/icons/aws.png" alt="AWS" className="w-6 h-6 object-contain brightness-0 invert opacity-70 group-hover/item:brightness-100 group-hover/item:invert-0 group-hover/item:opacity-100 transition-all duration-500" /> },
-    { name: 'Microsoft Azure', icon: <img src="assets/icons/azure.png" alt="Azure" className="w-6 h-6 object-contain brightness-0 invert opacity-70 group-hover/item:brightness-100 group-hover/item:invert-0 group-hover/item:opacity-100 transition-all duration-500" /> },
-    { name: 'Linux', icon: <img src="assets/icons/linux.png" alt="Linux" className="w-6 h-6 object-contain brightness-0 invert opacity-70 group-hover/item:brightness-100 group-hover/item:invert-0 group-hover/item:opacity-100 transition-all duration-500" /> },
-    { name: 'Windows', icon: <img src="assets/icons/windows.png" alt="Windows" className="w-6 h-6 object-contain brightness-0 invert opacity-70 group-hover/item:brightness-100 group-hover/item:invert-0 group-hover/item:opacity-100 transition-all duration-500" /> },
-    { name: 'Github', icon: <img src="assets/icons/github.png" alt="Github" className="w-6 h-6 object-contain brightness-0 invert opacity-70 group-hover/item:brightness-100 group-hover/item:invert-0 group-hover/item:opacity-100 transition-all duration-500" /> },
-    { name: 'Google Gemini', icon: <img src="assets/icons/gemini.png" alt="Gemini" className="w-6 h-6 object-contain brightness-0 invert opacity-70 group-hover/item:brightness-100 group-hover/item:invert-0 group-hover/item:opacity-100 transition-all duration-500" /> },
-    { name: 'Claude', icon: <img src="assets/icons/claude.png" alt="Claude" className="w-6 h-6 object-contain brightness-0 invert opacity-70 group-hover/item:brightness-100 group-hover/item:invert-0 group-hover/item:opacity-100 transition-all duration-500" /> },
+    { name: 'WordPress', icon: <img src={`${import.meta.env.BASE_URL}assets/icons/wordpress.png`} alt="WordPress" className="w-6 h-6 object-contain brightness-0 invert opacity-70 group-hover/item:brightness-100 group-hover/item:invert-0 group-hover/item:opacity-100 transition-all duration-500" /> },
+    { name: 'Shopify', icon: <img src={`${import.meta.env.BASE_URL}assets/icons/shopify.png`} alt="Shopify" className="w-6 h-6 object-contain brightness-0 invert opacity-70 group-hover/item:brightness-100 group-hover/item:invert-0 group-hover/item:opacity-100 transition-all duration-500" /> },
+    { name: 'AWS', icon: <img src={`${import.meta.env.BASE_URL}assets/icons/aws.png`} alt="AWS" className="w-6 h-6 object-contain brightness-0 invert opacity-70 group-hover/item:brightness-100 group-hover/item:invert-0 group-hover/item:opacity-100 transition-all duration-500" /> },
+    { name: 'Microsoft Azure', icon: <img src={`${import.meta.env.BASE_URL}assets/icons/azure.png`} alt="Azure" className="w-6 h-6 object-contain brightness-0 invert opacity-70 group-hover/item:brightness-100 group-hover/item:invert-0 group-hover/item:opacity-100 transition-all duration-500" /> },
+    { name: 'Linux', icon: <img src={`${import.meta.env.BASE_URL}assets/icons/linux.png`} alt="Linux" className="w-6 h-6 object-contain brightness-0 invert opacity-70 group-hover/item:brightness-100 group-hover/item:invert-0 group-hover/item:opacity-100 transition-all duration-500" /> },
+    { name: 'Windows', icon: <img src={`${import.meta.env.BASE_URL}assets/icons/windows.png`} alt="Windows" className="w-6 h-6 object-contain brightness-0 invert opacity-70 group-hover/item:brightness-100 group-hover/item:invert-0 group-hover/item:opacity-100 transition-all duration-500" /> },
+    { name: 'Github', icon: <img src={`${import.meta.env.BASE_URL}assets/icons/github.png`} alt="Github" className="w-6 h-6 object-contain brightness-0 invert opacity-70 group-hover/item:brightness-100 group-hover/item:invert-0 group-hover/item:opacity-100 transition-all duration-500" /> },
+    { name: 'Google Gemini', icon: <img src={`${import.meta.env.BASE_URL}assets/icons/gemini.png`} alt="Gemini" className="w-6 h-6 object-contain brightness-0 invert opacity-70 group-hover/item:brightness-100 group-hover/item:invert-0 group-hover/item:opacity-100 transition-all duration-500" /> },
+    { name: 'Claude', icon: <img src={`${import.meta.env.BASE_URL}assets/icons/claude.png`} alt="Claude" className="w-6 h-6 object-contain brightness-0 invert opacity-70 group-hover/item:brightness-100 group-hover/item:invert-0 group-hover/item:opacity-100 transition-all duration-500" /> },
   ];
 
   return (
@@ -322,8 +326,12 @@ export const Footer = () => {
 
       {/* Main Footer Content */}
       <div className="py-12 flex flex-col justify-center items-center px-12 gap-6 text-center">
-        <div className="flex flex-col items-center gap-2">
-          <span className="font-headline font-black text-on-surface text-xl uppercase tracking-tighter">Vanguard Tech Ops</span>
+        <div className="flex flex-col items-center gap-4">
+          <img 
+            src={`${import.meta.env.BASE_URL}assets/icons/website logo.png`} 
+            alt="Vanguard Tech Ops" 
+            className="h-24 w-auto object-contain brightness-0 invert opacity-80" 
+          />
           <p className="font-body text-[10px] tracking-[0.1em] uppercase text-on-surface/30">© 2024 Vanguard Tech Ops. Technical Authority Secured.</p>
         </div>
         <div className="flex flex-wrap justify-center gap-4 md:gap-8">

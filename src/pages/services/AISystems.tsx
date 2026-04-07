@@ -115,7 +115,7 @@ const AISystemsPage = () => {
           playsInline
           className="absolute inset-0 w-full h-full object-cover z-0"
         >
-          <source src="assets/services/ai/ai-automation.mp4" type="video/mp4" />
+          <source src={`${import.meta.env.BASE_URL}assets/services/ai/ai-automation.mp4`} type="video/mp4" />
         </video>
         
         {/* Overlay for Depth and Readability */}
