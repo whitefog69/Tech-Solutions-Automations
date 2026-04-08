@@ -73,7 +73,7 @@ export const Navbar = () => {
       <div className="flex items-center gap-8">
         <Link to="/" className="flex items-center">
           <img 
-            src={`${import.meta.env.BASE_URL}assets/icons/website logo.png`} 
+            src={`${import.meta.env.BASE_URL}assets/icons/website-logo.png`} 
             alt="Vanguard Tech Ops" 
             className="h-[72px] w-auto object-contain brightness-0 invert opacity-90 hover:opacity-100 transition-opacity" 
           />
@@ -328,7 +328,7 @@ export const Footer = () => {
       <div className="py-12 flex flex-col justify-center items-center px-12 gap-6 text-center">
         <div className="flex flex-col items-center gap-4">
           <img 
-            src={`${import.meta.env.BASE_URL}assets/icons/website logo.png`} 
+            src={`${import.meta.env.BASE_URL}assets/icons/website-logo.png`} 
             alt="Vanguard Tech Ops" 
             className="h-24 w-auto object-contain brightness-0 invert opacity-80" 
           />
