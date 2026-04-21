@@ -333,13 +333,7 @@ export const Footer = () => {
             alt="Vanguard Tech Ops" 
             className="h-24 w-auto object-contain brightness-0 invert opacity-80" 
           />
-          <p className="font-body text-[10px] tracking-[0.1em] uppercase text-on-surface/30">© 2024 Vanguard Tech Ops. Technical Authority Secured.</p>
-        </div>
-        <div className="flex flex-wrap justify-center gap-4 md:gap-8">
-          <a className="font-body text-[10px] tracking-[0.1em] uppercase text-on-surface/30 hover:text-on-surface transition-colors" href="#">Privacy Protocol</a>
-          <a className="font-body text-[10px] tracking-[0.1em] uppercase text-on-surface/30 hover:text-on-surface transition-colors" href="#">Security Whitepaper</a>
-          <a className="font-body text-[10px] tracking-[0.1em] uppercase text-on-surface/30 hover:text-on-surface transition-colors" href="#">Network Status</a>
-          <a className="font-body text-[10px] tracking-[0.1em] uppercase text-on-surface/30 legal" href="#">Legal</a>
+          <p className="font-body text-[10px] tracking-[0.1em] uppercase text-on-surface/30">Vanguard Tech Ops. Technical Authority Secured.</p>
         </div>
       </div>
     </footer>
