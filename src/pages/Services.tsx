@@ -2,10 +2,15 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { ArrowRight, Shield, Brain, Terminal, ShoppingBag, CheckCircle, Settings2, Code2, Activity, Headset, Bolt, Globe, Palette, Server, Key, Workflow, RefreshCw, BarChart } from 'lucide-react';
+import SEO from '../components/SEO';
 
 const Services = () => {
   return (
     <div className="min-h-screen">
+      <SEO 
+        title="Institutional Service Domains" 
+        description="Our services forge the ultimate digital advantage. Spanning elite cloud virtualization, autonomous AI workflows, high-converting e-commerce builds, and striking visual design."
+      />
       {/* Hero Section */}
       <section className="relative min-h-[600px] md:h-screen flex items-center justify-center overflow-hidden">
         {/* Background Video */}
@@ -14,6 +19,7 @@ const Services = () => {
           loop 
           muted 
           playsInline
+          poster={`${import.meta.env.BASE_URL}assets/services-banner.mp4`}
           className="absolute inset-0 w-full h-full object-cover z-0"
         >
           <source src={`${import.meta.env.BASE_URL}assets/services-banner.mp4`} type="video/mp4" />

@@ -5,6 +5,8 @@ import { Float, Torus, MeshTransmissionMaterial, Environment, OrbitControls, Con
 import * as THREE from 'three';
 import { cn } from '../../lib/utils';
 import { Palette, PenTool, Layout, Image, Figma, MonitorSmartphone, BarChart3 } from 'lucide-react';
+import SEO from '../../components/SEO';
+import InteractionIndicator from '../../components/InteractionIndicator';
 
 const DesignSculpture = () => {
   const meshRef = useRef<THREE.Mesh>(null!);
@@ -95,6 +97,10 @@ const CreativeBlueprint = () => {
 const GraphicDesignPage = () => {
   return (
     <div className="min-h-screen bg-background text-on-surface">
+      <SEO 
+        title="Graphic & Web Design Studio" 
+        description="Crafting cohesive visual identities and visually striking website layouts. High-end UI/UX prototyping, brand identity, and responsive visual design for elite brands."
+      />
       {/* Hero Section */}
       <section className="relative min-h-[600px] md:h-screen flex items-center justify-center overflow-hidden">
         {/* Background Video */}
@@ -103,6 +109,7 @@ const GraphicDesignPage = () => {
           loop 
           muted 
           playsInline
+          poster={`${import.meta.env.BASE_URL}assets/services/design/design-bg.png`}
           className="absolute inset-0 w-full h-full object-cover z-0"
         >
           <source src={`${import.meta.env.BASE_URL}assets/services/design/design-hero.mp4`} type="video/mp4" />
@@ -172,6 +179,7 @@ const GraphicDesignPage = () => {
             viewport={{ once: true }}
             className="w-full aspect-square lg:aspect-video rounded-xl bg-[#0d0d0d] border border-secondary/20 shadow-2xl relative overflow-hidden group flex items-center justify-center"
           >
+            <InteractionIndicator />
             <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
               <Suspense fallback={null}>
                 <color attach="background" args={['#0d0d0d']} />
@@ -261,6 +269,7 @@ const GraphicDesignPage = () => {
               "backdrop-blur-md bg-white/5 border border-white/10 shadow-[0_0_50px_rgba(119,1,208,0.1)]"
             )}
           >
+            <InteractionIndicator />
             <Canvas camera={{ position: [4, 3, 4], fov: 45 }}>
               <Suspense fallback={null}>
                 <color attach="background" args={['#0d0d0d']} />

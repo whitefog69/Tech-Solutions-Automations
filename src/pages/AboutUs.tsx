@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import { Shield, Cpu, Zap, Code2, Palette, Database, Layers, Rocket } from 'lucide-react';
 import { cn } from '../lib/utils';
 import { Link } from 'react-router-dom';
+import SEO from '../components/SEO';
 
 interface PanelProps {
   title: string;
@@ -47,6 +48,10 @@ const ArchitecturePanel = ({ title, focus, icon: Icon, services }: PanelProps) =
 const AboutUs = () => {
   return (
     <div className="min-h-screen bg-background text-on-surface py-12 md:py-32 px-6 md:px-8">
+      <SEO 
+        title="Technical Manifesto & Mission" 
+        description="Learn about our story, mission, and the architecture process behind our technical sovereignty. Transforming intricate technical challenges into streamlined, intuitive ecosystems."
+      />
       <div className="max-w-6xl mx-auto">
         <div className="relative mb-16 md:mb-32 py-12 md:py-20 px-6 md:px-16 overflow-hidden rounded-3xl border border-[#4DA6FF]/20 bg-surface/40 backdrop-blur-xl shadow-[0_0_50px_rgba(77,166,255,0.05)]">
           {/* Lighting / Overlays - Digital Grid */}

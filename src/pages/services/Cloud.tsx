@@ -5,6 +5,8 @@ import { Float, Box, Environment, OrbitControls, Grid, Sphere, ContactShadows } 
 import * as THREE from 'three';
 import { cn } from '../../lib/utils';
 import { Server, Shield, Cloud, Cpu, Lock, Network } from 'lucide-react';
+import SEO from '../../components/SEO';
+import InteractionIndicator from '../../components/InteractionIndicator';
 
 const CloudNode = ({ position, color }: { position: [number, number, number], color: string }) => {
   const ref = useRef<THREE.Mesh>(null!);
@@ -102,6 +104,10 @@ const ServerStack = () => {
 const CloudPage = () => {
   return (
     <div className="min-h-screen bg-background text-on-surface">
+      <SEO 
+        title="Virtualization & Cloud Infrastructure" 
+        description="Expert orchestration of cloud infrastructure and virtualization environments. Scaling AWS, OCI, and private clusters with zero-trust security architecture."
+      />
       {/* Hero Section */}
       <section className="relative h-screen min-h-[800px] flex items-center justify-center overflow-hidden">
         {/* Background Video */}
@@ -110,6 +116,7 @@ const CloudPage = () => {
           loop 
           muted 
           playsInline
+          poster={`${import.meta.env.BASE_URL}assets/services/cloud/cloud-bg.png`}
           className="absolute inset-0 w-full h-full object-cover z-0"
         >
           <source src={`${import.meta.env.BASE_URL}assets/services/cloud/cloud-hero.mp4`} type="video/mp4" />
@@ -179,6 +186,7 @@ const CloudPage = () => {
             viewport={{ once: true }}
             className="w-full aspect-square lg:aspect-video rounded-xl bg-[#0d0d0d] border border-primary/20 shadow-2xl relative overflow-hidden group"
           >
+            <InteractionIndicator />
             <Canvas camera={{ position: [0, 2, 5], fov: 45 }}>
               <Suspense fallback={null}>
                 <color attach="background" args={['#0d0d0d']} />
@@ -267,6 +275,7 @@ const CloudPage = () => {
               "neon-glow-cobalt shadow-[0_0_50px_rgba(0,71,171,0.1)]"
             )}
           >
+            <InteractionIndicator />
             <Canvas camera={{ position: [4, 2, 4], fov: 45 }}>
               <Suspense fallback={null}>
                 <color attach="background" args={['#0d0d0d']} />

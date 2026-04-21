@@ -209,6 +209,7 @@ export const Navbar = () => {
         </Link>
         <button 
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          aria-label={isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
           className="md:hidden p-2 text-primary hover:bg-primary/10 transition-colors rounded-lg"
         >
           <Terminal className="w-6 h-6" />

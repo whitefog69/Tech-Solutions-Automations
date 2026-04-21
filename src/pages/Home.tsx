@@ -2,10 +2,15 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { ArrowRight, Shield, Brain, Terminal, ShoppingBag, CheckCircle, Settings2, Code2, Activity, Headset, Bolt, Globe, Palette, Server, Key, Workflow, RefreshCw, BarChart, Star } from 'lucide-react';
+import SEO from '../components/SEO';
 
 const Home = () => {
   return (
     <div className="min-h-screen">
+      <SEO 
+        title="Institutional Technical Excellence" 
+        description="We architect sovereign digital environments where security, intelligence, and performance converge into singular system resilience."
+      />
       {/* Unified Hero & CTA Section */}
       <section className="relative min-h-screen flex flex-col items-center justify-between py-24 px-6 overflow-hidden">
         {/* Background Video */}
@@ -14,6 +19,7 @@ const Home = () => {
           loop 
           muted 
           playsInline
+          poster={`${import.meta.env.BASE_URL}assets/services/cloud/cloud-bg.png`}
           className="absolute inset-0 w-full h-full object-cover z-0"
         >
           <source src={`${import.meta.env.BASE_URL}assets/home-banner.mp4`} type="video/mp4" />

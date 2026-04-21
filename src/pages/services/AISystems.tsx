@@ -5,6 +5,8 @@ import { Float, Sphere, Points, PointMaterial, Environment, OrbitControls, Box, 
 import * as THREE from 'three';
 import { cn } from '../../lib/utils';
 import { Brain, Network, Bot, Workflow, Cpu, Database, Zap, Code2 } from 'lucide-react';
+import SEO from '../../components/SEO';
+import InteractionIndicator from '../../components/InteractionIndicator';
 
 const NeuralCore = () => {
   const points = useMemo(() => {
@@ -105,6 +107,10 @@ const RoboticAssembler = () => {
 const AISystemsPage = () => {
   return (
     <div className="min-h-screen bg-background text-on-surface">
+      <SEO 
+        title="AI & Autonomous Automation" 
+        description="Engineering high-performance AI systems and autonomous workflows. Custom LLM integrations, intelligent bots, and operational automation for technical dominance."
+      />
       {/* Hero Section */}
       <section className="relative min-h-[600px] md:h-screen flex items-center justify-center overflow-hidden">
         {/* Background Video */}
@@ -113,6 +119,7 @@ const AISystemsPage = () => {
           loop 
           muted 
           playsInline
+          poster={`${import.meta.env.BASE_URL}assets/services/ai/ai-bg.png`}
           className="absolute inset-0 w-full h-full object-cover z-0"
         >
           <source src={`${import.meta.env.BASE_URL}assets/services/ai/ai-automation.mp4`} type="video/mp4" />
@@ -182,6 +189,7 @@ const AISystemsPage = () => {
             viewport={{ once: true }}
             className="w-full aspect-square lg:aspect-video rounded-xl bg-[#0d0d0d] border border-secondary/20 shadow-2xl relative overflow-hidden group"
           >
+            <InteractionIndicator />
             <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
               <Suspense fallback={null}>
                 <color attach="background" args={['#0d0d0d']} />
@@ -265,6 +273,7 @@ const AISystemsPage = () => {
               "neon-glow-violet"
             )}
           >
+            <InteractionIndicator />
             <Canvas camera={{ position: [3, 2, 5], fov: 45 }}>
               <Suspense fallback={null}>
                 <color attach="background" args={['#0d0d0d']} />

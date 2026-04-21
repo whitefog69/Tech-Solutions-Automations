@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { Send, User, Mail, MessageSquare, Phone, ChevronDown, CheckCircle2 } from 'lucide-react';
+import { Send, User, Mail, MessageSquare, Phone, ChevronDown, CheckCircle2, AlertCircle } from 'lucide-react';
 import { cn } from '@/src/lib/utils';
+import SEO from '../components/SEO';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
-  const [formState, setFormState] = useState<'idle' | 'submitting' | 'submitted'>('idle');
+  const [formState, setFormState] = useState<'idle' | 'submitting' | 'submitted' | 'error'>('idle');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -20,13 +22,41 @@ const Contact = () => {
     'Graphic & Web Design'
   ];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setFormState('submitting');
-    // Simulate API call
-    setTimeout(() => {
+    
+    try {
+      // Use environment variables for EmailJS
+      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+      if (!serviceId || !templateId || !publicKey) {
+        console.warn('EmailJS environment variables missing. Falling back to simulation.');
+        await new Promise(resolve => setTimeout(resolve, 1500));
+        setFormState('submitted');
+        return;
+      }
+
+      await emailjs.send(
+        serviceId,
+        templateId,
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          service_domain: formData.service,
+          message: formData.message,
+          to_email: 'contact@vanguardtechops.com'
+        },
+        publicKey
+      );
+
       setFormState('submitted');
-    }, 1500);
+    } catch (error) {
+      console.error('Submission Protocol Failure:', error);
+      setFormState('error');
+    }
   };
 
   const inputClasses = "w-full bg-surface-container-low/60 border border-primary/20 border-b-primary/40 rounded-sm px-4 py-3 text-on-surface font-body text-xs md:text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/50 transition-all placeholder:text-on-surface-variant/60";
@@ -34,6 +64,10 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen bg-background text-on-surface pt-20 md:pt-32 pb-16 md:pb-24 px-6 md:px-8 relative overflow-hidden">
+      <SEO 
+        title="Initialize Inquiry Protocol" 
+        description="Ready to scale your technical infrastructure? Establish a secure channel with our lead architects to engineer your sovereign digital environment."
+      />
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-20 relative z-10">
         {/* Left Side: Content */}
         <motion.div 
@@ -58,7 +92,7 @@ const Contact = () => {
               </div>
               <div className="text-center sm:text-left">
                 <h4 className="font-headline text-[10px] uppercase tracking-widest text-on-surface font-bold mb-1">Direct Channel</h4>
-                <p className="font-mono text-xs md:text-sm text-primary/60">architecture@techsolutions.com</p>
+                <p className="font-mono text-xs md:text-sm text-primary/60">contact@vanguardtechops.com</p>
               </div>
             </div>
             <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-6">
@@ -98,6 +132,26 @@ const Contact = () => {
                 className="mt-8 md:mt-10 font-headline text-[9px] uppercase tracking-[0.3em] text-primary hover:text-white transition-colors"
               >
                 [ Reset Secure Channel ]
+              </button>
+            </motion.div>
+          ) : formState === 'error' ? (
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="h-full flex flex-col items-center justify-center text-center py-12"
+            >
+              <div className="w-16 h-16 md:w-20 md:h-20 bg-red-500/20 rounded-full flex items-center justify-center mb-6 md:mb-8 border border-red-500/30">
+                <AlertCircle className="w-8 h-8 md:w-10 md:h-10 text-red-500" />
+              </div>
+              <h2 className="text-2xl md:text-3xl font-headline font-bold uppercase tracking-tight mb-4 text-on-surface">Transmission Failed</h2>
+              <p className="font-body text-on-surface-variant max-w-xs mx-auto text-xs md:text-sm leading-relaxed">
+                A system error occurred during data transmission. Please try again or use our direct channel.
+              </p>
+              <button 
+                onClick={() => setFormState('idle')}
+                className="mt-8 md:mt-10 font-headline text-[9px] uppercase tracking-[0.3em] text-primary hover:text-white transition-colors"
+              >
+                [ Retry Protocol ]
               </button>
             </motion.div>
           ) : (

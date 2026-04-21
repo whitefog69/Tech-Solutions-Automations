@@ -5,6 +5,8 @@ import { Float, Sphere, Torus, Environment, OrbitControls, Box, Text } from '@re
 import * as THREE from 'three';
 import { cn } from '../../lib/utils';
 import { ShoppingBag, Zap, Gem, CreditCard, ShoppingCart, Key, Code2, Workflow, RefreshCw, BarChart } from 'lucide-react';
+import SEO from '../../components/SEO';
+import InteractionIndicator from '../../components/InteractionIndicator';
 
 const MeshNode = ({ radius, speed, offset, color }: { radius: number, speed: number, offset: number, color: string }) => {
   const ref = useRef<THREE.Mesh>(null!);
@@ -84,6 +86,10 @@ const Cylinder = ({ args, ...props }: any) => <mesh {...props}><cylinderGeometry
 const ShopifyPage = () => {
   return (
     <div className="min-h-screen bg-background text-on-surface">
+      <SEO 
+        title="Shopify & E-commerce Engineering" 
+        description="Engineering proprietary Shopify apps and technical automation. High-performance WordPress integrations and headless e-commerce solutions for rapid scaling."
+      />
       {/* Hero Section */}
       <section className="relative h-screen min-h-[800px] flex items-center justify-center overflow-hidden">
         {/* Background Image */}
@@ -159,6 +165,7 @@ const ShopifyPage = () => {
             viewport={{ once: true }}
             className="w-full aspect-square lg:aspect-video rounded-xl bg-[#0d0d0d] border border-primary/20 shadow-2xl relative overflow-hidden group"
           >
+            <InteractionIndicator />
             <Canvas camera={{ position: [0, 2, 6], fov: 45 }}>
               <Suspense fallback={null}>
                 <color attach="background" args={['#0d0d0d']} />
@@ -224,6 +231,7 @@ const ShopifyPage = () => {
               "neon-glow-cobalt shadow-[0_0_50px_rgba(0,71,171,0.1)]"
             )}
           >
+            <InteractionIndicator />
             <Canvas camera={{ position: [4, 3, 4], fov: 45 }}>
               <Suspense fallback={null}>
                 <color attach="background" args={['#0d0d0d']} />

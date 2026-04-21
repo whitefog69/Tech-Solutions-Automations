@@ -1,5 +1,6 @@
 import React from 'react';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import ScrollToTop from './components/ScrollToTop';
 import { Navbar, Footer } from './components/Layout';
 import Home from './pages/Home';
@@ -14,30 +15,32 @@ import GraphicDesignPage from './pages/services/GraphicDesign';
 
 export default function App() {
   return (
-    <Router>
-      <ScrollToTop />
-      <div className="flex flex-col min-h-screen">
-        <Navbar />
-        <main className="flex-grow pt-24">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<AboutUs />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/services/cloud" element={<CloudPage />} />
-            <Route path="/services/web-dev" element={<WebDevPage />} />
-            <Route path="/services/ai-systems" element={<AISystemsPage />} />
-            <Route path="/services/shopify" element={<ShopifyPage />} />
-            <Route path="/services/design" element={<GraphicDesignPage />} />
-            <Route path="/contact" element={<Contact />} />
-            
-            {/* Fallback routes for navigation items */}
-            <Route path="/infrastructure" element={<CloudPage />} />
-            <Route path="/engineering" element={<WebDevPage />} />
-            <Route path="/ai-systems" element={<AISystemsPage />} />
-          </Routes>
-        </main>
-        <Footer />
-      </div>
-    </Router>
+    <HelmetProvider>
+      <Router>
+        <ScrollToTop />
+        <div className="flex flex-col min-h-screen">
+          <Navbar />
+          <main className="flex-grow pt-24">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<AboutUs />} />
+              <Route path="/services" element={<Services />} />
+              <Route path="/services/cloud" element={<CloudPage />} />
+              <Route path="/services/web-dev" element={<WebDevPage />} />
+              <Route path="/services/ai-systems" element={<AISystemsPage />} />
+              <Route path="/services/shopify" element={<ShopifyPage />} />
+              <Route path="/services/design" element={<GraphicDesignPage />} />
+              <Route path="/contact" element={<Contact />} />
+              
+              {/* Fallback routes for navigation items */}
+              <Route path="/infrastructure" element={<CloudPage />} />
+              <Route path="/engineering" element={<WebDevPage />} />
+              <Route path="/ai-systems" element={<AISystemsPage />} />
+            </Routes>
+          </main>
+          <Footer />
+        </div>
+      </Router>
+    </HelmetProvider>
   );
 }

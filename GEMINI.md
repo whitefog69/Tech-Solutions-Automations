@@ -24,7 +24,7 @@ This workspace contains the source code and assets for the "Vanguard Tech Ops" p
 - **Styling**: Tailwind CSS 4
 - **Animations**: Framer Motion (`motion/react`)
 - **Icons**: Lucide React
-- **AI Integration**: `@google/genai` (for Gemini API)
+- **Routing**: React Router 7
 
 ## Building and Running
 
@@ -37,6 +37,18 @@ All commands should be run from within the `Website/` directory.
 - `npm run preview`: Locally preview the production build.
 - `npm run clean`: Remove the `dist/` directory.
 
+## Security Architecture
+
+Vanguard Tech Ops follows a **Zero-Secret Frontend** architecture. No sensitive API keys or credentials are injected into the client-side bundle. 
+
+### Inbound Inquiry Protocol (Contact Form)
+The communication channel uses **EmailJS** for secure transmission. Service tokens are public-safe identifiers, and direct email coordinates are never exposed in plaintext logic.
+
+### Technical Hardening
+- **CSP (Content Security Policy)**: Enforced via meta tags to prevent XSS and data exfiltration.
+- **Dependency Audit**: Regular `npm audit` cycles to ensure zero-vulnerability infrastructure.
+- **Sovereign Assets**: All visual and interactive assets are hosted locally to maintain total digital sovereignty.
+
 ## Development Conventions
 
 - **Styling**: Uses Tailwind 4 with a custom theme adhering to **Material Design 3** naming conventions (e.g., `primary-container`, `on-surface`, `surface-container-low`).
@@ -44,7 +56,6 @@ All commands should be run from within the `Website/` directory.
 - **Class Merging**: Always use the `cn` utility from `src/lib/utils.ts` for dynamic Tailwind classes.
 - **Animations**: Prefer `motion` components from `motion/react` for entrance and hover effects.
 - **Type Safety**: Strict TypeScript usage for all components and utilities.
-- **Environment**: Requires `GEMINI_API_KEY` in `.env.local` for AI features.
 
 ## Key Files
 
