@@ -7,14 +7,17 @@ import { cn } from '../../lib/utils';
 import { ShoppingBag, Zap, Gem, CreditCard, ShoppingCart, Key, Code2, Workflow, RefreshCw, BarChart } from 'lucide-react';
 import SEO from '../../components/SEO';
 import InteractionIndicator from '../../components/InteractionIndicator';
+import CanvasErrorBoundary from '../../components/CanvasErrorBoundary';
 
 const MeshNode = ({ radius, speed, offset, color }: { radius: number, speed: number, offset: number, color: string }) => {
   const ref = useRef<THREE.Mesh>(null!);
   useFrame((state) => {
     const t = state.clock.getElapsedTime() * speed + offset;
-    ref.current.position.x = Math.cos(t) * radius;
-    ref.current.position.z = Math.sin(t) * radius;
-    ref.current.position.y = Math.sin(t * 2) * 0.5;
+    if (ref.current) {
+      ref.current.position.x = Math.cos(t) * radius;
+      ref.current.position.z = Math.sin(t) * radius;
+      ref.current.position.y = Math.sin(t * 2) * 0.5;
+    }
   });
 
   return (

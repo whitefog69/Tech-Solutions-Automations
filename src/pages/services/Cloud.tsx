@@ -7,12 +7,13 @@ import { cn } from '../../lib/utils';
 import { Server, Shield, Cloud, Cpu, Lock, Network } from 'lucide-react';
 import SEO from '../../components/SEO';
 import InteractionIndicator from '../../components/InteractionIndicator';
+import CanvasErrorBoundary from '../../components/CanvasErrorBoundary';
 
 const CloudNode = ({ position, color }: { position: [number, number, number], color: string }) => {
   const ref = useRef<THREE.Mesh>(null!);
   useFrame((state) => {
     const t = state.clock.getElapsedTime();
-    ref.current.position.y = position[1] + Math.sin(t + position[0]) * 0.2;
+    if (ref.current) ref.current.position.y = position[1] + Math.sin(t + position[0]) * 0.2;
   });
 
   return (
@@ -54,9 +55,13 @@ const ServerStack = () => {
   
   useFrame((state) => {
     const t = state.clock.getElapsedTime();
-    cloudRef.current.rotation.y = t * 0.1;
-    cloudRef.current.position.y = Math.sin(t * 0.5) * 0.1;
+    if (cloudRef.current) {
+      cloudRef.current.rotation.y = t * 0.1;
+      cloudRef.current.position.y = Math.sin(t * 0.5) * 0.1;
+    }
   });
+
+  const spheres = useMemo(() => [...Array(50)], []);
 
   return (
     <group>
@@ -81,9 +86,9 @@ const ServerStack = () => {
 
       {/* Ethereal Cloud */}
       <group ref={cloudRef} position={[0, 1.5, 0]}>
-        {[...Array(50)].map((_, i) => (
+        {spheres.map((_, i) => (
           <Float key={i} speed={2} rotationIntensity={2} floatIntensity={2}>
-            <Sphere args={[Math.random() * 0.3, 16, 16]} position={[(Math.random()-0.5)*1.5, Math.random()*1.5, (Math.random()-0.5)*1.5]}>
+            <Sphere args={[0.1 + Math.random() * 0.2, 16, 16]} position={[(Math.random()-0.5)*1.5, Math.random()*1.5, (Math.random()-0.5)*1.5]}>
               <meshStandardMaterial 
                 color={i % 2 === 0 ? "#b1c5ff" : "#dcb8ff"} 
                 transparent 
@@ -187,18 +192,20 @@ const CloudPage = () => {
             className="w-full aspect-square md:aspect-video lg:aspect-square rounded-xl bg-[#0d0d0d] border border-primary/20 shadow-2xl relative overflow-hidden group max-h-[400px] md:max-h-[500px] lg:max-h-none"
           >
             <InteractionIndicator />
-            <Canvas camera={{ position: [0, 2, 5], fov: 45 }}>
-              <Suspense fallback={null}>
-                <color attach="background" args={['#0d0d0d']} />
-                <ambientLight intensity={0.5} />
-                <pointLight position={[10, 10, 10]} intensity={1} />
-                <Float speed={1.5} rotationIntensity={0.5} floatIntensity={0.5}>
-                  <NodeCluster />
-                </Float>
-                <Environment preset="city" />
-                <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={0.5} />
-              </Suspense>
-            </Canvas>
+            <CanvasErrorBoundary>
+              <Canvas camera={{ position: [0, 2, 5], fov: 45 }}>
+                <Suspense fallback={null}>
+                  <color attach="background" args={['#0d0d0d']} />
+                  <ambientLight intensity={0.5} />
+                  <pointLight position={[10, 10, 10]} intensity={1} />
+                  <Float speed={1.5} rotationIntensity={0.5} floatIntensity={0.5}>
+                    <NodeCluster />
+                  </Float>
+                  <Environment preset="city" />
+                  <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={0.5} />
+                </Suspense>
+              </Canvas>
+            </CanvasErrorBoundary>
             <div className="absolute top-0 right-0 p-4 opacity-20 group-hover:opacity-40 transition-opacity pointer-events-none">
               <Network className="w-8 h-8 text-primary" />
             </div>
@@ -276,16 +283,18 @@ const CloudPage = () => {
             )}
           >
             <InteractionIndicator />
-            <Canvas camera={{ position: [4, 2, 4], fov: 45 }}>
-              <Suspense fallback={null}>
-                <color attach="background" args={['#0d0d0d']} />
-                <ambientLight intensity={0.5} />
-                <pointLight position={[10, 10, 10]} intensity={2} />
-                <ServerStack />
-                <Environment preset="city" />
-                <OrbitControls enableZoom={false} />
-              </Suspense>
-            </Canvas>
+            <CanvasErrorBoundary>
+              <Canvas camera={{ position: [4, 2, 4], fov: 45 }}>
+                <Suspense fallback={null}>
+                  <color attach="background" args={['#0d0d0d']} />
+                  <ambientLight intensity={0.5} />
+                  <pointLight position={[10, 10, 10]} intensity={2} />
+                  <ServerStack />
+                  <Environment preset="city" />
+                  <OrbitControls enableZoom={false} />
+                </Suspense>
+              </Canvas>
+            </CanvasErrorBoundary>
           </motion.div>
         </div>
       </section>

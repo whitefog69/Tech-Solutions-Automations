@@ -7,13 +7,17 @@ import { cn } from '../../lib/utils';
 import { Palette, PenTool, Layout, Image, Figma, MonitorSmartphone, BarChart3 } from 'lucide-react';
 import SEO from '../../components/SEO';
 import InteractionIndicator from '../../components/InteractionIndicator';
+import CanvasErrorBoundary from '../../components/CanvasErrorBoundary';
 
 const DesignSculpture = () => {
   const meshRef = useRef<THREE.Mesh>(null!);
   
   useFrame((state) => {
-    meshRef.current.rotation.x = state.clock.getElapsedTime() * 0.5;
-    meshRef.current.rotation.y = state.clock.getElapsedTime() * 0.2;
+    const t = state.clock.getElapsedTime();
+    if (meshRef.current) {
+      meshRef.current.rotation.x = t * 0.5;
+      meshRef.current.rotation.y = t * 0.2;
+    }
   });
 
   return (
@@ -50,10 +54,14 @@ const CreativeBlueprint = () => {
 
   useFrame((state) => {
     const t = state.clock.getElapsedTime();
-    stylusRef.current.position.x = Math.sin(t) * 1;
-    stylusRef.current.position.z = Math.cos(t) * 1;
-    stylusRef.current.rotation.z = Math.sin(t * 0.5) * 0.5;
-    waveRef.current.rotation.y = t * 0.2;
+    if (stylusRef.current) {
+      stylusRef.current.position.x = Math.sin(t) * 1;
+      stylusRef.current.position.z = Math.cos(t) * 1;
+      stylusRef.current.rotation.z = Math.sin(t * 0.5) * 0.5;
+    }
+    if (waveRef.current) {
+      waveRef.current.rotation.y = t * 0.2;
+    }
   });
 
   return (
@@ -180,19 +188,21 @@ const GraphicDesignPage = () => {
             className="w-full aspect-square md:aspect-video lg:aspect-square rounded-xl bg-[#0d0d0d] border border-secondary/20 shadow-2xl relative overflow-hidden group flex items-center justify-center max-h-[400px] md:max-h-[500px] lg:max-h-none"
           >
             <InteractionIndicator />
-            <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
-              <Suspense fallback={null}>
-                <color attach="background" args={['#0d0d0d']} />
-                <ambientLight intensity={0.5} />
-                <pointLight position={[10, 10, 10]} intensity={2} />
-                <Float speed={2} rotationIntensity={1} floatIntensity={1}>
-                  <DesignSculpture />
-                </Float>
-                <ContactShadows position={[0, -2, 0]} opacity={0.4} scale={10} blur={2} far={4.5} />
-                <Environment preset="studio" />
-                <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={0.5} />
-              </Suspense>
-            </Canvas>
+            <CanvasErrorBoundary>
+              <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
+                <Suspense fallback={null}>
+                  <color attach="background" args={['#0d0d0d']} />
+                  <ambientLight intensity={0.5} />
+                  <pointLight position={[10, 10, 10]} intensity={2} />
+                  <Float speed={2} rotationIntensity={1} floatIntensity={1}>
+                    <DesignSculpture />
+                  </Float>
+                  <ContactShadows position={[0, -2, 0]} opacity={0.4} scale={10} blur={2} far={4.5} />
+                  <Environment preset="studio" />
+                  <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={0.5} />
+                </Suspense>
+              </Canvas>
+            </CanvasErrorBoundary>
             <div className="absolute top-0 right-0 p-4 opacity-20 group-hover:opacity-40 transition-opacity pointer-events-none">
               <BarChart3 className="w-8 h-8 text-secondary" />
             </div>
@@ -270,16 +280,18 @@ const GraphicDesignPage = () => {
             )}
           >
             <InteractionIndicator />
-            <Canvas camera={{ position: [4, 3, 4], fov: 45 }}>
-              <Suspense fallback={null}>
-                <color attach="background" args={['#0d0d0d']} />
-                <ambientLight intensity={0.5} />
-                <pointLight position={[10, 10, 10]} intensity={2} />
-                <CreativeBlueprint />
-                <Environment preset="studio" />
-                <OrbitControls enableZoom={false} />
-              </Suspense>
-            </Canvas>
+            <CanvasErrorBoundary>
+              <Canvas camera={{ position: [4, 3, 4], fov: 45 }}>
+                <Suspense fallback={null}>
+                  <color attach="background" args={['#0d0d0d']} />
+                  <ambientLight intensity={0.5} />
+                  <pointLight position={[10, 10, 10]} intensity={2} />
+                  <CreativeBlueprint />
+                  <Environment preset="studio" />
+                  <OrbitControls enableZoom={false} />
+                </Suspense>
+              </Canvas>
+            </CanvasErrorBoundary>
           </motion.div>
         </div>
       </section>

@@ -7,27 +7,29 @@ import { cn } from '../../lib/utils';
 import { Brain, Network, Bot, Workflow, Cpu, Database, Zap, Code2 } from 'lucide-react';
 import SEO from '../../components/SEO';
 import InteractionIndicator from '../../components/InteractionIndicator';
+import CanvasErrorBoundary from '../../components/CanvasErrorBoundary';
+
+// Pre-generate points to avoid expensive recalculations on every render
+const STATIC_POINTS = new Float32Array(200 * 3);
+for (let i = 0; i < 200; i++) {
+  STATIC_POINTS[i * 3] = (Math.random() - 0.5) * 4;
+  STATIC_POINTS[i * 3 + 1] = (Math.random() - 0.5) * 4;
+  STATIC_POINTS[i * 3 + 2] = (Math.random() - 0.5) * 4;
+}
 
 const NeuralCore = () => {
-  const points = useMemo(() => {
-    const p = new Float32Array(200 * 3);
-    for (let i = 0; i < 200; i++) {
-      p[i * 3] = (Math.random() - 0.5) * 4;
-      p[i * 3 + 1] = (Math.random() - 0.5) * 4;
-      p[i * 3 + 2] = (Math.random() - 0.5) * 4;
-    }
-    return p;
-  }, []);
-
   const ref = useRef<THREE.Points>(null!);
   useFrame((state) => {
-    ref.current.rotation.y = state.clock.getElapsedTime() * 0.1;
-    ref.current.rotation.x = state.clock.getElapsedTime() * 0.05;
+    const t = state.clock.getElapsedTime();
+    if (ref.current) {
+      ref.current.rotation.y = t * 0.1;
+      ref.current.rotation.x = t * 0.05;
+    }
   });
 
   return (
     <group>
-      <Points ref={ref} positions={points} stride={3}>
+      <Points ref={ref} positions={STATIC_POINTS} stride={3}>
         <PointMaterial
           transparent
           color="#dcb8ff"
@@ -63,10 +65,13 @@ const RoboticAssembler = () => {
 
   useFrame((state) => {
     const t = state.clock.getElapsedTime();
-    armRef.current.rotation.y = Math.sin(t * 0.5) * 0.2;
-    moduleRef.current.position.y = 1 + Math.sin(t) * 0.5;
-    gearRef.current.rotation.z = t * 0.5;
+    if (armRef.current) armRef.current.rotation.y = Math.sin(t * 0.5) * 0.2;
+    if (moduleRef.current) moduleRef.current.position.y = 1 + Math.sin(t) * 0.5;
+    if (gearRef.current) gearRef.current.rotation.z = t * 0.5;
   });
+
+  const gears = useMemo(() => [...Array(8)], []);
+  const streams = useMemo(() => [...Array(10)], []);
 
   return (
     <group position={[0, -1, 0]}>
@@ -75,7 +80,7 @@ const RoboticAssembler = () => {
         <Torus args={[1, 0.2, 16, 32]}>
           <meshStandardMaterial color="#1a1a1a" metalness={0.9} roughness={0.1} />
         </Torus>
-        {[...Array(8)].map((_, i) => (
+        {gears.map((_, i) => (
           <Box key={i} args={[0.3, 0.3, 0.1]} position={[Math.cos(i/8 * Math.PI * 2), Math.sin(i/8 * Math.PI * 2), 0]}>
             <meshStandardMaterial color="#1a1a1a" metalness={0.9} roughness={0.1} />
           </Box>
@@ -93,7 +98,7 @@ const RoboticAssembler = () => {
             <pointLight intensity={5} color="#7701d0" />
           </Sphere>
           {/* Binary Stream Effect */}
-          {[...Array(10)].map((_, i) => (
+          {streams.map((_, i) => (
             <Box key={i} args={[0.02, 0.1, 0.02]} position={[(Math.random()-0.5)*0.5, (Math.random()-0.5)*0.5, (Math.random()-0.5)*0.5]}>
               <meshBasicMaterial color="#dcb8ff" />
             </Box>
@@ -190,18 +195,20 @@ const AISystemsPage = () => {
             className="w-full aspect-square md:aspect-video lg:aspect-square rounded-xl bg-[#0d0d0d] border border-secondary/20 shadow-2xl relative overflow-hidden group max-h-[400px] md:max-h-[500px] lg:max-h-none"
           >
             <InteractionIndicator />
-            <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
-              <Suspense fallback={null}>
-                <color attach="background" args={['#0d0d0d']} />
-                <ambientLight intensity={0.5} />
-                <pointLight position={[10, 10, 10]} intensity={1} />
-                <Float speed={2} rotationIntensity={1} floatIntensity={1}>
-                  <NeuralCore />
-                </Float>
-                <Environment preset="city" />
-                <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={0.5} />
-              </Suspense>
-            </Canvas>
+            <CanvasErrorBoundary>
+              <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
+                <Suspense fallback={null}>
+                  <color attach="background" args={['#0d0d0d']} />
+                  <ambientLight intensity={0.5} />
+                  <pointLight position={[10, 10, 10]} intensity={1} />
+                  <Float speed={2} rotationIntensity={1} floatIntensity={1}>
+                    <NeuralCore />
+                  </Float>
+                  <Environment preset="city" />
+                  <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={0.5} />
+                </Suspense>
+              </Canvas>
+            </CanvasErrorBoundary>
           </motion.div>
 
           <motion.div
@@ -274,16 +281,18 @@ const AISystemsPage = () => {
             )}
           >
             <InteractionIndicator />
-            <Canvas camera={{ position: [3, 2, 5], fov: 45 }}>
-              <Suspense fallback={null}>
-                <color attach="background" args={['#0d0d0d']} />
-                <ambientLight intensity={0.5} />
-                <pointLight position={[10, 10, 10]} intensity={2} />
-                <RoboticAssembler />
-                <Environment preset="city" />
-                <OrbitControls enableZoom={false} />
-              </Suspense>
-            </Canvas>
+            <CanvasErrorBoundary>
+              <Canvas camera={{ position: [3, 2, 5], fov: 45 }}>
+                <Suspense fallback={null}>
+                  <color attach="background" args={['#0d0d0d']} />
+                  <ambientLight intensity={0.5} />
+                  <pointLight position={[10, 10, 10]} intensity={2} />
+                  <RoboticAssembler />
+                  <Environment preset="city" />
+                  <OrbitControls enableZoom={false} />
+                </Suspense>
+              </Canvas>
+            </CanvasErrorBoundary>
           </motion.div>
         </div>
       </section>

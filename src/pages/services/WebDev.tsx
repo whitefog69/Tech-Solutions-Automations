@@ -7,14 +7,17 @@ import { cn } from '../../lib/utils';
 import { Smartphone, Layout, Blocks, ScanLine, Layers, Code2, Globe, ShoppingBag } from 'lucide-react';
 import SEO from '../../components/SEO';
 import InteractionIndicator from '../../components/InteractionIndicator';
+import CanvasErrorBoundary from '../../components/CanvasErrorBoundary';
 
 const ArchitectureModel = () => {
   const meshRef = useRef<THREE.Mesh>(null!);
   
   useFrame((state) => {
     const t = state.clock.getElapsedTime();
-    meshRef.current.rotation.y = t * 0.2;
-    meshRef.current.rotation.x = Math.sin(t * 0.1) * 0.2;
+    if (meshRef.current) {
+      meshRef.current.rotation.y = t * 0.2;
+      meshRef.current.rotation.x = Math.sin(t * 0.1) * 0.2;
+    }
   });
 
   return (
@@ -47,6 +50,11 @@ const ArchitectureModel = () => {
 };
 
 const SkeletalFramework = () => {
+  const codeItems = useMemo(() => [...Array(5)].map(() => ({
+    pos: [(Math.random()-0.5)*4, Math.random()*2, (Math.random()-0.5)*2] as [number, number, number],
+    content: `const store = createStore();\nawait app.hydrate();`
+  })), []);
+
   return (
     <group rotation={[-Math.PI / 6, Math.PI / 4, 0]}>
       {/* Grid Lattice */}
@@ -82,15 +90,15 @@ const SkeletalFramework = () => {
       </group>
 
       {/* Code Streams */}
-      {[...Array(5)].map((_, i) => (
+      {codeItems.map((item, i) => (
         <Float key={i} speed={5} rotationIntensity={0} floatIntensity={1}>
           <Text
-            position={[(Math.random()-0.5)*4, Math.random()*2, (Math.random()-0.5)*2]}
+            position={item.pos}
             fontSize={0.1}
             color="#dcb8ff"
             fillOpacity={0.5}
           >
-            {`const store = createStore();\nawait app.hydrate();`}
+            {item.content}
           </Text>
         </Float>
       ))}
@@ -183,18 +191,20 @@ const WebDevPage = () => {
             className="w-full aspect-square md:aspect-video lg:aspect-square rounded-xl bg-[#0d0d0d] border border-secondary/20 shadow-2xl relative overflow-hidden group max-h-[400px] md:max-h-[500px] lg:max-h-none"
           >
             <InteractionIndicator />
-            <Canvas camera={{ position: [0, 0, 6], fov: 45 }}>
-              <Suspense fallback={null}>
-                <color attach="background" args={['#0d0d0d']} />
-                <ambientLight intensity={0.5} />
-                <Float speed={2} rotationIntensity={1} floatIntensity={1}>
-                  <ArchitectureModel />
-                </Float>
-                <ContactShadows position={[0, -2.5, 0]} opacity={0.4} scale={10} blur={2} far={4.5} />
-                <Environment preset="city" />
-                <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={0.5} />
-              </Suspense>
-            </Canvas>
+            <CanvasErrorBoundary>
+              <Canvas camera={{ position: [0, 0, 6], fov: 45 }}>
+                <Suspense fallback={null}>
+                  <color attach="background" args={['#0d0d0d']} />
+                  <ambientLight intensity={0.5} />
+                  <Float speed={2} rotationIntensity={1} floatIntensity={1}>
+                    <ArchitectureModel />
+                  </Float>
+                  <ContactShadows position={[0, -2.5, 0]} opacity={0.4} scale={10} blur={2} far={4.5} />
+                  <Environment preset="city" />
+                  <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={0.5} />
+                </Suspense>
+              </Canvas>
+            </CanvasErrorBoundary>
             <div className="absolute top-0 right-0 p-4 opacity-20 group-hover:opacity-40 transition-opacity pointer-events-none">
               <ScanLine className="w-8 h-8 text-secondary" />
             </div>
