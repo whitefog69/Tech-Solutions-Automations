@@ -9,6 +9,26 @@ import SEO from '../../components/SEO';
 import InteractionIndicator from '../../components/InteractionIndicator';
 import CanvasErrorBoundary from '../../components/CanvasErrorBoundary';
 
+class EnvironmentBoundary extends React.Component<{children: React.ReactNode}, {hasError: boolean}> {
+  constructor(props: {children: React.ReactNode}) {
+    super(props);
+    this.state = { hasError: false };
+  }
+  static getDerivedStateFromError() { return { hasError: true }; }
+  componentDidCatch(error: Error) { console.warn("Environment failed to load", error); }
+  render() {
+    if (this.state.hasError) {
+      return (
+        <group>
+          <ambientLight intensity={1} />
+          <directionalLight position={[10, 10, 10]} intensity={1.5} />
+        </group>
+      );
+    }
+    return this.props.children;
+  }
+}
+
 // Pre-generate points to avoid expensive recalculations on every render
 const STATIC_POINTS = new Float32Array(200 * 3);
 for (let i = 0; i < 200; i++) {
@@ -20,7 +40,7 @@ for (let i = 0; i < 200; i++) {
 const NeuralCore = () => {
   const ref = useRef<THREE.Points>(null!);
   useFrame((state) => {
-    const t = state.clock.getElapsedTime();
+    const t = state.clock.elapsedTime;
     if (ref.current) {
       ref.current.rotation.y = t * 0.1;
       ref.current.rotation.x = t * 0.05;
@@ -64,7 +84,7 @@ const RoboticAssembler = () => {
   const gearRef = useRef<THREE.Group>(null!);
 
   useFrame((state) => {
-    const t = state.clock.getElapsedTime();
+    const t = state.clock.elapsedTime;
     if (armRef.current) armRef.current.rotation.y = Math.sin(t * 0.5) * 0.2;
     if (moduleRef.current) moduleRef.current.position.y = 1 + Math.sin(t) * 0.5;
     if (gearRef.current) gearRef.current.rotation.z = t * 0.5;
@@ -204,7 +224,7 @@ const AISystemsPage = () => {
                   <Float speed={2} rotationIntensity={1} floatIntensity={1}>
                     <NeuralCore />
                   </Float>
-                  <Environment preset="city" />
+                  <EnvironmentBoundary><Environment preset="city" /></EnvironmentBoundary>
                   <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={0.5} />
                 </Suspense>
               </Canvas>
@@ -288,7 +308,7 @@ const AISystemsPage = () => {
                   <ambientLight intensity={0.5} />
                   <pointLight position={[10, 10, 10]} intensity={2} />
                   <RoboticAssembler />
-                  <Environment preset="city" />
+                  <EnvironmentBoundary><Environment preset="city" /></EnvironmentBoundary>
                   <OrbitControls enableZoom={false} />
                 </Suspense>
               </Canvas>

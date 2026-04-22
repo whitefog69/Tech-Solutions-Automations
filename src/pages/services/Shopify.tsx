@@ -1,7 +1,7 @@
 import React, { useRef, useMemo, Suspense } from 'react';
 import { motion } from 'motion/react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Float, Sphere, Torus, Environment, OrbitControls, Box, Text } from '@react-three/drei';
+import { Float, Sphere, Torus, Environment, OrbitControls, Box, Html } from '@react-three/drei';
 import * as THREE from 'three';
 import { cn } from '../../lib/utils';
 import { ShoppingBag, Zap, Gem, CreditCard, ShoppingCart, Key, Code2, Workflow, RefreshCw, BarChart } from 'lucide-react';
@@ -9,10 +9,19 @@ import SEO from '../../components/SEO';
 import InteractionIndicator from '../../components/InteractionIndicator';
 import CanvasErrorBoundary from '../../components/CanvasErrorBoundary';
 
+class EnvironmentBoundary extends React.Component<{children: React.ReactNode}, {hasError: boolean}> {
+  state = { hasError: false };
+  static getDerivedStateFromError() { return { hasError: true }; }
+  componentDidCatch(error: Error) { console.warn("Environment failed to load", error); }
+  render() { 
+    if (this.state.hasError) return <ambientLight intensity={1} />;
+    return this.props.children; 
+  }
+}
 const MeshNode = ({ radius, speed, offset, color }: { radius: number, speed: number, offset: number, color: string }) => {
   const ref = useRef<THREE.Mesh>(null!);
   useFrame((state) => {
-    const t = state.clock.getElapsedTime() * speed + offset;
+    const t = state.clock.elapsedTime * speed + offset;
     if (ref.current) {
       ref.current.position.x = Math.cos(t) * radius;
       ref.current.position.z = Math.sin(t) * radius;
@@ -47,7 +56,7 @@ const ModularHub = () => {
   const appRef = useRef<THREE.Group>(null!);
   
   useFrame((state) => {
-    const t = state.clock.getElapsedTime();
+    const t = state.clock.elapsedTime;
     appRef.current.position.y = Math.sin(t) * 0.2 + 1;
   });
 
@@ -56,20 +65,26 @@ const ModularHub = () => {
       {/* Shopify Module */}
       <Box args={[1.5, 1.5, 1.5]} position={[-1, 0, 0]}>
         <meshStandardMaterial color="#0047ab" metalness={0.8} roughness={0.2} transparent opacity={0.9} />
-        <Text position={[0, 0, 0.8]} fontSize={0.4} color="white">S</Text>
+        <Html position={[0, 0, 0.8]} center>
+          <div className="text-white text-xl font-bold font-mono">S</div>
+        </Html>
       </Box>
 
       {/* WordPress Module */}
       <Box args={[1.5, 1.5, 1.5]} position={[1, 0, 0]}>
         <meshStandardMaterial color="#7701d0" metalness={0.8} roughness={0.2} transparent opacity={0.9} />
-        <Text position={[0, 0, 0.8]} fontSize={0.4} color="white">W</Text>
+        <Html position={[0, 0, 0.8]} center>
+          <div className="text-white text-xl font-bold font-mono">W</div>
+        </Html>
       </Box>
 
       {/* Custom App Module (Being guided in) */}
       <group ref={appRef}>
         <Box args={[1.5, 1.5, 1.5]}>
           <meshStandardMaterial color="#333" metalness={1} roughness={0.1} />
-          <Text position={[0, 0, 0.8]} fontSize={0.2} color="#b1c5ff">CUSTOM_APP</Text>
+          <Html position={[0, 0, 0.8]} center>
+            <div className="text-[#b1c5ff] text-[10px] font-bold font-mono whitespace-nowrap">CUSTOM_APP</div>
+          </Html>
         </Box>
         {/* Data lines */}
         {[...Array(5)].map((_, i) => (
@@ -79,7 +94,7 @@ const ModularHub = () => {
         ))}
       </group>
 
-      <Environment preset="city" />
+      <EnvironmentBoundary><Environment preset="city" /></EnvironmentBoundary>
     </group>
   );
 };
@@ -177,7 +192,7 @@ const ShopifyPage = () => {
                 <Float speed={1.5} rotationIntensity={0.5} floatIntensity={0.5}>
                   <SupplyMesh />
                 </Float>
-                <Environment preset="city" />
+                <EnvironmentBoundary><Environment preset="city" /></EnvironmentBoundary>
                 <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={0.5} />
               </Suspense>
             </Canvas>
@@ -235,16 +250,18 @@ const ShopifyPage = () => {
             )}
           >
             <InteractionIndicator />
-            <Canvas camera={{ position: [4, 3, 4], fov: 45 }}>
-              <Suspense fallback={null}>
-                <color attach="background" args={['#0d0d0d']} />
-                <ambientLight intensity={0.5} />
-                <pointLight position={[10, 10, 10]} intensity={2} />
-                <ModularHub />
-                <Environment preset="city" />
-                <OrbitControls enableZoom={false} />
-              </Suspense>
-            </Canvas>
+            <CanvasErrorBoundary>
+              <Canvas camera={{ position: [4, 3, 4], fov: 45 }}>
+                <Suspense fallback={null}>
+                  <color attach="background" args={['#0d0d0d']} />
+                  <ambientLight intensity={0.5} />
+                  <pointLight position={[10, 10, 10]} intensity={2} />
+                  <ModularHub />
+                  <EnvironmentBoundary><Environment preset="city" /></EnvironmentBoundary>
+                  <OrbitControls enableZoom={false} />
+                </Suspense>
+              </Canvas>
+            </CanvasErrorBoundary>
           </motion.div>
 
           <motion.div

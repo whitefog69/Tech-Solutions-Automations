@@ -9,11 +9,31 @@ import SEO from '../../components/SEO';
 import InteractionIndicator from '../../components/InteractionIndicator';
 import CanvasErrorBoundary from '../../components/CanvasErrorBoundary';
 
+class EnvironmentBoundary extends React.Component<{children: React.ReactNode}, {hasError: boolean}> {
+  constructor(props: {children: React.ReactNode}) {
+    super(props);
+    this.state = { hasError: false };
+  }
+  static getDerivedStateFromError() { return { hasError: true }; }
+  componentDidCatch(error: Error) { console.warn("Environment failed to load", error); }
+  render() {
+    if (this.state.hasError) {
+      return (
+        <group>
+          <ambientLight intensity={1} />
+          <directionalLight position={[10, 10, 10]} intensity={1.5} />
+        </group>
+      );
+    }
+    return this.props.children;
+  }
+}
+
 const DesignSculpture = () => {
   const meshRef = useRef<THREE.Mesh>(null!);
   
   useFrame((state) => {
-    const t = state.clock.getElapsedTime();
+    const t = state.clock.elapsedTime;
     if (meshRef.current) {
       meshRef.current.rotation.x = t * 0.5;
       meshRef.current.rotation.y = t * 0.2;
@@ -53,7 +73,7 @@ const CreativeBlueprint = () => {
   const waveRef = useRef<THREE.Mesh>(null!);
 
   useFrame((state) => {
-    const t = state.clock.getElapsedTime();
+    const t = state.clock.elapsedTime;
     if (stylusRef.current) {
       stylusRef.current.position.x = Math.sin(t) * 1;
       stylusRef.current.position.z = Math.cos(t) * 1;
@@ -97,7 +117,7 @@ const CreativeBlueprint = () => {
         />
       </mesh>
 
-      <Environment preset="studio" />
+      <EnvironmentBoundary><Environment preset="studio" /></EnvironmentBoundary>
     </group>
   );
 };
@@ -198,7 +218,7 @@ const GraphicDesignPage = () => {
                     <DesignSculpture />
                   </Float>
                   <ContactShadows position={[0, -2, 0]} opacity={0.4} scale={10} blur={2} far={4.5} />
-                  <Environment preset="studio" />
+                  <EnvironmentBoundary><Environment preset="studio" /></EnvironmentBoundary>
                   <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={0.5} />
                 </Suspense>
               </Canvas>
@@ -287,7 +307,7 @@ const GraphicDesignPage = () => {
                   <ambientLight intensity={0.5} />
                   <pointLight position={[10, 10, 10]} intensity={2} />
                   <CreativeBlueprint />
-                  <Environment preset="studio" />
+                  <EnvironmentBoundary><Environment preset="studio" /></EnvironmentBoundary>
                   <OrbitControls enableZoom={false} />
                 </Suspense>
               </Canvas>

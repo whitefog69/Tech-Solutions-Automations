@@ -1,7 +1,7 @@
 import React, { useRef, useMemo, Suspense } from 'react';
 import { motion } from 'motion/react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Float, Icosahedron, MeshDistortMaterial, Environment, OrbitControls, ContactShadows, Box, Text, Grid as DreiGrid } from '@react-three/drei';
+import { Float, Icosahedron, MeshDistortMaterial, Environment, OrbitControls, ContactShadows, Box, Html, Grid as DreiGrid } from '@react-three/drei';
 import * as THREE from 'three';
 import { cn } from '../../lib/utils';
 import { Smartphone, Layout, Blocks, ScanLine, Layers, Code2, Globe, ShoppingBag } from 'lucide-react';
@@ -9,14 +9,22 @@ import SEO from '../../components/SEO';
 import InteractionIndicator from '../../components/InteractionIndicator';
 import CanvasErrorBoundary from '../../components/CanvasErrorBoundary';
 
+class EnvironmentBoundary extends React.Component<{children: React.ReactNode}, {hasError: boolean}> {
+  state = { hasError: false };
+  static getDerivedStateFromError() { return { hasError: true }; }
+  componentDidCatch(error: Error) { console.warn("Environment failed to load", error); }
+  render() { 
+    if (this.state.hasError) return <ambientLight intensity={1} />;
+    return this.props.children; 
+  }
+}
 const ArchitectureModel = () => {
   const meshRef = useRef<THREE.Mesh>(null!);
   
-  useFrame((state) => {
-    const t = state.clock.getElapsedTime();
+  useFrame((state, delta) => {
     if (meshRef.current) {
-      meshRef.current.rotation.y = t * 0.2;
-      meshRef.current.rotation.x = Math.sin(t * 0.1) * 0.2;
+      meshRef.current.rotation.y += delta * 0.2;
+      meshRef.current.rotation.x += Math.sin(state.clock.elapsedTime * 0.1) * 0.02; // use elapsedTime property instead of getElapsedTime() method
     }
   });
 
@@ -70,15 +78,21 @@ const SkeletalFramework = () => {
       {/* Translucent Functional Areas */}
       <Box args={[2, 0.1, 1.5]} position={[-1.5, 0.5, 0]}>
         <meshStandardMaterial color="#0047ab" transparent opacity={0.3} />
-        <Text position={[0, 0.2, 0]} fontSize={0.2} color="white">PRODUCT_GRID</Text>
+        <Html position={[0, 0.2, 0]} center>
+          <div className="text-white text-[10px] font-bold font-mono tracking-widest uppercase whitespace-nowrap drop-shadow-md">PRODUCT_GRID</div>
+        </Html>
       </Box>
       <Box args={[1, 0.1, 1]} position={[1.5, 0.8, 1]}>
         <meshStandardMaterial color="#FFD700" transparent opacity={0.3} />
-        <Text position={[0, 0.2, 0]} fontSize={0.2} color="white">CART</Text>
+        <Html position={[0, 0.2, 0]} center>
+          <div className="text-white text-[10px] font-bold font-mono tracking-widest uppercase whitespace-nowrap drop-shadow-md">CART</div>
+        </Html>
       </Box>
       <Box args={[2.5, 0.1, 1]} position={[0, 0.2, -1.5]}>
         <meshStandardMaterial color="#7701d0" transparent opacity={0.2} />
-        <Text position={[0, 0.2, 0]} fontSize={0.2} color="white">CHECKOUT_FLOW</Text>
+        <Html position={[0, 0.2, 0]} center>
+          <div className="text-white text-[10px] font-bold font-mono tracking-widest uppercase whitespace-nowrap drop-shadow-md">CHECKOUT_FLOW</div>
+        </Html>
       </Box>
 
       {/* Micrometer (Stylized representation) */}
@@ -92,14 +106,11 @@ const SkeletalFramework = () => {
       {/* Code Streams */}
       {codeItems.map((item, i) => (
         <Float key={i} speed={5} rotationIntensity={0} floatIntensity={1}>
-          <Text
-            position={item.pos}
-            fontSize={0.1}
-            color="#dcb8ff"
-            fillOpacity={0.5}
-          >
-            {item.content}
-          </Text>
+          <Html position={item.pos} center>
+            <pre className="text-[#dcb8ff] text-[8px] opacity-60 font-mono bg-black/40 backdrop-blur-sm p-1 rounded whitespace-pre">
+              {item.content}
+            </pre>
+          </Html>
         </Float>
       ))}
     </group>
@@ -200,7 +211,7 @@ const WebDevPage = () => {
                     <ArchitectureModel />
                   </Float>
                   <ContactShadows position={[0, -2.5, 0]} opacity={0.4} scale={10} blur={2} far={4.5} />
-                  <Environment preset="city" />
+                  <EnvironmentBoundary><Environment preset="city" /></EnvironmentBoundary>
                   <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={0.5} />
                 </Suspense>
               </Canvas>
@@ -258,16 +269,18 @@ const WebDevPage = () => {
             )}
           >
             <InteractionIndicator />
-            <Canvas camera={{ position: [5, 5, 5], fov: 45 }}>
-              <Suspense fallback={null}>
-                <color attach="background" args={['#0d0d0d']} />
-                <ambientLight intensity={0.5} />
-                <pointLight position={[10, 10, 10]} intensity={2} />
-                <SkeletalFramework />
-                <Environment preset="city" />
-                <OrbitControls enableZoom={false} />
-              </Suspense>
-            </Canvas>
+            <CanvasErrorBoundary>
+              <Canvas camera={{ position: [5, 5, 5], fov: 45 }}>
+                <Suspense fallback={null}>
+                  <color attach="background" args={['#0d0d0d']} />
+                  <ambientLight intensity={0.5} />
+                  <pointLight position={[10, 10, 10]} intensity={2} />
+                  <SkeletalFramework />
+                  <EnvironmentBoundary><Environment preset="city" /></EnvironmentBoundary>
+                  <OrbitControls enableZoom={false} />
+                </Suspense>
+              </Canvas>
+            </CanvasErrorBoundary>
           </motion.div>
 
           <motion.div

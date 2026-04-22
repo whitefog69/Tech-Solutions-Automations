@@ -9,10 +9,30 @@ import SEO from '../../components/SEO';
 import InteractionIndicator from '../../components/InteractionIndicator';
 import CanvasErrorBoundary from '../../components/CanvasErrorBoundary';
 
+class EnvironmentBoundary extends React.Component<{children: React.ReactNode}, {hasError: boolean}> {
+  constructor(props: {children: React.ReactNode}) {
+    super(props);
+    this.state = { hasError: false };
+  }
+  static getDerivedStateFromError() { return { hasError: true }; }
+  componentDidCatch(error: Error) { console.warn("Environment failed to load", error); }
+  render() {
+    if (this.state.hasError) {
+      return (
+        <group>
+          <ambientLight intensity={1} />
+          <directionalLight position={[10, 10, 10]} intensity={1.5} />
+        </group>
+      );
+    }
+    return this.props.children;
+  }
+}
+
 const CloudNode = ({ position, color }: { position: [number, number, number], color: string }) => {
   const ref = useRef<THREE.Mesh>(null!);
   useFrame((state) => {
-    const t = state.clock.getElapsedTime();
+    const t = state.clock.elapsedTime;
     if (ref.current) ref.current.position.y = position[1] + Math.sin(t + position[0]) * 0.2;
   });
 
@@ -54,7 +74,7 @@ const ServerStack = () => {
   const cloudRef = useRef<THREE.Group>(null!);
   
   useFrame((state) => {
-    const t = state.clock.getElapsedTime();
+    const t = state.clock.elapsedTime;
     if (cloudRef.current) {
       cloudRef.current.rotation.y = t * 0.1;
       cloudRef.current.position.y = Math.sin(t * 0.5) * 0.1;
@@ -201,7 +221,7 @@ const CloudPage = () => {
                   <Float speed={1.5} rotationIntensity={0.5} floatIntensity={0.5}>
                     <NodeCluster />
                   </Float>
-                  <Environment preset="city" />
+                  <EnvironmentBoundary><Environment preset="city" /></EnvironmentBoundary>
                   <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={0.5} />
                 </Suspense>
               </Canvas>
@@ -290,7 +310,7 @@ const CloudPage = () => {
                   <ambientLight intensity={0.5} />
                   <pointLight position={[10, 10, 10]} intensity={2} />
                   <ServerStack />
-                  <Environment preset="city" />
+                  <EnvironmentBoundary><Environment preset="city" /></EnvironmentBoundary>
                   <OrbitControls enableZoom={false} />
                 </Suspense>
               </Canvas>
