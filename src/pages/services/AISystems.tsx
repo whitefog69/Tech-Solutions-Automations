@@ -112,7 +112,7 @@ const AISystemsPage = () => {
         description="Engineering high-performance AI systems and autonomous workflows. Custom LLM integrations, intelligent bots, and operational automation for technical dominance."
       />
       {/* Hero Section */}
-      <section className="relative min-h-[600px] md:h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-screen lg:h-screen flex items-center justify-center overflow-hidden py-20 lg:py-0">
         {/* Background Video */}
         <video 
           autoPlay 
@@ -138,10 +138,10 @@ const AISystemsPage = () => {
             <div className="inline-block p-3 md:p-4 rounded-full bg-secondary-container/20 mb-6 md:mb-8 border border-secondary/20 neon-glow-violet">
               <Brain className="w-8 h-8 md:w-12 md:h-12 text-secondary animate-pulse" />
             </div>
-            <h1 className="font-headline text-5xl md:text-8xl font-black tracking-tighter mb-6 uppercase">
+            <h1 className="font-headline text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-6 uppercase">
               AI & <br className="md:hidden" /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-secondary-container neon-glow-violet">Automation</span>
             </h1>
-            <p className="font-body text-on-surface-variant text-base sm:text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed tracking-wide mb-8 md:mb-12">
+            <p className="font-body text-on-surface-variant text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto leading-relaxed tracking-wide mb-8 md:mb-12">
               Creating custom bots and autonomous systems to handle specialized logic and eliminate manual operational tasks.
             </p>
           </motion.div>
@@ -150,7 +150,7 @@ const AISystemsPage = () => {
 
       {/* Feature Grid */}
       <section className="relative py-16 md:py-24 px-6 md:px-8 z-10">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {[
             { icon: Bot, title: "Intelligent AI Bots", desc: "Creating custom bots to handle specialized logic and user interaction." },
             { icon: Brain, title: "AI Integration", desc: "Embedding advanced AI capabilities directly into your existing software." },
@@ -171,7 +171,7 @@ const AISystemsPage = () => {
               )}
             >
               <item.icon className="w-8 h-8 md:w-10 md:h-10 text-secondary mb-4 md:mb-6 opacity-80 group-hover:opacity-100 group-hover:text-secondary-container transition-colors" />
-              <h3 className="font-headline text-xl md:text-2xl font-bold mb-3 md:mb-4 uppercase tracking-widest">{item.title}</h3>
+              <h3 className="font-headline text-xl md:text-2xl font-bold mb-3 md:mb-4 uppercase tracking-widest leading-tight">{item.title}</h3>
               <p className="font-body text-on-surface-variant leading-relaxed text-xs md:text-sm">
                 {item.desc}
               </p>
@@ -187,7 +187,7 @@ const AISystemsPage = () => {
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="w-full aspect-square lg:aspect-video rounded-xl bg-[#0d0d0d] border border-secondary/20 shadow-2xl relative overflow-hidden group"
+            className="w-full aspect-square md:aspect-video lg:aspect-square rounded-xl bg-[#0d0d0d] border border-secondary/20 shadow-2xl relative overflow-hidden group max-h-[400px] md:max-h-[500px] lg:max-h-none"
           >
             <InteractionIndicator />
             <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
@@ -236,14 +236,14 @@ const AISystemsPage = () => {
 
       {/* Neural Stack Insights */}
       <section className="py-16 md:py-24 px-6 md:px-8 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row-reverse gap-12 md:gap-16 items-center">
+        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row-reverse gap-12 md:gap-16 items-center">
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             className="flex-1 w-full"
           >
-            <h2 className="font-headline text-3xl md:text-4xl font-bold mb-8 uppercase tracking-widest text-on-surface text-center md:text-left">Intelligence Architecture</h2>
+            <h2 className="font-headline text-3xl md:text-4xl font-bold mb-6 md:mb-8 uppercase tracking-widest text-on-surface text-center lg:text-left">Intelligence Architecture</h2>
             <div className="space-y-4 md:space-y-6">
               {[
                 { name: "Vector Search Core", tool: "Pinecone / Qdrant" },
@@ -268,7 +268,7 @@ const AISystemsPage = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             className={cn(
-              "flex-1 w-full aspect-square md:aspect-video rounded-2xl overflow-hidden relative flex items-center justify-center",
+              "flex-1 w-full aspect-square md:aspect-video rounded-2xl overflow-hidden relative flex items-center justify-center max-h-[400px] md:max-h-[500px] lg:max-h-none",
               "backdrop-blur-md bg-white/5 border border-white/10",
               "neon-glow-violet"
             )}

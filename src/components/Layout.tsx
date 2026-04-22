@@ -69,15 +69,16 @@ export const Navbar = () => {
   ];
 
   return (
-    <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-outline-variant/15 shadow-[0_0_40px_rgba(177,197,255,0.08)] flex justify-between items-center h-24 px-8 max-w-full">
-      <div className="flex items-center gap-8">
+    <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-outline-variant/15 shadow-[0_0_40px_rgba(177,197,255,0.08)] flex justify-between items-center h-20 md:h-24 px-4 md:px-8 max-w-full">
+      <div className="flex items-center gap-4 md:gap-8">
         <Link to="/" className="flex items-center">
           <img 
             src={`${import.meta.env.BASE_URL}assets/icons/website-logo.png`} 
             alt="Vanguard Tech Ops" 
-            className="h-[72px] w-auto object-contain brightness-0 invert opacity-90 hover:opacity-100 transition-opacity" 
+            className="h-12 sm:h-14 md:h-[72px] w-auto object-contain brightness-0 invert opacity-90 hover:opacity-100 transition-opacity" 
           />
-        </Link>        <div className="hidden md:flex gap-6 items-center">
+        </Link>
+        <div className="hidden md:flex gap-6 items-center">
           <Link 
             to="/" 
             className={cn(

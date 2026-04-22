@@ -106,7 +106,7 @@ const WebDevPage = () => {
         description="Bespoke web engineering focused on speed, clean architecture, and high-conversion experiences. Custom WordPress, Shopify, and React-based ecosystems."
       />
       {/* Hero Section */}
-      <section className="relative h-screen min-h-[800px] flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-screen lg:h-screen flex items-center justify-center overflow-hidden py-20 lg:py-0">
         {/* Background Video */}
         <video 
           autoPlay 
@@ -122,20 +122,20 @@ const WebDevPage = () => {
         {/* Overlay for Depth and Readability */}
         <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background z-[1]"></div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-8 text-center pt-20">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-8 text-center pt-20">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <div className="inline-block p-4 rounded-full bg-secondary-fixed-dim/10 mb-8 border border-secondary-fixed-dim/20 neon-glow-violet">
-              <Globe className="w-12 h-12 text-[#dcb8ff] animate-pulse" />
+            <div className="inline-block p-3 md:p-4 rounded-full bg-secondary-fixed-dim/10 mb-6 md:mb-8 border border-secondary-fixed-dim/20 neon-glow-violet">
+              <Globe className="w-8 h-8 md:w-12 md:h-12 text-[#dcb8ff] animate-pulse" />
             </div>
-            <h1 className="font-headline text-5xl md:text-8xl font-black tracking-tighter mb-6 uppercase">
+            <h1 className="font-headline text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-6 uppercase">
               Precision Web & <br className="md:hidden" /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#dcb8ff] to-[#7701d0]" style={{textShadow: "0 0 20px rgba(220,184,255,0.1)"}}>Ecom Development</span>
             </h1>
-            <p className="font-body text-on-surface-variant text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed tracking-wide mb-12">
+            <p className="font-body text-on-surface-variant text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto leading-relaxed tracking-wide mb-8 md:mb-12">
               Bespoke web and e-commerce engineering focused on speed, clean architecture, and high-conversion experiences.
             </p>
           </motion.div>
@@ -143,8 +143,8 @@ const WebDevPage = () => {
       </section>
 
       {/* Feature Grid */}
-      <section className="relative py-24 px-8 z-10">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <section className="relative py-16 md:py-24 px-6 md:px-8 z-10">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
           {[
             { icon: Code2, title: "WordPress Engineering", desc: "Bespoke WordPress builds focused on speed and clean architecture." },
             { icon: ShoppingBag, title: "Shopify Development", desc: "Specialized e-commerce development for high-conversion web presence." },
@@ -158,14 +158,14 @@ const WebDevPage = () => {
               transition={{ delay: i * 0.15, duration: 0.6 }}
               viewport={{ once: true, margin: "-50px" }}
               className={cn(
-                "p-10 rounded-2xl transition-all duration-500 hover:scale-[1.02] group",
+                "p-6 md:p-10 rounded-2xl transition-all duration-500 hover:scale-[1.02] group",
                 "backdrop-blur-md bg-white/5 border border-white/5",
                 "hover:border-secondary/20 hover:shadow-[0_0_20px_rgba(220,184,255,0.05)]"
               )}
             >
-              <item.icon className="w-10 h-10 text-secondary mb-6 opacity-80 group-hover:opacity-100 group-hover:text-secondary-container transition-all duration-300" />
-              <h3 className="font-headline text-2xl font-bold mb-4 uppercase tracking-widest leading-tight">{item.title}</h3>
-              <p className="font-body text-on-surface-variant leading-relaxed text-sm">
+              <item.icon className="w-8 h-8 md:w-10 md:h-10 text-secondary mb-4 md:mb-6 opacity-80 group-hover:opacity-100 group-hover:text-secondary-container transition-all duration-300" />
+              <h3 className="font-headline text-xl md:text-2xl font-bold mb-3 md:mb-4 uppercase tracking-widest leading-tight">{item.title}</h3>
+              <p className="font-body text-on-surface-variant leading-relaxed text-xs md:text-sm">
                 {item.desc}
               </p>
             </motion.div>
@@ -174,13 +174,13 @@ const WebDevPage = () => {
       </section>
 
       {/* Protocol Section */}
-      <section className="py-24 px-8 border-y border-outline-variant/10 bg-surface-container-lowest/5">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <section className="py-16 md:py-24 px-6 md:px-8 border-y border-outline-variant/10 bg-surface-container-lowest/5">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 items-center">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="w-full aspect-square lg:aspect-video rounded-xl bg-[#0d0d0d] border border-secondary/20 shadow-2xl relative overflow-hidden group"
+            className="w-full aspect-square md:aspect-video lg:aspect-square rounded-xl bg-[#0d0d0d] border border-secondary/20 shadow-2xl relative overflow-hidden group max-h-[400px] md:max-h-[500px] lg:max-h-none"
           >
             <InteractionIndicator />
             <Canvas camera={{ position: [0, 0, 6], fov: 45 }}>
@@ -208,22 +208,22 @@ const WebDevPage = () => {
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="space-y-8"
+            className="space-y-6 md:space-y-8"
           >
-            <h2 className="font-headline text-4xl font-black tracking-tighter text-on-surface uppercase">
+            <h2 className="font-headline text-3xl md:text-4xl font-black tracking-tighter text-on-surface uppercase">
               ENGINEERING <span className="text-secondary italic">PRECISION</span>
             </h2>
-            <div className="space-y-6">
+            <div className="space-y-4 md:space-y-6">
               {[
                 { label: "100/100 PageSpeed Rating", desc: "Precision-engineered frontend architecture for maximum SEO and conversion." },
                 { label: "Edge-First Delivery", desc: "Content served globally with sub-50ms TTFB via distributed serverless nodes." },
                 { label: "Bespoke API Bridges", desc: "Custom-built secure integrations connecting web platforms to core business logic." }
               ].map((point, i) => (
-                <div key={i} className="flex gap-6 group">
+                <div key={i} className="flex gap-4 md:gap-6 group">
                   <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-secondary group-hover:scale-150 transition-transform duration-300 shadow-[0_0_10px_rgba(119,1,208,0.8)]" />
                   <div className="space-y-1">
-                    <div className="font-headline font-bold text-xs uppercase tracking-[0.2em] text-on-surface">{point.label}</div>
-                    <p className="font-body text-sm text-on-surface-variant leading-relaxed opacity-70 group-hover:opacity-100 transition-opacity">
+                    <div className="font-headline font-bold text-[10px] md:text-xs uppercase tracking-[0.2em] text-on-surface">{point.label}</div>
+                    <p className="font-body text-xs md:text-sm text-on-surface-variant leading-relaxed opacity-70 group-hover:opacity-100 transition-opacity">
                       {point.desc}
                     </p>
                   </div>
@@ -235,15 +235,15 @@ const WebDevPage = () => {
       </section>
 
       {/* Engineering Specs */}
-      <section className="py-24 px-8 relative overflow-hidden">
+      <section className="py-16 md:py-24 px-6 md:px-8 relative overflow-hidden">
 
-        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 items-center">
+        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-12 md:gap-16 items-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             className={cn(
-              "flex-1 w-full aspect-square md:aspect-video rounded-2xl overflow-hidden relative flex items-center justify-center",
+              "flex-1 w-full aspect-square md:aspect-video rounded-2xl overflow-hidden relative flex items-center justify-center max-h-[400px] md:max-h-[500px] lg:max-h-none",
               "backdrop-blur-md bg-white/5 border border-white/10 shadow-[0_0_50px_rgba(220,184,255,0.05)]"
             )}
           >
@@ -264,10 +264,10 @@ const WebDevPage = () => {
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="flex-1"
+            className="flex-1 w-full"
           >
-            <h2 className="font-headline text-4xl font-bold mb-8 uppercase tracking-widest text-on-surface">Interface Protocol</h2>
-            <ul className="space-y-6">
+            <h2 className="font-headline text-3xl md:text-4xl font-bold mb-6 md:mb-8 uppercase tracking-widest text-on-surface">Interface Protocol</h2>
+            <ul className="space-y-4 md:space-y-6">
               {[
                 "100/100 Core Web Vitals",
                 "Edge-Rendered Content Delivery",
@@ -276,7 +276,7 @@ const WebDevPage = () => {
               ].map((text, i) => (
                 <li key={i} className="flex items-center gap-4 text-on-surface-variant">
                   <div className="w-1.5 h-1.5 rounded-sm bg-[#dcb8ff] shadow-[0_0_5px_rgba(220,184,255,0.4)]"></div>
-                  <span className="font-body uppercase tracking-[0.1em] text-sm">{text}</span>
+                  <span className="font-body uppercase tracking-[0.1em] text-xs md:text-sm">{text}</span>
                 </li>
               ))}
             </ul>

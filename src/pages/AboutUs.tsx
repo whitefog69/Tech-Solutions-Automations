@@ -47,13 +47,13 @@ const ArchitecturePanel = ({ title, focus, icon: Icon, services }: PanelProps) =
 
 const AboutUs = () => {
   return (
-    <div className="min-h-screen bg-background text-on-surface py-12 md:py-32 px-6 md:px-8">
+    <div className="min-h-screen bg-background text-on-surface py-20 md:py-32 px-6 md:px-8">
       <SEO 
         title="Technical Manifesto & Mission" 
         description="Learn about our story, mission, and the architecture process behind our technical sovereignty. Transforming intricate technical challenges into streamlined, intuitive ecosystems."
       />
       <div className="max-w-6xl mx-auto">
-        <div className="relative mb-16 md:mb-32 py-12 md:py-20 px-6 md:px-16 overflow-hidden rounded-3xl border border-[#4DA6FF]/20 bg-surface/40 backdrop-blur-xl shadow-[0_0_50px_rgba(77,166,255,0.05)]">
+        <div className="relative mb-16 md:mb-32 py-16 md:py-24 px-6 md:px-16 overflow-hidden rounded-3xl border border-[#4DA6FF]/20 bg-surface/40 backdrop-blur-xl shadow-[0_0_50px_rgba(77,166,255,0.05)]">
           {/* Lighting / Overlays - Digital Grid */}
           <div 
             className="absolute inset-0 pointer-events-none opacity-20"
@@ -65,12 +65,12 @@ const AboutUs = () => {
             }}
           />
 
-          <header className="relative z-10 text-center mb-12 md:mb-16">
+          <header className="relative z-10 text-center mb-12 md:mb-20">
             <motion.h1 
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="font-headline text-4xl sm:text-5xl md:text-7xl font-black uppercase tracking-[0.1em] text-[#FFFFFF]"
+              className="font-headline text-4xl sm:text-6xl md:text-8xl font-black uppercase tracking-[0.1em] text-[#FFFFFF] leading-tight"
               style={{
                 textShadow: "0 0 30px rgba(77,166,255,0.4), 0 0 10px rgba(255,255,255,0.2)"
               }}
@@ -79,14 +79,14 @@ const AboutUs = () => {
             </motion.h1>
           </header>
 
-          <section className="relative z-10 text-center max-w-4xl mx-auto space-y-8 md:space-y-16">
+          <section className="relative z-10 text-center max-w-4xl mx-auto space-y-10 md:space-y-20">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.7 }}
             >
-              <h2 className="font-headline text-sm md:text-2xl font-medium uppercase tracking-[0.2em] mb-4 md:mb-6 text-[#4DA6FF]">OUR STORY</h2>
+              <h2 className="font-headline text-xs md:text-2xl font-bold uppercase tracking-[0.2em] mb-4 md:mb-6 text-[#4DA6FF]">OUR STORY</h2>
               <p className="font-body text-sm md:text-xl font-light text-[#E0E0E0] leading-relaxed max-w-3xl mx-auto">
                 Founded on the principles of robust systems architecture and advanced cybersecurity, we understand that true luxury in the digital space means flawless performance and total control. We bridge the gap between complex engineering and elegant design, transforming intricate technical challenges into streamlined, intuitive ecosystems.
               </p>
@@ -98,7 +98,7 @@ const AboutUs = () => {
               whileInView={{ scaleX: 1, opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 1, ease: "easeInOut", delay: 0.2 }}
-              className="relative h-[2px] w-4/5 mx-auto"
+              className="relative h-[1px] md:h-[2px] w-4/5 mx-auto"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#4DA6FF] to-[#E0E0E0] opacity-80" />
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#4DA6FF] to-[#E0E0E0] blur-[4px] opacity-60" />
@@ -110,7 +110,7 @@ const AboutUs = () => {
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.7, delay: 0.3 }}
             >
-              <h2 className="font-headline text-sm md:text-2xl font-medium uppercase tracking-[0.2em] mb-4 md:mb-6 text-[#4DA6FF]">THE MISSION</h2>
+              <h2 className="font-headline text-xs md:text-2xl font-bold uppercase tracking-[0.2em] mb-4 md:mb-6 text-[#4DA6FF]">THE MISSION</h2>
               <p className="font-body text-sm md:text-xl font-light text-[#E0E0E0] leading-relaxed max-w-3xl mx-auto">
                 At Vanguard Tech Ops, we don't just build applications; we architect digital authority. We empower your business to scale, innovate, and lead through our core specializations.
               </p>
@@ -118,9 +118,9 @@ const AboutUs = () => {
           </section>
         </div>
 
-        <section>
-          <h2 className="font-headline text-lg md:text-2xl font-bold uppercase tracking-widest mb-8 md:mb-12 text-primary text-center">The Architecture Process</h2>
-          <div className="grid md:grid-cols-3 gap-6 md:gap-8">
+        <section className="py-12 md:py-20">
+          <h2 className="font-headline text-xl md:text-3xl font-bold uppercase tracking-widest mb-10 md:mb-16 text-primary text-center">The Architecture Process</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <ArchitecturePanel 
               title="Architecture" 
               focus="The Blueprint" 

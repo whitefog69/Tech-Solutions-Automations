@@ -63,7 +63,7 @@ const Contact = () => {
   const labelClasses = "block text-[9px] md:text-[10px] font-headline uppercase tracking-[0.2em] text-primary mb-2 font-bold";
 
   return (
-    <div className="min-h-screen bg-background text-on-surface pt-20 md:pt-32 pb-16 md:pb-24 px-6 md:px-8 relative overflow-hidden">
+    <div className="min-h-screen bg-background text-on-surface pt-24 md:pt-32 pb-16 md:pb-24 px-6 md:px-8 relative overflow-hidden">
       <SEO 
         title="Initialize Inquiry Protocol" 
         description="Ready to scale your technical infrastructure? Establish a secure channel with our lead architects to engineer your sovereign digital environment."
@@ -74,32 +74,32 @@ const Contact = () => {
           initial={{ opacity: 0, x: -30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
-          className="self-start text-center lg:text-left"
+          className="self-start text-center lg:text-left pt-10 lg:pt-0"
         >
-          <span className="text-primary font-headline text-[10px] uppercase tracking-[0.4em] mb-4 md:mb-6 block">Communication Protocol</span>
-          <h1 className="text-4xl sm:text-6xl font-headline font-black uppercase tracking-tighter leading-[0.9] mb-6 md:mb-8">
+          <span className="text-primary font-headline text-[10px] uppercase tracking-[0.4em] mb-4 md:mb-6 block font-bold">Communication Protocol</span>
+          <h1 className="text-4xl sm:text-6xl md:text-7xl font-headline font-black uppercase tracking-tighter leading-none mb-6 md:mb-8">
             Initialize <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary-container">Inquiry</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary-container leading-tight">Inquiry</span>
           </h1>
-          <p className="font-body text-on-surface-variant text-sm md:text-lg leading-relaxed max-w-md mx-auto lg:mx-0 mb-8 md:mb-12 opacity-95">
+          <p className="font-body text-on-surface-variant text-base md:text-lg leading-relaxed max-w-md mx-auto lg:mx-0 mb-8 md:mb-12 opacity-95">
             Ready to scale your technical infrastructure? Our architects are standing by to engineer your sovereign digital environment.
           </p>
 
-          <div className="space-y-8 md:space-y-12">
-            <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-6">
+          <div className="space-y-10 md:space-y-12">
+            <div className="flex flex-col sm:flex-row items-center lg:items-start gap-4 sm:gap-6">
               <div className="w-10 h-10 md:w-12 md:h-12 rounded-sm bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0">
                 <Mail className="w-4 h-4 md:w-5 md:h-5 text-primary" />
               </div>
-              <div className="text-center sm:text-left">
+              <div className="text-center lg:text-left">
                 <h4 className="font-headline text-[10px] uppercase tracking-widest text-on-surface font-bold mb-1">Direct Channel</h4>
                 <p className="font-mono text-xs md:text-sm text-primary/60">contact@vanguardtechops.com</p>
               </div>
             </div>
-            <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-6">
+            <div className="flex flex-col sm:flex-row items-center lg:items-start gap-4 sm:gap-6">
               <div className="w-10 h-10 md:w-12 md:h-12 rounded-sm bg-secondary/10 border border-secondary/20 flex items-center justify-center shrink-0">
                 <Phone className="w-4 h-4 md:w-5 md:h-5 text-secondary" />
               </div>
-              <div className="text-center sm:text-left">
+              <div className="text-center lg:text-left">
                 <h4 className="font-headline text-[10px] uppercase tracking-widest text-on-surface font-bold mb-1">Secure Mesh (Voice)</h4>
                 <p className="font-mono text-xs md:text-sm text-secondary/60">Node Relay: +1 (555) 010-ARCH</p>
               </div>
@@ -112,7 +112,7 @@ const Contact = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="bg-[#131313] p-6 md:p-12 relative border border-white/5 shadow-lg shadow-black/50 rounded-sm self-start"
+          className="bg-surface-container-lowest p-6 md:p-10 lg:p-12 relative border border-white/5 shadow-2xl rounded-sm self-start"
         >
           {formState === 'submitted' ? (
             <motion.div 

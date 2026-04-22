@@ -102,7 +102,7 @@ const GraphicDesignPage = () => {
         description="Crafting cohesive visual identities and visually striking website layouts. High-end UI/UX prototyping, brand identity, and responsive visual design for elite brands."
       />
       {/* Hero Section */}
-      <section className="relative min-h-[600px] md:h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-screen lg:h-screen flex items-center justify-center overflow-hidden py-20 lg:py-0">
         {/* Background Video */}
         <video 
           autoPlay 
@@ -128,10 +128,10 @@ const GraphicDesignPage = () => {
             <div className="inline-block p-3 md:p-4 rounded-full bg-secondary-container/20 mb-6 md:mb-8 border border-secondary/20 neon-glow-violet">
               <Palette className="w-8 h-8 md:w-12 md:h-12 text-secondary animate-pulse" />
             </div>
-            <h1 className="font-headline text-5xl md:text-8xl font-black tracking-tighter mb-6 uppercase">
+            <h1 className="font-headline text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-6 uppercase">
               Graphic & <br className="md:hidden" /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-secondary-container neon-glow-violet">Web Design</span>
             </h1>
-            <p className="font-body text-on-surface-variant text-base sm:text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed tracking-wide mb-8 md:mb-12">
+            <p className="font-body text-on-surface-variant text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto leading-relaxed tracking-wide mb-8 md:mb-12">
               Crafting cohesive visual identities and visually striking, user-centric website layouts that align with modern aesthetics.
             </p>
           </motion.div>
@@ -140,7 +140,7 @@ const GraphicDesignPage = () => {
 
       {/* Feature Grid */}
       <section className="relative py-16 md:py-24 px-6 md:px-8 z-10">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {[
             { icon: PenTool, title: "Brand Identity & Logo Creation", desc: "Crafting cohesive visual identities that establish a strong, premium market presence." },
             { icon: Layout, title: "Custom Web Interface Design", desc: "Designing visually striking, user-centric website layouts that align with modern aesthetics." },
@@ -155,13 +155,13 @@ const GraphicDesignPage = () => {
               transition={{ delay: i * 0.1, duration: 0.6 }}
               viewport={{ once: true, margin: "-50px" }}
               className={cn(
-                "p-8 md:p-10 rounded-2xl transition-all duration-500 hover:scale-[1.02] group",
+                "p-6 md:p-10 rounded-2xl transition-all duration-500 hover:scale-[1.02] group",
                 "backdrop-blur-md bg-white/5 border border-white/5",
                 "hover:border-secondary/20 hover:shadow-[0_0_20px_rgba(119,1,208,0.05)]"
               )}
             >
               <item.icon className="w-8 h-8 md:w-10 md:h-10 text-secondary mb-4 md:mb-6 opacity-80 group-hover:opacity-100 group-hover:text-secondary-container transition-colors" />
-              <h3 className="font-headline text-lg md:text-xl font-bold mb-3 uppercase tracking-widest leading-tight">{item.title}</h3>
+              <h3 className="font-headline text-xl md:text-2xl font-bold mb-3 md:mb-4 uppercase tracking-widest leading-tight">{item.title}</h3>
               <p className="font-body text-on-surface-variant leading-relaxed text-xs md:text-sm">
                 {item.desc}
               </p>
@@ -177,7 +177,7 @@ const GraphicDesignPage = () => {
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="w-full aspect-square lg:aspect-video rounded-xl bg-[#0d0d0d] border border-secondary/20 shadow-2xl relative overflow-hidden group flex items-center justify-center"
+            className="w-full aspect-square md:aspect-video lg:aspect-square rounded-xl bg-[#0d0d0d] border border-secondary/20 shadow-2xl relative overflow-hidden group flex items-center justify-center max-h-[400px] md:max-h-[500px] lg:max-h-none"
           >
             <InteractionIndicator />
             <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
@@ -234,15 +234,15 @@ const GraphicDesignPage = () => {
 
       {/* Design Philosophy */}
       <section className="py-16 md:py-24 px-6 md:px-8 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-12 md:gap-16 items-center">
+        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-12 md:gap-16 items-center">
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             className="flex-1 w-full"
           >
-            <h2 className="font-headline text-3xl md:text-4xl font-bold mb-8 uppercase tracking-widest text-on-surface text-center md:text-left">Design Philosophy</h2>
-            <p className="font-body text-on-surface-variant leading-relaxed mb-8 text-sm md:text-base text-center md:text-left">
+            <h2 className="font-headline text-3xl md:text-4xl font-bold mb-6 md:mb-8 uppercase tracking-widest text-on-surface text-center lg:text-left">Design Philosophy</h2>
+            <p className="font-body text-on-surface-variant leading-relaxed mb-8 text-sm md:text-base text-center lg:text-left">
               Our design ethos is rooted in "Quiet Luxury"—a minimalist yet high-impact approach that prioritizes negative space, premium typography, and seamless interaction.
             </p>
             <ul className="space-y-4">
@@ -252,7 +252,7 @@ const GraphicDesignPage = () => {
                 "Micro-Interaction Design",
                 "Cross-Platform Visual Consistency"
               ].map((text, i) => (
-                <li key={i} className="flex items-center gap-4 text-on-surface justify-center md:justify-start">
+                <li key={i} className="flex items-center gap-4 text-on-surface justify-center lg:justify-start">
                   <div className="w-1.5 h-1.5 rounded-full bg-secondary neon-glow-violet"></div>
                   <span className="font-headline uppercase tracking-[0.1em] text-xs md:text-sm font-bold">{text}</span>
                 </li>
@@ -265,7 +265,7 @@ const GraphicDesignPage = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             className={cn(
-              "flex-1 w-full aspect-square md:aspect-video rounded-2xl overflow-hidden relative flex items-center justify-center",
+              "flex-1 w-full aspect-square md:aspect-video rounded-2xl overflow-hidden relative flex items-center justify-center max-h-[400px] md:max-h-[500px] lg:max-h-none",
               "backdrop-blur-md bg-white/5 border border-white/10 shadow-[0_0_50px_rgba(119,1,208,0.1)]"
             )}
           >
