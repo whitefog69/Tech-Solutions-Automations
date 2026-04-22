@@ -113,7 +113,7 @@ const ShopifyPage = () => {
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <img 
-            src={`${import.meta.env.BASE_URL}assets/services/shopify/shopify-bg.png`} 
+            src={`${import.meta.env.BASE_URL}assets/services/shopify/Shopify banner 2.png`} 
             alt="Shopify & WordPress Background" 
             className="w-full h-full object-cover"
           />
